@@ -429,7 +429,7 @@ int main()
 					else if (zele[chai].kak >= bite2) { std::cout << " чай +1\n"; zele[chai].kak += 1; }
 					else if (zele[chai].kak == (bite2 - 1) && esme <= 5) {
 						if (es[ES].kak > 0) { std::cout << " ЭС -1\n"; es[ES].kak -= 1; }
-						else if (metall[ME].kak > 0) { std::cout << " металл -1\n"; metall[ME].kak -= 1; }
+						else{ std::cout << " металл -1\n"; metall[ME].kak -= 1; }
 					}
 					else {
 						if (sf == (bite + 1)) {
@@ -484,12 +484,11 @@ int main()
 					if (zele[chai].kak >= bite2) { std::cout << " чай -1\n"; zele[chai].kak -= 1; }
 					else if (sf <= bite) {
 						if (shapka[s].kak > -1) { std::cout << " шапка -1\n"; shapka[s].kak -= 1; }
-						else if (sharf[f].kak > -1) { std::cout << " шарф -1\n"; sharf[f].kak -= 1; }
-						else { std::cout << " чай +1\n"; zele[chai].kak += 1; }
+						else{ std::cout << " шарф -1\n"; sharf[f].kak -= 1; }
 					}
 					else if (zele[chai].kak == (bite2 - 1) && esme <= 5) {
 						if (es[ES].kak > 0) { std::cout << " ЭС -1\n"; es[ES].kak -= 1; }
-						else if (metall[ME].kak > 0) { std::cout << " металл -1\n"; metall[ME].kak -= 1; }
+						else{ std::cout << " металл -1\n"; metall[ME].kak -= 1; }
 					}
 				}
 				else if (chto == 3 && faza > 0 && !(sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 5))) {
@@ -553,9 +552,11 @@ int main()
 						if (es[ES].kak < 4) { std::cout << " ЭС +1\n"; es[ES].kak += 1; }
 						else if (metall[ME].kak < 4) { std::cout << " металл +1\n"; metall[ME].kak += 1; }
 					}
-					else if (shapka[s].kak > -1) { std::cout << "\n = = = = = шапка -1 = = = = =\n\n"; shapka[s].kak -= 1; }
-					else if (sharf[f].kak > -1) { std::cout << "\n = = = = = шарф -1 = = = = =\n\n"; sharf[f].kak -= 1; }
-					else if (zele[chai].kak < (bite2 + 1)) { std::cout << "\n чай +1\n\n"; zele[chai].kak += 1; }
+					else if (sf <= bite) {
+					if (shapka[s].kak > -1) { std::cout << "\n = = = = = шапка -1 = = = = =\n\n"; shapka[s].kak -= 1; }
+					else{ std::cout << "\n = = = = = шарф -1 = = = = =\n\n"; sharf[f].kak -= 1; }
+					}
+					else if (zele[chai].kak >= bite2) { std::cout << "\n чай +1\n\n"; zele[chai].kak += 1; }
 
 				}
 				else if (chto == 9201) {
