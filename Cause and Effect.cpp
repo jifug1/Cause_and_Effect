@@ -111,13 +111,13 @@ std::thread a([&]() {
 );
 
 void save() {
-	std::ofstream file("Case_and_Effect_save_file.txt");
+	std::ofstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
 		file << vsego_proideno << " " << vremya;
 
 }
 void read_save() {
-	std::ifstream file("Case_and_Effect_save_file.txt");
+	std::ifstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
 		file >> save_proideno >> save_time;
 
