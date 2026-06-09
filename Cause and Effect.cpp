@@ -182,7 +182,7 @@ void create_cave() {
 	while (line.size() > 0) {
 		line.pop_back();}
 
-	line.push_back({0,0,0,5});
+	line.push_back({0,0,1,5});
 	int index = 0;
 	int kuda_bylo;
 
@@ -193,25 +193,25 @@ void create_cave() {
 			int route = Cave(chislo);
 			if (route == 0 && line[index].oty >= line[index].ky) {
 				line[index + 1].oty = (line[index].ky - 1);
-				line[index + 1].ky = (line[index].ky - 6);
+				line[index + 1].ky = (line[index].ky - 5);
 				line[index + 1].otx = (line[index].kx);
 				line[index + 1].kx = (line[index].kx);
 			}
 			else if (route == 1 && line[index].oty <= line[index].ky) {
 				line[index + 1].oty = (line[index].ky + 1);
-				line[index + 1].ky = (line[index].ky + 6);
+				line[index + 1].ky = (line[index].ky + 5);
 				line[index + 1].otx = (line[index].kx);
 				line[index + 1].kx = (line[index].kx);
 			}
 			else if (route == 2 && line[index].otx >= line[index].kx) {
 				line[index + 1].otx = (line[index].kx - 1);
-				line[index + 1].kx = (line[index].kx - 6);
+				line[index + 1].kx = (line[index].kx - 5);
 				line[index + 1].oty = (line[index].ky);
 				line[index + 1].ky = (line[index].ky);
 			}
 			else if (route == 3 && line[index].otx <= line[index].kx) {
 				line[index + 1].otx = (line[index].kx + 1);
-				line[index + 1].kx = (line[index].otx + 6);
+				line[index + 1].kx = (line[index].otx + 5);
 				line[index + 1].oty = (line[index].ky);
 				line[index + 1].ky = (line[index].ky);
 			}
@@ -454,7 +454,23 @@ int main()
 				std::cout << " . . . . . вы остановились идти по тропинке в лесу. 0 попасть в меню. 1 продолжить идти. 4 меню крафта.";
 			for (int i = 0; i < line.size(); ++i) {
 				std::cout << "\n " << line[i].otx << " " << line[i].kx << " " << line[i].oty << " " << line[i].ky;
-
+			}
+			std::cout << "\n";
+			for (int x = -25; x < 25; ++x) {
+				for (int y = -25; y < 25; ++y) {
+					int index = 0; 
+					int chto_risovat = 0;
+					while (index < line.size()) {
+						if (line[index].oty == y && line[index].otx == x) {
+							chto_risovat = 1;
+							break;
+						}
+						++index;
+					}
+					if (chto_risovat == 1) { std::cout << "."; }
+					else{std::cout << " "; }
+				}
+				std::cout << ",\n";
 			}
 			}
 			std::cout << "\n [===============\n ваше здоровье:  [" << golo << "]  орган:  [" << organ << "]  инфекция:  [" << infection << "]  иммунитет:  [" << imunitet << "]\n";
