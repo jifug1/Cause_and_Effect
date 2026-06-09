@@ -27,7 +27,7 @@ double steel = 0;
 std::mt19937 chislo(std::chrono::steady_clock::now().time_since_epoch().count());
 std::uniform_int_distribution j(-1, 1);
 std::uniform_int_distribution da(0, skoko_chaev);
-std::uniform_int_distribution b(0, 1);
+std::uniform_int_distribution Cave(0, 3);
 std::uniform_int_distribution dlyashapok(0, iii);
 std::uniform_int_distribution bite_chai(0, 4);
 std::uniform_int_distribution podarok(0, 3);
@@ -39,6 +39,17 @@ struct kto {
 	double kg;
 	
 };
+struct cave {
+	int otx;
+	int kx;
+	int oty;
+	int ky;
+};
+std::vector<cave> line{
+
+};
+
+
 std::vector<kto> shapka{
 	
 };
@@ -167,7 +178,38 @@ void create(int x = 4, int y = 4, int z = 4) {
 	da.param(std::uniform_int_distribution<int>::param_type(0, skoko_chaev));
 
 }
+void create_cave() {
+	while (line.size() > 0) {
+		line.pop_back();
+	}
+	line.push_back({0,0,0,5});
+	for (int index = 0; index < 15; ++index) {
+		int route = Cave(chislo);
 
+		line.push_back({0,0,0,0,});
+		if (route == 0 && line[index].oty >= line[index].ky) {
+			line[index + 1].oty = (line[index].ky + 1);
+			line[index + 1].ky -= 5;
+		}
+		else if (route == 1 && line[index].oty <= line[index].ky) {
+			line[index + 1].oty = (line[index].ky + 1);
+			line[index + 1].ky = (line[index].oty + 5);
+		}
+		else if (route == 2 && line[index].otx >= line[index].kx) {
+			line[index + 1].otx = (line[index].kx + 1);
+			line[index + 1].kx -= 5;
+		}
+		else if (route == 3 && line[index].otx <= line[index].kx) {
+			line[index + 1].otx = (line[index].kx + 1);
+			line[index + 1].kx = (line[index].otx + 5);
+		}
+		else { continue; }
+
+
+	}
+
+
+}
 int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat) {
 	std::cout << " 0 выйти из меню крафта (если кроме этого текста здесь ничего не написано, значит вы не можете ничего создать. если кроме этого текста здесь чтото написано, значит вы можете это создать)\n";
 	if (iron >= 0.600 && pribor == -1) { std::cout << " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд на 1 использование)\n"; }
@@ -260,7 +302,6 @@ int main()
 	bool pokozat = 1;
 	bool organ = 1;
 	int dlya_organa = 0;
-	int izZaChegoUkus = 0;
 	int cota = 0;
 
 	int pribor = -1;
@@ -293,6 +334,10 @@ int main()
 		int ES = podarok(chislo);
 		int ME = podarok(chislo);
 		int esme = (es[ES].kak + metall[ME].kak);
+
+		if (faza == 0) {
+			create_cave();
+		}
 
 		if (dlya_organa == 0) { if (organ == 0) { bite += 1; dlya_organa = 1; } }
 		if (dlya_organa == 1) { if (organ == 1) { bite -= 1; dlya_organa = 0; } }
@@ -393,7 +438,13 @@ int main()
 
 				std::cout << " 0 попасть в меню. 1 укусить. 2 пройти мимо. 3 поздароваться. 100 рассказать анекдот. 4 меню крафта.";
 			}
-			else { std::cout << " . . . . . вы остановились идти по тропинке в лесу. 0 попасть в меню. 1 продолжить идти. 4 меню крафта."; }
+			else {
+				std::cout << " . . . . . вы остановились идти по тропинке в лесу. 0 попасть в меню. 1 продолжить идти. 4 меню крафта.";
+			for (int i = 0; i < line.size(); ++i) {
+				std::cout << "\n " << line[i].oty << " " << line[i].ky << " " << line[i].otx << " " << line[i].kx;
+
+			}
+			}
 			std::cout << "\n [===============\n ваше здоровье:  [" << golo << "]  орган:  [" << organ << "]  инфекция:  [" << infection << "]  иммунитет:  [" << imunitet << "]\n";
 			bool pravda = 0;
 			if (iron != 0) { std::cout << " у вас кг железа: " << iron; pravda = 1; }
