@@ -457,17 +457,19 @@ int main()
 			}
 			std::cout << "\n";
 			for (int x = -25; x < 25; ++x) {
-				for (int y = -25; y < 25; ++y) {
+				for (int y = -50; y < 50; ++y) {
 					int index = 0; 
 					int chto_risovat = 0;
 					while (index < line.size()) {
-						if (line[index].oty == y && line[index].otx == x) {
+						if (((y <= line[index].oty && y >= line[index].ky) || (y >= line[index].oty && y <= line[index].ky)) && ((x <= line[index].otx && x >= line[index].kx) || (x >= line[index].otx && x <= line[index].kx))) {
+			
 							chto_risovat = 1;
 							break;
 						}
 						++index;
 					}
-					if (chto_risovat == 1) { std::cout << "."; }
+					if (x == 0 && y == 0) { std::cout << "0"; }
+					else if (chto_risovat == 1) { std::cout << "."; }
 					else{std::cout << " "; }
 				}
 				std::cout << ",\n";
@@ -671,6 +673,7 @@ int main()
 					else { cikl2 = 1; cikl = 0; }
 				}
 				else if (chto == 1 && faza == 0) { cikl = 0; cikl2 = 0; }
+				else if (chto == 7089) { faza = 1; }
 				else { std::cout << "\n = = = = = неправельный ввод = = = = =\n"; cikl = 1; }
 
 			} while (cikl);
