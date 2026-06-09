@@ -180,32 +180,44 @@ void create(int x = 4, int y = 4, int z = 4) {
 }
 void create_cave() {
 	while (line.size() > 0) {
-		line.pop_back();
-	}
+		line.pop_back();}
+
 	line.push_back({0,0,0,5});
-	for (int index = 0; index < 15; ++index) {
-		int route = Cave(chislo);
+	int index = 0;
+	int kuda_bylo;
 
+	while (index < 15) {
 		line.push_back({0,0,0,0,});
-		if (route == 0 && line[index].oty >= line[index].ky) {
-			line[index + 1].oty = (line[index].ky + 1);
-			line[index + 1].ky -= 5;
-		}
-		else if (route == 1 && line[index].oty <= line[index].ky) {
-			line[index + 1].oty = (line[index].ky + 1);
-			line[index + 1].ky = (line[index].oty + 5);
-		}
-		else if (route == 2 && line[index].otx >= line[index].kx) {
-			line[index + 1].otx = (line[index].kx + 1);
-			line[index + 1].kx -= 5;
-		}
-		else if (route == 3 && line[index].otx <= line[index].kx) {
-			line[index + 1].otx = (line[index].kx + 1);
-			line[index + 1].kx = (line[index].otx + 5);
-		}
-		else { continue; }
 
-
+		
+			int route = Cave(chislo);
+			if (route == 0 && line[index].oty >= line[index].ky) {
+				line[index + 1].oty = (line[index].ky - 1);
+				line[index + 1].ky = (line[index].ky - 6);
+				line[index + 1].otx = (line[index].kx);
+				line[index + 1].kx = (line[index].kx);
+			}
+			else if (route == 1 && line[index].oty <= line[index].ky) {
+				line[index + 1].oty = (line[index].ky + 1);
+				line[index + 1].ky = (line[index].ky + 6);
+				line[index + 1].otx = (line[index].kx);
+				line[index + 1].kx = (line[index].kx);
+			}
+			else if (route == 2 && line[index].otx >= line[index].kx) {
+				line[index + 1].otx = (line[index].kx - 1);
+				line[index + 1].kx = (line[index].kx - 6);
+				line[index + 1].oty = (line[index].ky);
+				line[index + 1].ky = (line[index].ky);
+			}
+			else if (route == 3 && line[index].otx <= line[index].kx) {
+				line[index + 1].otx = (line[index].kx + 1);
+				line[index + 1].kx = (line[index].otx + 6);
+				line[index + 1].oty = (line[index].ky);
+				line[index + 1].ky = (line[index].ky);
+			}
+			else { line.pop_back(); continue; }
+			kuda_bylo = route;
+			++index;
 	}
 
 
@@ -441,7 +453,7 @@ int main()
 			else {
 				std::cout << " . . . . . вы остановились идти по тропинке в лесу. 0 попасть в меню. 1 продолжить идти. 4 меню крафта.";
 			for (int i = 0; i < line.size(); ++i) {
-				std::cout << "\n " << line[i].oty << " " << line[i].ky << " " << line[i].otx << " " << line[i].kx;
+				std::cout << "\n " << line[i].otx << " " << line[i].kx << " " << line[i].oty << " " << line[i].ky;
 
 			}
 			}
