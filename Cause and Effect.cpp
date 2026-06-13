@@ -47,8 +47,8 @@ struct cave {
 };
 struct route_struct {
 	int route_point;
-	int x;
 	int y;
+	int x;
 };
 
 
@@ -203,7 +203,7 @@ void create_cave() {
 
 	while (index < 60 && error < 1000) {
 		line.push_back({ 0,0,0,0, });
-		
+
 
 
 
@@ -218,99 +218,99 @@ void create_cave() {
 			line[index].ky = (point[point_index].y - 4);
 			line[index].otx = (point[point_index].x);
 			line[index].kx = (point[point_index].x);
-			if (point.size() < 60) {
-				if (sto <= 33) {
-					point.push_back({ 2,line[index].ky - 1, line[index].kx });
-
-				}
-				if (sto <= 66) {
-					point.push_back({ 4,line[index].ky, line[index].kx - 1 });
-
-				}
-				if (sto <= 100) {
-					point.push_back({ 3,line[index].ky, line[index].kx + 1 });
-
-				}
-			}
 		}
 		else if (route == 2) {
 			line[index].oty = (point[point_index].y);
 			line[index].ky = (point[point_index].y + 4);
 			line[index].otx = (point[point_index].x);
 			line[index].kx = (point[point_index].x);
-			if (point.size() < 60) {
-				if (sto <= 33) {
-					point.push_back({ 1,line[index].ky + 1, line[index].kx });
-
-				}
-				if (sto <= 66) {
-					point.push_back({ 4,line[index].ky, line[index].kx - 1 });
-
-				}
-				if (sto <= 100) {
-					point.push_back({ 3,line[index].ky, line[index].kx + 1 });
-
-				}
-			}
 		}
 		else if (route == 3) {
 			line[index].oty = (point[point_index].y);
 			line[index].ky = (point[point_index].y);
 			line[index].otx = (point[point_index].x);
 			line[index].kx = (point[point_index].x - 4);
-			if (point.size() < 60) {
-				if (sto <= 33) {
-					point.push_back({ 1,line[index].ky + 1, line[index].kx });
-
-				}
-				if (sto <= 66) {
-					point.push_back({ 2,line[index].ky - 1, line[index].kx });
-
-				}
-				if (sto <= 100) {
-					point.push_back({ 4,line[index].ky, line[index].kx + 1 });
-
-				}
-			}
-
 		}
 		else if (route == 4) {
-			line[index].otx = (point[point_index].y);
-			line[index].kx = (point[point_index].y);
-			line[index].oty = (point[point_index].x);
-			line[index].ky = (point[point_index].x + 4);
-			if (point.size() < 60) {
-				if (sto <= 33) {
-					point.push_back({ 1,line[index].ky + 1, line[index].kx });
-
-				}
-				if (sto <= 66) {
-					point.push_back({ 2,line[index].ky - 1, line[index].kx });
-
-				}
-				if (sto <= 100) {
-					point.push_back({ 3,line[index].ky, line[index].kx - 1 });
-
-				}
-			}
+			line[index].oty = (point[point_index].y);
+			line[index].ky = (point[point_index].y);
+			line[index].otx = (point[point_index].x);
+			line[index].kx = (point[point_index].x + 4);
 		}
 		else { line.pop_back(); continue; }
-		
+
 		int i = 0;
 		bool cont = 0;
 		while (i < line.size()) {
 			if (index == i) { ++i; continue; }
 			if (((line[i].oty <= line[index].oty && line[i].ky >= line[index].ky) || (line[i].oty >= line[index].oty && line[i].ky <= line[index].ky)) && ((line[i].otx <= line[index].otx && line[i].kx >= line[index].kx) || (line[i].otx >= line[index].otx && line[i].kx <= line[index].kx))) {
 				cont = 1; break;
-			} 
+			}
 			++i;
-	}
+		}
 		if (cont == 1) {
 			line.pop_back();
 			++error;
 			continue;
 		}
+		if (point.size() < 60) {
+		if (route == 1) {
+			if (sto <= 33) {
+				point.push_back({ 2,line[index].ky - 1, line[index].kx });
 
+			}
+			if (sto <= 66) {
+				point.push_back({ 4,line[index].ky, line[index].kx - 1 });
+
+			}
+			if (sto <= 100) {
+				point.push_back({ 3,line[index].ky, line[index].kx + 1 });
+
+			}
+		}
+		else if (route == 2) {
+			if (sto <= 33) {
+				point.push_back({ 1,line[index].ky + 1, line[index].kx });
+
+			}
+			if (sto <= 66) {
+				point.push_back({ 4,line[index].ky, line[index].kx - 1 });
+
+			}
+			if (sto <= 100) {
+				point.push_back({ 3,line[index].ky, line[index].kx + 1 });
+
+			}
+		}
+		else if (route == 3) {
+			if (sto <= 33) {
+				point.push_back({ 1,line[index].ky + 1, line[index].kx });
+
+			}
+			if (sto <= 66) {
+				point.push_back({ 2,line[index].ky - 1, line[index].kx });
+
+			}
+			if (sto <= 100) {
+				point.push_back({ 4,line[index].ky, line[index].kx + 1 });
+
+			}
+		}
+		else if (route == 4) {
+			if (sto <= 33) {
+				point.push_back({ 1,line[index].ky + 1, line[index].kx });
+
+			}
+			if (sto <= 66) {
+				point.push_back({ 2,line[index].ky - 1, line[index].kx });
+
+			}
+			if (sto <= 100) {
+				point.push_back({ 3,line[index].ky, line[index].kx - 1 });
+
+			}
+		}
+	    }
 			++index;
 			++point_index;
 	}
