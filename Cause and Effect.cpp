@@ -199,9 +199,9 @@ void create_cave() {
 	point.push_back({-1,0,0});
 	int index = 0;
 	int point_index = 0;
-	
+	int error = 0;
 
-	while (index < 60) {
+	while (index < 60 && error < 1000) {
 		line.push_back({ 0,0,0,0, });
 		
 
@@ -215,7 +215,7 @@ void create_cave() {
 
 		if (route == 1) {
 			line[index].oty = (point[point_index].y);
-			line[index].ky = (point[point_index].y - 5);
+			line[index].ky = (point[point_index].y - 4);
 			line[index].otx = (point[point_index].x);
 			line[index].kx = (point[point_index].x);
 			if (point.size() < 60) {
@@ -235,7 +235,7 @@ void create_cave() {
 		}
 		else if (route == 2) {
 			line[index].oty = (point[point_index].y);
-			line[index].ky = (point[point_index].y + 5);
+			line[index].ky = (point[point_index].y + 4);
 			line[index].otx = (point[point_index].x);
 			line[index].kx = (point[point_index].x);
 			if (point.size() < 60) {
@@ -257,7 +257,7 @@ void create_cave() {
 			line[index].oty = (point[point_index].y);
 			line[index].ky = (point[point_index].y);
 			line[index].otx = (point[point_index].x);
-			line[index].kx = (point[point_index].x - 5);
+			line[index].kx = (point[point_index].x - 4);
 			if (point.size() < 60) {
 				if (sto <= 33) {
 					point.push_back({ 1,line[index].ky + 1, line[index].kx });
@@ -278,7 +278,7 @@ void create_cave() {
 			line[index].otx = (point[point_index].y);
 			line[index].kx = (point[point_index].y);
 			line[index].oty = (point[point_index].x);
-			line[index].ky = (point[point_index].x + 5);
+			line[index].ky = (point[point_index].x + 4);
 			if (point.size() < 60) {
 				if (sto <= 33) {
 					point.push_back({ 1,line[index].ky + 1, line[index].kx });
@@ -295,16 +295,21 @@ void create_cave() {
 			}
 		}
 		else { line.pop_back(); continue; }
-		//kuda_bylo = route;
-
-		for (int i = 0; i < line.size(); ++i) {
-			if (index == i) { continue; }
-		if (((line[i].oty <= line[index].oty && line[i].ky >= line[index].ky) || (line[i].oty >= line[index].oty && line[i].ky <= line[index].ky)) && ((line[i].otx <= line[index].otx && line[i].kx >= line[index].kx) || (line[i].otx >= line[index].otx && line[i].kx <= line[index].kx))) {
-			line.pop_back(); continue;
-
-		}
-	}
 		
+		int i = 0;
+		bool cont = 0;
+		while (i < line.size()) {
+			if (index == i) { ++i; continue; }
+			if (((line[i].oty <= line[index].oty && line[i].ky >= line[index].ky) || (line[i].oty >= line[index].oty && line[i].ky <= line[index].ky)) && ((line[i].otx <= line[index].otx && line[i].kx >= line[index].kx) || (line[i].otx >= line[index].otx && line[i].kx <= line[index].kx))) {
+				cont = 1; break;
+			} 
+			++i;
+	}
+		if (cont == 1) {
+			line.pop_back();
+			++error;
+			continue;
+		}
 
 			++index;
 			++point_index;
