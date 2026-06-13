@@ -203,7 +203,7 @@ void create_cave() {
 
 	while (index < 60) {
 		line.push_back({ 0,0,0,0, });
-		bool cont = 0;
+		
 
 
 
@@ -211,7 +211,7 @@ void create_cave() {
 
 		int route = Cave(chislo);
 		int sto = chance(chislo);
-		if (route == point[point_index].route_point) { continue; }
+		if (route == point[point_index].route_point) { line.pop_back(); continue; }
 
 		if (route == 1) {
 			line[index].oty = (point[point_index].y);
@@ -294,20 +294,17 @@ void create_cave() {
 				}
 			}
 		}
-		else { cont = 1; }
+		else { line.pop_back(); continue; }
 		//kuda_bylo = route;
 
 		for (int i = 0; i < line.size(); ++i) {
 			if (index == i) { continue; }
 		if (((line[i].oty <= line[index].oty && line[i].ky >= line[index].ky) || (line[i].oty >= line[index].oty && line[i].ky <= line[index].ky)) && ((line[i].otx <= line[index].otx && line[i].kx >= line[index].kx) || (line[i].otx >= line[index].otx && line[i].kx <= line[index].kx))) {
-			cont = 1; break;
+			line.pop_back(); continue;
 
 		}
 	}
-		if (cont) {
-			line.pop_back();
-			continue;
-		}
+		
 
 			++index;
 			++point_index;
