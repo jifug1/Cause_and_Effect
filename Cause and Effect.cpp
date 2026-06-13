@@ -199,46 +199,46 @@ void create_cave() {
 	point.push_back({-1,0,0});
 	int index = 0;
 	int point_index = 0;
-	int kuda_bylo;
+	
 
 	while (index < 60) {
-		line.push_back({0,0,0,0,});
+		line.push_back({ 0,0,0,0, });
+		bool cont = 0;
 
 
 
 
 
-		
-			int route = Cave(chislo);
-			int sto = chance(chislo);
-			if (route == point[point_index].route_point) { continue; }
+		int route = Cave(chislo);
+		int sto = chance(chislo);
+		if (route == point[point_index].route_point) { continue; }
 
-			if (route == 1) {
-				line[index].oty = (point[point_index].y);
-				line[index].ky = (point[point_index].y - 5);
-				line[index].otx = (point[point_index].x);
-				line[index].kx = (point[point_index].x);
-				if (point.size() < 60) {
-					if (sto <= 33) {
-						point.push_back({ 2,line[index].ky - 1, line[index].kx });
+		if (route == 1) {
+			line[index].oty = (point[point_index].y);
+			line[index].ky = (point[point_index].y - 5);
+			line[index].otx = (point[point_index].x);
+			line[index].kx = (point[point_index].x);
+			if (point.size() < 60) {
+				if (sto <= 33) {
+					point.push_back({ 2,line[index].ky - 1, line[index].kx });
 
-					}
-					if (sto <= 66) {
-						point.push_back({ 4,line[index].ky, line[index].kx - 1 });
+				}
+				if (sto <= 66) {
+					point.push_back({ 4,line[index].ky, line[index].kx - 1 });
 
-					}
-					if (sto <= 100) {
-						point.push_back({ 3,line[index].ky, line[index].kx + 1 });
+				}
+				if (sto <= 100) {
+					point.push_back({ 3,line[index].ky, line[index].kx + 1 });
 
-					}
 				}
 			}
-			else if (route == 2) {
-				line[index].oty = (point[point_index].y);
-				line[index].ky = (point[point_index].y + 5);
-				line[index].otx = (point[point_index].x);
-				line[index].kx = (point[point_index].x);
-				if (point.size() < 60) {
+		}
+		else if (route == 2) {
+			line[index].oty = (point[point_index].y);
+			line[index].ky = (point[point_index].y + 5);
+			line[index].otx = (point[point_index].x);
+			line[index].kx = (point[point_index].x);
+			if (point.size() < 60) {
 				if (sto <= 33) {
 					point.push_back({ 1,line[index].ky + 1, line[index].kx });
 
@@ -252,13 +252,13 @@ void create_cave() {
 
 				}
 			}
-			}
-			else if (route == 3) {
-				line[index].oty = (point[point_index].y);
-				line[index].ky = (point[point_index].y);
-				line[index].otx = (point[point_index].x);
-				line[index].kx = (point[point_index].x - 5);
-				if (point.size() < 60) {
+		}
+		else if (route == 3) {
+			line[index].oty = (point[point_index].y);
+			line[index].ky = (point[point_index].y);
+			line[index].otx = (point[point_index].x);
+			line[index].kx = (point[point_index].x - 5);
+			if (point.size() < 60) {
 				if (sto <= 33) {
 					point.push_back({ 1,line[index].ky + 1, line[index].kx });
 
@@ -273,13 +273,13 @@ void create_cave() {
 				}
 			}
 
-			}
-			else if (route == 4) {
-				line[index].otx = (point[point_index].y);
-				line[index].kx = (point[point_index].y);
-				line[index].oty = (point[point_index].x);
-				line[index].ky = (point[point_index].x + 5);
-				if (point.size() < 60) {
+		}
+		else if (route == 4) {
+			line[index].otx = (point[point_index].y);
+			line[index].kx = (point[point_index].y);
+			line[index].oty = (point[point_index].x);
+			line[index].ky = (point[point_index].x + 5);
+			if (point.size() < 60) {
 				if (sto <= 33) {
 					point.push_back({ 1,line[index].ky + 1, line[index].kx });
 
@@ -293,9 +293,21 @@ void create_cave() {
 
 				}
 			}
-			}
-			else { line.pop_back(); continue; }
-			//kuda_bylo = route;
+		}
+		else { cont = 1; }
+		//kuda_bylo = route;
+
+		for (int i = 0; i < line.size(); ++i) {
+			if (index == i) { continue; }
+		if (((line[i].oty <= line[index].oty && line[i].ky >= line[index].ky) || (line[i].oty >= line[index].oty && line[i].ky <= line[index].ky)) && ((line[i].otx <= line[index].otx && line[i].kx >= line[index].kx) || (line[i].otx >= line[index].otx && line[i].kx <= line[index].kx))) {
+			cont = 1; break;
+
+		}
+	}
+		if (cont) {
+			line.pop_back();
+			continue;
+		}
 
 			++index;
 			++point_index;
