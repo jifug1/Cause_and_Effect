@@ -45,7 +45,15 @@ struct cave {
 	int oty;
 	int ky;
 };
+struct route_struct {
+	int route;
+};
+
+
 std::vector<cave> line{
+
+};
+std::vector<route_struct> point{
 
 };
 
@@ -181,15 +189,24 @@ void create(int x = 4, int y = 4, int z = 4) {
 void create_cave() {
 	while (line.size() > 0) {
 		line.pop_back();}
+	while (point.size() > 0) {
+		point.pop_back();
+	}
 
-	line.push_back({0,0,1,5});
+
+	point.push_back({0});
 	int index = 0;
+	int point_index = 0;
 	int kuda_bylo;
 
-	while (index < 15) {
+	while (index < 60 && point_index < 60) {
 		line.push_back({0,0,0,0,});
 
-		
+
+
+
+
+		/*
 			int route = Cave(chislo);
 			if (route == 0 && line[index].oty >= line[index].ky) {
 				line[index + 1].oty = (line[index].ky - 1);
@@ -216,8 +233,9 @@ void create_cave() {
 				line[index + 1].ky = (line[index].ky);
 			}
 			else { line.pop_back(); continue; }
-			kuda_bylo = route;
+			kuda_bylo = route;*/
 			++index;
+			++point_index;
 	}
 
 
