@@ -219,29 +219,54 @@ void create_cave() {
 				line[index].otx = (point[point_index].x);
 				line[index].kx = (point[point_index].x);
 				if ( sto <= 33) {
-					point.push_back({3,line[index].ky - 1, line[index].kx});
+					point.push_back({2,line[index].ky - 1, line[index].kx});
 
 				}
-				else if (sto <= 66) {
+				if (sto <= 66) {
 					point.push_back({ 4,line[index].ky, line[index].kx - 1});
 
 				}
-				else{
-					point.push_back({ 2,line[index].ky, line[index].kx + 1});
+				if(sto <= 100){
+					point.push_back({ 3,line[index].ky, line[index].kx + 1});
 
 				}
 			}
 			else if (route == 2 && route != point[point_index].route_point) {
-				line[index + 1].oty = (line[index].ky + 1);
-				line[index + 1].ky = (line[index].ky + 5);
-				line[index + 1].otx = (line[index].kx);
-				line[index + 1].kx = (line[index].kx);
+				line[index].oty = (point[point_index].y);
+				line[index].ky = (point[point_index].y + 5);
+				line[index].otx = (point[point_index].x);
+				line[index].kx = (point[point_index].x);
+				if (sto <= 33) {
+					point.push_back({ 1,line[index].ky + 1, line[index].kx });
+
+				}
+				if (sto <= 66) {
+					point.push_back({ 4,line[index].ky, line[index].kx - 1 });
+
+				}
+				if(sto <= 100){
+					point.push_back({ 3,line[index].ky, line[index].kx + 1 });
+
+				}
 			}
-			else if (route == 3 && line[index].otx >= line[index].kx) {
-				line[index + 1].otx = (line[index].kx - 1);
-				line[index + 1].kx = (line[index].kx - 5);
-				line[index + 1].oty = (line[index].ky);
-				line[index + 1].ky = (line[index].ky);
+			else if (route == 3 && route != point[point_index].route_point) {
+				line[index].oty = (point[point_index].y);
+				line[index].ky = (point[point_index].y);
+				line[index].otx = (point[point_index].x);
+				line[index].kx = (point[point_index].x - 5);
+				if (sto <= 33) {
+					point.push_back({ 1,line[index].ky + 1, line[index].kx });
+
+				}
+				if (sto <= 66) {
+					point.push_back({ 2,line[index].ky - 1, line[index].kx });
+
+				}
+				if(sto <= 100){
+					point.push_back({ 4,line[index].ky, line[index].kx + 1 });
+
+				}
+
 			}
 			else if (route == 4 && line[index].otx <= line[index].kx) {
 				line[index + 1].otx = (line[index].kx + 1);
