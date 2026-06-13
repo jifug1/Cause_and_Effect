@@ -27,12 +27,12 @@ double steel = 0;
 std::mt19937 chislo(std::chrono::steady_clock::now().time_since_epoch().count());
 std::uniform_int_distribution j(-1, 1);
 std::uniform_int_distribution da(0, skoko_chaev);
-std::uniform_int_distribution Cave(0, 3);
+std::uniform_int_distribution Cave(1, 4);
 std::uniform_int_distribution dlyashapok(0, iii);
 std::uniform_int_distribution bite_chai(0, 4);
 std::uniform_int_distribution podarok(0, 3);
 std::uniform_int_distribution otvety(1, 2);
-
+std::uniform_int_distribution chance(1, 100);
 
 struct kto {
 	int kak;
@@ -46,7 +46,9 @@ struct cave {
 	int ky;
 };
 struct route_struct {
-	int route;
+	int route_point;
+	int x;
+	int y;
 };
 
 
@@ -194,7 +196,7 @@ void create_cave() {
 	}
 
 
-	point.push_back({0});
+	point.push_back({-1,0,0});
 	int index = 0;
 	int point_index = 0;
 	int kuda_bylo;
@@ -206,34 +208,50 @@ void create_cave() {
 
 
 
-		/*
+		
 			int route = Cave(chislo);
-			if (route == 0 && line[index].oty >= line[index].ky) {
-				line[index + 1].oty = (line[index].ky - 1);
-				line[index + 1].ky = (line[index].ky - 5);
-				line[index + 1].otx = (line[index].kx);
-				line[index + 1].kx = (line[index].kx);
+			int sto = chance(chislo);
+			if (route == point[point_index].route_point) { continue; }
+
+			if (route == 1 && route != point[point_index].route_point) {
+				line[index].oty = (point[point_index].y);
+				line[index].ky = (point[point_index].y - 5);
+				line[index].otx = (point[point_index].x);
+				line[index].kx = (point[point_index].x);
+				if ( sto <= 33) {
+					point.push_back({3,line[index].ky - 1, line[index].kx});
+
+				}
+				else if (sto <= 66) {
+					point.push_back({ 4,line[index].ky, line[index].kx - 1});
+
+				}
+				else{
+					point.push_back({ 2,line[index].ky, line[index].kx + 1});
+
+				}
 			}
-			else if (route == 1 && line[index].oty <= line[index].ky) {
+			else if (route == 2 && route != point[point_index].route_point) {
 				line[index + 1].oty = (line[index].ky + 1);
 				line[index + 1].ky = (line[index].ky + 5);
 				line[index + 1].otx = (line[index].kx);
 				line[index + 1].kx = (line[index].kx);
 			}
-			else if (route == 2 && line[index].otx >= line[index].kx) {
+			else if (route == 3 && line[index].otx >= line[index].kx) {
 				line[index + 1].otx = (line[index].kx - 1);
 				line[index + 1].kx = (line[index].kx - 5);
 				line[index + 1].oty = (line[index].ky);
 				line[index + 1].ky = (line[index].ky);
 			}
-			else if (route == 3 && line[index].otx <= line[index].kx) {
+			else if (route == 4 && line[index].otx <= line[index].kx) {
 				line[index + 1].otx = (line[index].kx + 1);
 				line[index + 1].kx = (line[index].otx + 5);
 				line[index + 1].oty = (line[index].ky);
 				line[index + 1].ky = (line[index].ky);
 			}
 			else { line.pop_back(); continue; }
-			kuda_bylo = route;*/
+			//kuda_bylo = route;
+
 			++index;
 			++point_index;
 	}
