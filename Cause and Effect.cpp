@@ -5,6 +5,7 @@
 #include <fstream>
 #include <thread>
 #include <string>
+#include <conio.h>
 int iii = 2;
 int skoko_chaev = 3;
 int potok = 1;
@@ -128,6 +129,14 @@ std::string bukva_vvod() {
 		std::cin.ignore(100,'\n');
 return x;
 }
+int srazu_vvod() {
+	int x = _getch();
+	return x;
+}
+
+
+
+
 std::thread a([&]() {
 	while (potok) {
 
@@ -403,8 +412,38 @@ int menu() {
 	return 1;
 }
 void pishera() {
+	int ix = 0;
+	int iy = 0;
+	bool vyhod = 1;
+	
+
+	auto mozhno = [&](int x, int y){
 
 
+	};
+
+
+	while (vyhod) {
+		
+		int chto = 0;
+		for (int x = 0; x < 24; ++x) {
+			for (int y = 0; y < 24; ++y) {
+
+				if (ix == x && iy == y) {
+					chto = 1;
+				}
+				else{chto = 0;}
+				
+				switch (chto) {
+				case 0: { std::cout << "."; break; }
+				case 1: { std::cout << "|"; break; }
+				}
+
+			}
+			std::cout << '\n';}
+		
+		
+	}
 }
 
 int main()
@@ -465,7 +504,7 @@ int main()
 		if (cota == 1) { if (cat == 0) { bite += 1; cota = 0; } }
 
 		if (faza > 0) {
-			if (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 5 && sf <= bite)) {
+			if (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 2)) {
 				if (zele[chai].kak == (bite2 - 1) && esme <= 2 && sf <= bite && infection < 0) {
 					golo -= 1;
 					infection = 30;
@@ -558,7 +597,7 @@ int main()
 				std::cout << " 0 попасть в меню. 1 укусить. 2 пройти мимо. 3 поздароваться. 100 рассказать анекдот. 4 меню крафта.";
 			}
 			else {
-				std::cout << " . . . . . вы остановились идти по тропинке в лесу . . . . . 0 попасть в меню. 1 продолжить идти. 2 пойти в пищеру. 4 меню крафта";
+				std::cout << " . . . . . вы остановились идти по тропинке в лесу . . . . . 0 попасть в меню. 1 продолжить идти. 2 пойти в пищеру. 4 меню крафта. 44 ничего не делать.";
 			/*for (int i = 0; i < line.size(); ++i) {
 				std::cout << "\n " << line[i].otx << " " << line[i].kx << " " << line[i].oty << " " << line[i].ky;
 			}
@@ -780,6 +819,7 @@ int main()
 					else { cikl2 = 1; cikl = 0; }
 				}
 				else if (chto == 1 && faza == 0) { prodolszit_put = 1; cikl = 0; cikl2 = 0; }
+				else if (chto == 44 && faza == 0) { cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
 				else if (chto == 2 && faza == 0) { pishera(); }
 				else { std::cout << "\n = = = = = неправельный ввод = = = = =\n"; cikl = 1; }
