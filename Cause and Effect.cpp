@@ -430,10 +430,10 @@ void pishera() {
 		int vvod_ = srazu_vvod();
 		switch (vvod_) {
 		case 48: { vyhod = 0; continue; }
-		case 119: { if (mozhno(ix - 1, iy)) { ix - 1; } break; }
-		case 97: { if (mozhno(ix, iy - 1)) { iy - 1; }break; }
-		case 115: { if (mozhno(ix + 1, iy)) { ix + 1; } break; }
-		case 100:{if (mozhno(ix, iy + 1)) { iy + 1; } break;}
+		case 119: { if (mozhno(ix - 1, iy)) { ix -= 1; } break; }
+		case 97: { if (mozhno(ix, iy - 1)) { iy -= 1; }break; }
+		case 115: { if (mozhno(ix + 1, iy)) { ix += 1; } break; }
+		case 100:{if (mozhno(ix, iy + 1)) { iy += 1; } break;}
 		};
 
 		for (int x = 0; x < 5; ++x) {
@@ -451,9 +451,9 @@ void pishera() {
 
 			}
 			std::cout << '\n';}
-		
-		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 		std::cout << '\n';
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		
 	}
 }
 
@@ -476,6 +476,12 @@ int main()
 	int priborf = -1;
 	int invertor = -1;
 	int cat = -1;
+
+	int pribor_metall = -1;
+	int pribor_es = -1;
+	int znachenie_metall = -1;
+	int znachenie_es = -1;
+	int znachenie_chai = -1;
 
 	double infection = -1;
 	double imunitet = 175;
@@ -634,22 +640,26 @@ int main()
 			}
 			std::cout << "\n [===============\n ваше здоровье:  [" << golo << "]  орган:  [" << organ << "]  инфекция:  [" << infection << "]  иммунитет:  [" << imunitet << "]\n";
 			bool pravda = 0;
-			if (iron != 0) { std::cout << " у вас кг железа: " << iron; pravda = 1; }
-			if (copper != 0) { std::cout << " у вас кг меди: " << copper; pravda = 1; }
-			if (derevo != 0) { std::cout << " у вас кг дерева: " << derevo; pravda = 1; }
-			if (coal != 0) { std::cout << " у вас кг угля: " << coal; pravda = 1; }
-			if (nickel != 0) { std::cout << " у вас кг никеля: " << nickel; pravda = 1; }
-			if (steel != 0) { std::cout << " у вас кг стали: " << steel; pravda = 1; }
+			if (iron != 0) { std::cout << "\n у вас кг железа: " << iron; pravda = 1; }
+			if (copper != 0) { std::cout << "\n у вас кг меди: " << copper; pravda = 1; }
+			if (derevo != 0) { std::cout << "\n у вас кг дерева: " << derevo; pravda = 1; }
+			if (coal != 0) { std::cout << "\n у вас кг угля: " << coal; pravda = 1; }
+			if (nickel != 0) { std::cout << "\n у вас кг никеля: " << nickel; pravda = 1; }
+			if (steel != 0) { std::cout << "\n у вас кг стали: " << steel; pravda = 1; }
 			if (pravda) { std::cout << "\n"; }
 
 			bool pravda2 = 0;
-			if (pribor != -1) { std::cout << " заряд прибора для шапок (11 использовать): " << pribor; pravda2 = 1; }
-			if (priborf != -1) { std::cout << " заряд прибора для шарфов (22 использовать): " << priborf; pravda2 = 1; }
-			if (invertor != -1) { std::cout << " заряд инвертора (33 использовать): " << invertor; pravda2 = 1; }
+			if (pribor != -1) { std::cout << "\n заряд прибора для шапок (11 использовать): " << pribor; pravda2 = 1; }
+			if (priborf != -1) { std::cout << "\n заряд прибора для шарфов (22 использовать): " << priborf; pravda2 = 1; }
+			if (invertor != -1) { std::cout << "\n заряд инвертора (33 использовать): " << invertor; pravda2 = 1; }
+			if (cat != -1) { std::cout << "\n заряд деревянного механического кота: " << cat; pravda2 = 1; }
+			if (pribor_metall != -1) { std::cout << "\n заряд прибора для металлов (44 использовать): " << pribor_metall; pravda2 = 1; }
+			if (pribor_es != -1) { std::cout << "\n заряд прибора для электростанций (55 использовать):" << pribor_es; pravda2 = 1; }
+			if (znachenie_metall != -1) { std::cout << "\n заряд прибора для просмотра значений металлов (66 использовать): " << znachenie_metall; pravda2 = 1; }
+			if (znachenie_es != -1) { std::cout << "\n заряд прибора для просмотра значений электростанций (77 использовать): " << znachenie_es; pravda2 = 1; }
+			if (znachenie_chai != -1) { std::cout << "\n заряд прибора для просмотра значений чая (88 использовать) : " << znachenie_chai; pravda2 = 1; }
 			if (pravda2) { std::cout << "\n"; }
-			if (cat >= 0) {
-				std::cout << " заряд деревянного механического кота: " << cat << "\n";
-			}
+			
 
 
 
