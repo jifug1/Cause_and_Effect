@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <thread>
+#include <string>
 int iii = 2;
 int skoko_chaev = 3;
 int potok = 1;
@@ -120,7 +121,13 @@ int vvod() {
 	} while (r);
 	return x;
 }
- 
+std::string bukva_vvod() {
+	std::string x;
+		std::cin >> x;
+		std::cin.clear();
+		std::cin.ignore(100,'\n');
+return x;
+}
 std::thread a([&]() {
 	while (potok) {
 
@@ -201,7 +208,7 @@ void create_cave() {
 	int point_index = 0;
 	int error = 0;
 
-	while (index < 60 && error < 1000) {
+	while (index < 60 && error < 10000) {
 		line.push_back({ 0,0,0,0, });
 
 
@@ -395,6 +402,10 @@ int menu() {
 	menu2();
 	return 1;
 }
+void pishera() {
+
+
+}
 
 int main()
 {
@@ -546,8 +557,8 @@ int main()
 				std::cout << " 0 попасть в меню. 1 укусить. 2 пройти мимо. 3 поздароваться. 100 рассказать анекдот. 4 меню крафта.";
 			}
 			else {
-				std::cout << " . . . . . вы остановились идти по тропинке в лесу. 0 попасть в меню. 1 продолжить идти. 4 меню крафта.";
-			for (int i = 0; i < line.size(); ++i) {
+				std::cout << " . . . . . вы остановились идти по тропинке в лесу . . . . . 0 попасть в меню. 1 продолжить идти. 2 пойти в пищеру. 4 меню крафта";
+			/*for (int i = 0; i < line.size(); ++i) {
 				std::cout << "\n " << line[i].otx << " " << line[i].kx << " " << line[i].oty << " " << line[i].ky;
 			}
 			std::cout << "\n";
@@ -568,7 +579,7 @@ int main()
 					else{std::cout << " "; }
 				}
 				std::cout << ",\n";
-			}
+			}*/
 			}
 			std::cout << "\n [===============\n ваше здоровье:  [" << golo << "]  орган:  [" << organ << "]  инфекция:  [" << infection << "]  иммунитет:  [" << imunitet << "]\n";
 			bool pravda = 0;
@@ -769,6 +780,7 @@ int main()
 				}
 				else if (chto == 1 && faza == 0) { cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
+				else if (chto == 2 && faza == 0) { pishera(); }
 				else { std::cout << "\n = = = = = неправельный ввод = = = = =\n"; cikl = 1; }
 
 			} while (cikl);
