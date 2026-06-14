@@ -418,16 +418,26 @@ void pishera() {
 	
 
 	auto mozhno = [&](int x, int y){
-
-
+		if ((x < 0 || x > 4) || (y < 0 || y > 4)) { return 0; }
+		else { return 1; }
+		return 0;
 	};
 
-
+	std::cout << "перемещение на WASD. 0 выход\n";
 	while (vyhod) {
 		
 		int chto = 0;
-		for (int x = 0; x < 24; ++x) {
-			for (int y = 0; y < 24; ++y) {
+		int vvod_ = srazu_vvod();
+		switch (vvod_) {
+		case 48: { vyhod = 0; continue; }
+		case 119: { if (mozhno(ix - 1, iy)) { ix - 1; } break; }
+		case 97: { if (mozhno(ix, iy - 1)) { iy - 1; }break; }
+		case 115: { if (mozhno(ix + 1, iy)) { ix + 1; } break; }
+		case 100:{if (mozhno(ix, iy + 1)) { iy + 1; } break;}
+		};
+
+		for (int x = 0; x < 5; ++x) {
+			for (int y = 0; y < 5; ++y) {
 
 				if (ix == x && iy == y) {
 					chto = 1;
@@ -442,7 +452,8 @@ void pishera() {
 			}
 			std::cout << '\n';}
 		
-		
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		std::cout << '\n';
 	}
 }
 
