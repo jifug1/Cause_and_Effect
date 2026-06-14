@@ -432,6 +432,7 @@ int main()
 	int inffection = 0;
 	
 	int faza = 5;
+	bool prodolszit_put = 0;
 
 	std::cout << "\n . . . . . . . . . . началась новая игра! . . . . . . . . . .\n\n";
 	while (igra) {
@@ -778,7 +779,7 @@ int main()
 					if (x == 1) { igra = 0; cikl2 = 0; cikl = 0; }
 					else { cikl2 = 1; cikl = 0; }
 				}
-				else if (chto == 1 && faza == 0) { cikl = 0; cikl2 = 0; }
+				else if (chto == 1 && faza == 0) { prodolszit_put = 1; cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
 				else if (chto == 2 && faza == 0) { pishera(); }
 				else { std::cout << "\n = = = = = неправельный ввод = = = = =\n"; cikl = 1; }
@@ -830,7 +831,7 @@ int main()
 		inffection = 0;
 		if (faza > 0) {++proideno;}
 		if (cat > 0 && faza > 0) { --cat; }
-		if (faza == 0) { faza = 5; }
+		if (prodolszit_put) { faza = 5; }
 		else if (faza > 0) { --faza; }
 		vsego_proideno = proideno + save_proideno;
 		vremya = sec + save_time;
@@ -840,5 +841,4 @@ int main()
 	potok = 0;
 	a.join();
 	std::cout << " конец\n ";
-	return 0;
-}
+	return 0;}
