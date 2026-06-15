@@ -333,7 +333,7 @@ void create_cave() {
 
 
 }
-int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat) {
+int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai) {
 	std::cout << " 0 выйти из меню крафта (если кроме этого текста здесь ничего не написано, значит вы не можете ничего создать. если кроме этого текста здесь чтото написано, значит вы можете это создать)\n";
 	if (iron >= 0.600 && pribor == -1) { std::cout << " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд на 1 использование)\n"; }
 	if (iron >= 0.600 && derevo >= 0.150 && priborf == -1) { std::cout << " 2 создать прибор для просмотра значения шарфа за 0.600 кг железа и 0.150 кг дерева (заряд на 1 использование)\n"; }
@@ -350,11 +350,11 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 	else if (chto == 2 && iron >= 0.600 && derevo >= 0.150 && priborf == -1) { iron -= 0.600; derevo -= 0.150; priborf = 1; }
 	else if (chto == 3 && iron >= 1.3 && invertor == -1) { iron -= 1.3; invertor = 1; }
 	else if (chto == 4 && derevo >= 0.31) { golo += 1; derevo -= 0.31; }
-	else if (chto == 5 && nickel >= 0.300 && (pribor > -1 || priborf > -1 || invertor > -1 || cat > -1)) {
+	else if (chto == 5 && nickel >= 0.300 && (pribor > -1 || priborf > -1 || invertor > -1 || cat > -1 || pribor_metall > -1 || pribor_es > -1 || znachenie_metall > -1 || znachenie_es > -1 || znachenie_chai > -1)) {
 		nickel -= 0.300;
 		int zaryad = 2;
 		std::string a = " выберите";
-		std::string b = " предмет чей заряд увеличить на 1 (1 прибор для шапок. 2 прибор для шарфов. 3 инвертор. 4 деревянный механический кот)\n";
+		std::string b = " предмет чей заряд увеличить на 1 (1 прибор для шапок. 2 прибор для шарфов. 3 инвертор. 4 деревянный механический кот. 5 прибор для металлов. 6 прибор для электростанций. 7 прибор для просмотра значений металов. 8 прибор для просмотра значений электростанций. 9 прибор для просмотра значений чая)\n";
 		std::string c = " ещё раз";
 		while (zaryad > 0) {
 			std::cout << a + b;
@@ -363,6 +363,11 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 			else if (chto == 2 && priborf > -1) { priborf += 1; }
 			else if (chto == 3 && invertor > -1) { invertor += 1; }
 			else if (chto == 4 && cat > -1) { cat += 10; }
+			else if (chto == 5 && pribor_metall > -1) { pribor_metall += 1; }
+			else if (chto == 6 && pribor_es > -1) { pribor_es += 1; }
+			else if (chto == 7 && znachenie_metall > -1) { znachenie_metall += 1; }
+			else if (chto == 8 && znachenie_es > -1) { znachenie_es += 1; }
+			else if (chto == 9 && znachenie_chai > -1) { znachenie_chai += 1; }
 			else { std::cout << "\n = = = = = ошибка = = = = =\n\n"; continue; }
 			a += c;
 			--zaryad;
@@ -792,7 +797,7 @@ int main()
 
 				}
 				else if (chto == 4) {
-					craft(pribor, priborf, invertor, organ, imunitet, infection, cat);
+					craft(pribor, priborf, invertor, organ, imunitet, infection, cat,pribor_metall,pribor_es,znachenie_metall,znachenie_es,znachenie_chai);
 					cikl2 = 1;
 				}
 				else if (chto == 100 && faza > 0) {
@@ -833,6 +838,32 @@ int main()
 					else if (shapka[s].kak == -1) { shapka[s].kak = 1; }
 					if (sharf[f].kak == 1) { sharf[f].kak = -1; }
 					else if (sharf[f].kak == -1) { sharf[f].kak = 1; }
+					cikl = 1;
+				}
+				else if (chto == 44 && pribor_metall > 0 && faza > 0) {
+					--pribor_metall;
+					metall[ME].kak += 1;
+					cikl = 1;
+				}
+				else if (chto == 55 && pribor_es > 0 && faza > 0) {
+					--pribor_es;
+					es[ES].kak += 1;
+					cikl = 1;
+				}
+				else if (chto == 66 && znachenie_metall > 0 && faza > 0) {
+					--znachenie_metall;
+					std::cout << " значение любимого металла монстра: " << metall[ME].kak << "\n";
+					cikl = 1;
+				}
+				else if (chto == 77 && znachenie_es > 0 && faza > 0) {
+					--znachenie_es;
+					std::cout << " значение любимого типа электростанций монстра: " << es[ES].kak << "\n";
+					cikl = 1;
+				}
+				else if (chto == 88 && znachenie_chai > 0 && faza > 0) {
+					--znachenie_chai;
+					std::cout << " значение любимого чая монстра: " << zele[chai].kak << "\n";
+					cikl = 1;
 				}
 				else if (chto == 0) {
 					int x = menu();
