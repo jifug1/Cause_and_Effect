@@ -408,7 +408,8 @@ void menu2() {
 int menu() {
 	int r = 0;
 	do{
-		std::cout << txt1;
+		r = 0;
+		std::cout << txt0 << txt1;
 		int chto = vvod();
 		if (chto == 9201) {
 			std::cout << txt9201;
@@ -418,6 +419,10 @@ int menu() {
 			std::cout << txt9202 << shapka.size() << " " << sharf.size() << txt9203 << zele.size() << "\n\n";
 		}
 		else if (chto == 2) { return 0; }
+		else if (chto == 3) {
+			std::cout << txt_;
+			r = 1;
+		}
 	} while (r);
 	menu2();
 	return 1;
