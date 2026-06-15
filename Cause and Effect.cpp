@@ -316,21 +316,21 @@ void create_cave() {
 
 }
 int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai) {
-	std::cout << " 0 выйти из меню крафта (если кроме этого текста здесь ничего не написано, значит вы не можете ничего создать. если кроме этого текста здесь чтото написано, значит вы можете это создать)\n";
-	if (iron >= 0.600 && pribor == -1) { std::cout << " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд 1)\n"; }
-	if (iron >= 0.600 && derevo >= 0.150 && priborf == -1) { std::cout << " 2 создать прибор для просмотра значения шарфа за 0.600 кг железа и 0.150 кг дерева (заряд на 1 использование)\n"; }
-	if (iron >= 1.3 && invertor == -1) { std::cout << " 3 создать инвертор значений шапки и шарфа за 1.3 кг железа (заряд 1) (при исподьзовании 1 меняет на -1, -1 меняет на 1, 0 меняет на 0, использование работает одновременно на шапку и шарф)\n"; }
-	if (derevo >= 0.31) { std::cout << " 4 востановить 1 здоровье за 0.31 кг дерева\n"; }
-	if (nickel >= 0.300) { std::cout << " 5 зарядить любой предмет которому нужен заряд на 2 за 0.300 кг никеля\n "; }
-	if (nickel >= 0.600 && organ == 0) { std::cout << " 6 востановить орган за 0.600 кг никеля\n"; }
-	if (nickel >= 0.100 && iron >= 0.200){std::cout << " 7 увеличить иммунитет на 15 за 0.100 кг никеля и 0.200 кг железа\n";}
-	if (nickel >= 0.080 && iron >= 0.150) { std::cout << " 8 уменьшить инфекцию на 15 за 0.080 кг никеля и 0.150 кг железа\n"; }
-	if (derevo >= 2.5 && cat == -1) { std::cout << " 9 создать деревянного механического кота за 2.500 кг дерева (заряд 10)\n"; }
-	if (derevo >= 2.0 && pribor_metall == -1) { std::cout << " 10 создать прибор для изменения значений металла за 2.0 дерева (заряд 1)\n"; }
-	if (derevo >= 2.0 && pribor_es == -1) { std::cout << " 11 создать прибор для изменения значений электростанций за 2.0 дерева (заряд 1)\n"; }
-	if (derevo >= 0.8 && znachenie_metall == -1) { std::cout << " 12 создать прибор для просмотра значений металла за 0.8 дерева (заряд 1)\n"; }
-	if (derevo >= 0.8 && znachenie_es == -1) { std::cout << " 13 создать прибор для просмотра значений электростанций за 0.8 дерева (заряд 1)\n"; }
-	if (derevo >= 1.0 && znachenie_chai == -1) { std::cout << " 14 создать прибор для просмотра значений чая за 1.0 дерева (заряд 1)\n"; }
+	std::cout << txt2;
+	if (iron >= 0.600 && pribor == -1) { std::cout << txt3; }
+	if (iron >= 0.600 && derevo >= 0.150 && priborf == -1) { std::cout << txt4; }
+	if (iron >= 1.3 && invertor == -1) { std::cout << txt5; }
+	if (derevo >= 0.31) { std::cout << txt6; }
+	if (nickel >= 0.300) { std::cout << txt7; }
+	if (nickel >= 0.600 && organ == 0) { std::cout << txt8; }
+	if (nickel >= 0.100 && iron >= 0.200){std::cout << txt9;}
+	if (nickel >= 0.080 && iron >= 0.150) { std::cout << txt10; }
+	if (derevo >= 2.5 && cat == -1) { std::cout << txt11; }
+	if (derevo >= 2.0 && pribor_metall == -1) { std::cout << txt12; }
+	if (derevo >= 2.0 && pribor_es == -1) { std::cout << txt13; }
+	if (derevo >= 0.8 && znachenie_metall == -1) { std::cout << txt14; }
+	if (derevo >= 0.8 && znachenie_es == -1) { std::cout << txt15; }
+	if (derevo >= 1.0 && znachenie_chai == -1) { std::cout << txt16; }
 	int chto = vvod();
 	if (chto == 1 && iron >= 0.600 && pribor == -1) { iron -= 0.600; pribor = 1; }
 	else if (chto == 2 && iron >= 0.600 && derevo >= 0.150 && priborf == -1) { iron -= 0.600; derevo -= 0.150; priborf = 1; }
@@ -339,9 +339,9 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 	else if (chto == 5 && nickel >= 0.300 && (pribor > -1 || priborf > -1 || invertor > -1 || cat > -1 || pribor_metall > -1 || pribor_es > -1 || znachenie_metall > -1 || znachenie_es > -1 || znachenie_chai > -1)) {
 		nickel -= 0.300;
 		int zaryad = 2;
-		std::string a = " выберите";
-		std::string b = " предмет чей заряд увеличить на 1 (1 прибор для просмотра значений шапок. 2 прибор для просмотра значений шарфов. 3 инвертор. 4 деревянный механический кот. 5 прибор для изменения значений металлов. 6 прибор для изменения значений электростанций. 7 прибор для просмотра значений металлов. 8 прибор для просмотра значений электростанций. 9 прибор для просмотра значений чая)\n";
-		std::string c = " ещё раз";
+		std::string a = txt17;
+		std::string b = txt18;
+		std::string c = txt19;
 		while (zaryad > 0) {
 			std::cout << a + b;
 			int chto = vvod();
@@ -354,7 +354,7 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 			else if (chto == 7 && znachenie_metall > -1) { znachenie_metall += 1; }
 			else if (chto == 8 && znachenie_es > -1) { znachenie_es += 1; }
 			else if (chto == 9 && znachenie_chai > -1) { znachenie_chai += 1; }
-			else { std::cout << "\n = = = = = ошибка = = = = =\n\n"; continue; }
+			else { std::cout << txt20; continue; }
 			a += c;
 			--zaryad;
 		}
@@ -398,7 +398,7 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 		znachenie_chai = 1;
 	}
 	else if (chto == 0) { return 0; }
-	else { std::cout << "\n = = = = = не получилось создать предмет, причины этому могут быть: неправельный ввод, нехватка ресурсов, предмет уже создан = = = = =\n\n"; }
+	else { std::cout << txt20; }
 
 	return 0;
 }
@@ -411,11 +411,11 @@ int menu() {
 		std::cout << txt1;
 		int chto = vvod();
 		if (chto == 9201) {
-			std::cout << " введите 2 числа через пробел, первое число отвечает за количество шарфов и шапок (введёте 10 будет 10 шапок и 10 шарфов) второе число отвечает за количество чаёв\n";
+			std::cout << txt9201;
 			int chto = vvod();
 			int sho = vvod();
 			create(chto,sho);
-			std::cout << " готово, количество шапок и шарфов: " << shapka.size() << " " << sharf.size() << " количество чаёв: " << zele.size() << "\n\n";
+			std::cout << txt9202 << shapka.size() << " " << sharf.size() << txt9203 << zele.size() << "\n\n";
 		}
 		else if (chto == 2) { return 0; }
 	} while (r);
@@ -434,7 +434,7 @@ void pishera() {
 		return 0;
 	};
 
-	std::cout << "перемещение на WASD. 0 выход\n";
+	std::cout << txt21;
 	while (vyhod) {
 		
 		int chto = 0;
@@ -501,7 +501,7 @@ int main()
 	int faza = 5;
 	bool prodolszit_put = 0;
 
-	std::cout << "\n . . . . . . . . . . началась новая игра! . . . . . . . . . .\n\n";
+	std::cout << txt22;
 	while (igra) {
 		int s = dlyashapok(chislo);
 		int f = dlyashapok(chislo);
@@ -547,16 +547,16 @@ int main()
 		do {
 			cikl2 = 0;
 			if (faza > 0) {
-				if (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 5)) { std::cout << " = = = вас укусил монстр = = =\n"; }
+				if (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 5)) { std::cout << txt23; }
 
 
-				std::string shp = " null ";
-				std::string shf = " null ";
+				std::string shp = null;
+				std::string shf = null;
 				if (s == 0) {
-					shp = "Зелёная";
+					shp = txt24;
 				}
 				else if (s == 1) {
-					shp = "Красная";
+					shp = txt25;
 				}
 				else if (s == 2) {
 					shp = "Белая с Жёлтой Полоской";
