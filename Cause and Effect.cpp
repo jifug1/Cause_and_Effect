@@ -688,11 +688,11 @@ int main()
 							}
 
 							if (otvet == 1) {
-								std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << " калограмм дерева (1 взять железо 2 взять дерево)\n";
+								std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
 								chto = vvod();
 							}
 							if (otvet == 2) {
-								std::cout << txt85 << nick[Nickel].kg << " килограмм никеля либо " << med[Copper].kg << " калограмм меди (1 взять никель 2 взять медь)\n";
+								std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
 								chto = vvod();
 							}
 
@@ -710,41 +710,41 @@ int main()
 
 						}
 						else if (sf >= (bite + 2)) {
-							if (shapka[s].kak > -1) { std::cout << "\n = = = = = шапка -1 = = = = =\n\n"; shapka[s].kak -= 1; }
-							else if (sharf[f].kak > -1) { std::cout << "\n = = = = = шарф -1 = = = = =\n\n"; sharf[f].kak -= 1; }
-							else if (zele[chai].kak < (bite2 + 1)) { std::cout << "\n чай +1\n\n"; zele[chai].kak += 1; }
+							if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
+							else if (sharf[f].kak > -1) { std::cout << txt91; sharf[f].kak -= 1; }
+							else if (zele[chai].kak < (bite2 + 1)) { std::cout << txt77; zele[chai].kak += 1; }
 						}
 					}
 
 				}
 				else if (chto == 2 && faza > 0) {
-					if (zele[chai].kak >= bite2) { std::cout << " чай -1\n"; zele[chai].kak -= 1; }
+					if (zele[chai].kak >= bite2) { std::cout << txt92; zele[chai].kak -= 1; }
 					else if (sf <= bite) {
-						if (shapka[s].kak > -1) { std::cout << " шапка -1\n"; shapka[s].kak -= 1; }
-						else{ std::cout << " шарф -1\n"; sharf[f].kak -= 1; }
+						if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
+						else{ std::cout << txt91; sharf[f].kak -= 1; }
 					}
 					else if (zele[chai].kak == (bite2 - 1) && esme <= 5) {
-						if (es[ES].kak > 0) { std::cout << " ЭС -1\n"; es[ES].kak -= 1; }
-						else{ std::cout << " металл -1\n"; metall[ME].kak -= 1; }
+						if (es[ES].kak > 0) { std::cout << txt78; es[ES].kak -= 1; }
+						else{ std::cout << txt79; metall[ME].kak -= 1; }
 					}
 				}
 				else if (chto == 3 && faza > 0 && !(sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 5))) {
 					if (sf >= (bite + 2)) {
 						int chto;
 						if (otvet == 1) {
-							std::cout << " монстр: здраствуйте, куда вы идёте по этой тропинке в лесу?  (1 ответить: доставляю уран на гидрометаллургический завод (правда) 2 ответить: доставляю стекловату для Черемши (ложь) 3 ничего не ответить)\n";
+							std::cout << txt80;
 							chto = vvod();
 						}
 						else if (otvet == 2) {
-							std::cout << " здрасьте, вы не боитесь монстра 170? (1 ответить: боюсь, а кто это? (правда) 2 ответить: уверуй в монолит (истина))\n";
+							std::cout << txt81;
 							chto = vvod();
 							if (chto == 1) {
-								std::cout << " монстр: он очень злой и страшный. и вообще он 170 килограмм урановой руды добыл (1 ответить: ясно)\n";
+								std::cout << txt82;
 								chto = vvod();
-								if (chto == 1) { std::cout << " монстр: чё те ясно\n"; }
+								if (chto == 1) { std::cout << txt83; }
 							}
 							else if (chto == 2) {
-								std::cout << " монстр: за монолит\n";
+								std::cout << txt84;
 							}
 						}
 
@@ -752,11 +752,11 @@ int main()
 
 
 						if (otvet == 1) {
-							std::cout << " монстр: могу вам дать " << sz[szeleza].kg << " килограмм железа либо " << der[dereva].kg << " калограмм дерева (1 взять железо 2 взять дерево)\n";
+							std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
 							chto = vvod();
 						}
 						if (otvet == 2) {
-							std::cout << " монстр: могу вам дать " << nick[Nickel].kg << " килограмм никеля либо " << med[Copper].kg << " калограмм меди (1 взять никель 2 взять медь)\n";
+							std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
 							chto = vvod();
 						}
 
@@ -774,9 +774,9 @@ int main()
 
 					}
 					else if (sf == (bite + 1)) {
-						if (shapka[s].kak > -1) { std::cout << "\n = = = = = шапка -1 = = = = =\n\n"; shapka[s].kak -= 1; }
-						else if (sharf[f].kak > -1) { std::cout << "\n = = = = = шарф -1 = = = = =\n\n"; sharf[f].kak -= 1; }
-						else if (zele[chai].kak < (bite2 + 1)) { std::cout << "\n = = = = = чай +1 = = = = =\n\n"; zele[chai].kak += 1; }
+						if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
+						else if (sharf[f].kak > -1) { std::cout << txt91; sharf[f].kak -= 1; }
+						else if (zele[chai].kak < (bite2 + 1)) { std::cout << txt92; zele[chai].kak += 1; }
 					}
 
 				}
@@ -786,14 +786,14 @@ int main()
 				}
 				else if (chto == 100 && faza > 0) {
 					if ((zele[chai].kak == (bite2 - 1) && esme <= 5) || (sf > bite && zele[chai].kak < bite2)) {
-						if (es[ES].kak < 4) { std::cout << " ЭС +1\n"; es[ES].kak += 1; }
-						else if (metall[ME].kak < 4) { std::cout << " металл +1\n"; metall[ME].kak += 1; }
+						if (es[ES].kak < 4) { std::cout << txt93; es[ES].kak += 1; }
+						else if (metall[ME].kak < 4) { std::cout << txt94; metall[ME].kak += 1; }
 					}
 					else if (sf <= bite) {
-					if (shapka[s].kak > -1) { std::cout << "\n = = = = = шапка -1 = = = = =\n\n"; shapka[s].kak -= 1; }
-					else{ std::cout << "\n = = = = = шарф -1 = = = = =\n\n"; sharf[f].kak -= 1; }
+					if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
+					else{ std::cout << txt91; sharf[f].kak -= 1; }
 					}
-					else if (zele[chai].kak >= bite2) { std::cout << "\n чай +1\n\n"; zele[chai].kak += 1; }
+					else if (zele[chai].kak >= bite2) { std::cout << txt77; zele[chai].kak += 1; }
 
 				}
 				else if (chto == 9201) {
@@ -808,12 +808,12 @@ int main()
 				}
 				else if (chto == 11 && pribor > 0 && faza > 0) {
 					pribor -= 1;
-					std::cout << " значение шапки монстра: " << shapka[s].kak << "\n";
+					std::cout << txt95 << shapka[s].kak << "\n";
 					cikl = 1;
 				}
 				else if (chto == 22 && priborf > 0 && faza > 0) {
 					priborf -= 1;
-					std::cout << " значение шарфа монстра: " << sharf[f].kak << "\n";
+					std::cout << txt96 << sharf[f].kak << "\n";
 					cikl = 1;
 				}
 				else if (chto == 33 && invertor > 0 && faza > 0) {
@@ -836,17 +836,17 @@ int main()
 				}
 				else if (chto == 66 && znachenie_metall > 0 && faza > 0) {
 					--znachenie_metall;
-					std::cout << " значение любимого металла монстра: " << metall[ME].kak << "\n";
+					std::cout << txt97 << metall[ME].kak << "\n";
 					cikl = 1;
 				}
 				else if (chto == 77 && znachenie_es > 0 && faza > 0) {
 					--znachenie_es;
-					std::cout << " значение любимого типа электростанций монстра: " << es[ES].kak << "\n";
+					std::cout << txt98 << es[ES].kak << "\n";
 					cikl = 1;
 				}
 				else if (chto == 88 && znachenie_chai > 0 && faza > 0) {
 					--znachenie_chai;
-					std::cout << " значение любимого чая монстра: " << zele[chai].kak << "\n";
+					std::cout << txt99 << zele[chai].kak << "\n";
 					cikl = 1;
 				}
 				else if (chto == 0) {
@@ -858,12 +858,12 @@ int main()
 				else if (chto == 44 && faza == 0) { cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
 				else if (chto == 2 && faza == 0) { pishera(); }
-				else { std::cout << "\n = = = = = неправельный ввод = = = = =\n"; cikl = 1; }
+				else { std::cout << txt20; cikl = 1; }
 
 			} while (cikl);
 		} while (cikl2);
 		if (golo <= 0) {
-			std::cout << "\n - - - - - вы мертвы - - - - -\n\n";
+			std::cout << txt111;
 			proideno = 0;
 			iron = 0;
 			copper = 0;

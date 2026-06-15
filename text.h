@@ -90,23 +90,38 @@ std::string txt83 = " монстр: чё те ясно\n";
 std::string txt84 = " монстр: за монолит!\n";
 std::string txt85 = " монстр: могу вам дать ";
 std::string txt86 = " килограмм железа либо ";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+std::string txt87 = " калограмм дерева (1 взять железо 2 взять дерево)\n";
+std::string txt88 = " килограмм никеля либо ";
+std::string txt89 = " калограмм меди (1 взять никель 2 взять медь)\n";
+std::string txt90 = " . . . . . шапка -1 . . . . .\n";
+std::string txt91 = " . . . . . шарф -1 . . . . .\n";
+std::string txt92 = " . . . . . чай -1 . . . . .\n";
+std::string txt93 = " . . . . . ЭС +1 . . . . .\n";
+std::string txt94 = " . . . . . металл +1 . . . . .\n";
+std::string txt95 = " значение шапки монстра: ";
+std::string txt96 = " значение шарфа монстра: ";
+std::string txt97 = " значение любимого металла монстра: ";
+std::string txt98 = " значение любимого типа электростанций монстра: ";
+std::string txt99 = " значение любимого чая монстра: ";
+std::string txt111 = "\n - - - - - вы мертвы - - - - -\n\n";
+std::string txt112 = "";
+std::string txt113 = "";
+std::string txt114 = "";
+std::string txt115 = "";
+std::string txt116 = "";
+std::string txt117 = "";
+std::string txt118 = "";
+std::string txt119 = "";
+std::string txt120 = "";
+std::string txt121 = "";
+std::string txt122 = "";
+std::string txt123 = "";
+std::string txt124 = "";
+std::string txt125 = "";
+std::string txt126 = "";
+std::string txt127 = "";
+std::string txt128 = "";
+std::string txt129 = "";
 std::string txt100 = "[";
 std::string txt101 = "]";
 std::string txt110 = " . . . ";
