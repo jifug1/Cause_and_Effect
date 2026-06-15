@@ -39,7 +39,6 @@ std::uniform_int_distribution chance(1, 100);
 struct kto {
 	int kak;
 	double kg;
-	
 };
 struct cave {
 	int otx;
@@ -54,21 +53,11 @@ struct route_struct {
 };
 
 
-std::vector<cave> line{
+std::vector<cave> line{};
+std::vector<route_struct> point{};
+std::vector<kto> shapka{};
 
-};
-std::vector<route_struct> point{
-
-};
-
-
-std::vector<kto> shapka{
-	
-};
-
-std::vector<kto> sharf{
-	
-};
+std::vector<kto> sharf{};
 
 std::vector<kto> zele{};
 
@@ -86,8 +75,8 @@ std::vector<kto> der{
 };
 std::vector<kto> med{
 	{0,0.700},
-{0,0.920},
-{0,1.05},
+    {0,0.920},
+    {0,1.05},
 	{0,1.2},
 };
 std::vector<kto> nick{
@@ -97,16 +86,8 @@ std::vector<kto> nick{
 	{0,0.175},
 };
 std::vector<kto> es{
-	//{bite_chai(chislo),0.0},
-	//{bite_chai(chislo),0.0},
-	//{bite_chai(chislo),0.0},
-	//{bite_chai(chislo),0.0},
 };
 std::vector<kto> metall{
-//{bite_chai(chislo),0.0},
-	//{bite_chai(chislo),0.0},
-	//{bite_chai(chislo),0.0},
-	//{bite_chai(chislo),0.0},
 };
 
 int golo = 14;
@@ -118,7 +99,7 @@ int vvod() {
 	do {
 		r = 0;
 		std::cin >> x;
-		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(); r = 1; std::cout << "неправельный ввод\n "; }
+		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(); r = 1; std::cout << " . . . . . неправельный ввод . . . . .\n "; }
 	} while (r);
 	return x;
 }
@@ -335,16 +316,20 @@ void create_cave() {
 }
 int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai) {
 	std::cout << " 0 выйти из меню крафта (если кроме этого текста здесь ничего не написано, значит вы не можете ничего создать. если кроме этого текста здесь чтото написано, значит вы можете это создать)\n";
-	if (iron >= 0.600 && pribor == -1) { std::cout << " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд на 1 использование)\n"; }
+	if (iron >= 0.600 && pribor == -1) { std::cout << " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд 1)\n"; }
 	if (iron >= 0.600 && derevo >= 0.150 && priborf == -1) { std::cout << " 2 создать прибор для просмотра значения шарфа за 0.600 кг железа и 0.150 кг дерева (заряд на 1 использование)\n"; }
-	if (iron >= 1.3 && invertor == -1) { std::cout << " 3 создать инвертор значений шапки и шарфа за 1.3 кг железа (заряд на 1 использование) (при исподьзовании 1 меняет на -1, -1 меняет на 1, 0 меняет на 0, использование работает одновременно на шапку и шарф)\n"; }
+	if (iron >= 1.3 && invertor == -1) { std::cout << " 3 создать инвертор значений шапки и шарфа за 1.3 кг железа (заряд 1) (при исподьзовании 1 меняет на -1, -1 меняет на 1, 0 меняет на 0, использование работает одновременно на шапку и шарф)\n"; }
 	if (derevo >= 0.31) { std::cout << " 4 востановить 1 здоровье за 0.31 кг дерева\n"; }
 	if (nickel >= 0.300) { std::cout << " 5 зарядить любой предмет которому нужен заряд на 2 за 0.300 кг никеля\n "; }
 	if (nickel >= 0.600 && organ == 0) { std::cout << " 6 востановить орган за 0.600 кг никеля\n"; }
 	if (nickel >= 0.100 && iron >= 0.200){std::cout << " 7 увеличить иммунитет на 15 за 0.100 кг никеля и 0.200 кг железа\n";}
 	if (nickel >= 0.080 && iron >= 0.150) { std::cout << " 8 уменьшить инфекцию на 15 за 0.080 кг никеля и 0.150 кг железа\n"; }
 	if (derevo >= 2.5 && cat == -1) { std::cout << " 9 создать деревянного механического кота за 2.500 кг дерева (заряд 10)\n"; }
-
+	if (derevo >= 2.0 && pribor_metall == -1) { std::cout << " 10 создать прибор для изменения значений металла за 2.0 дерева (заряд 1)\n"; }
+	if (derevo >= 2.0 && pribor_es == -1) { std::cout << " 11 создать прибор для изменения значений электростанций за 2.0 дерева (заряд 1)\n"; }
+	if (derevo >= 0.8 && znachenie_metall == -1) { std::cout << " 12 создать прибор для просмотра значений металла за 0.8 дерева (заряд 1)\n"; }
+	if (derevo >= 0.8 && znachenie_es == -1) { std::cout << " 13 создать прибор для просмотра значений электростанций за 0.8 дерева (заряд 1)\n"; }
+	if (derevo >= 1.0 && znachenie_chai == -1) { std::cout << " 14 создать прибор для просмотра значений чая за 1.0 дерева (заряд 1)\n"; }
 	int chto = vvod();
 	if (chto == 1 && iron >= 0.600 && pribor == -1) { iron -= 0.600; pribor = 1; }
 	else if (chto == 2 && iron >= 0.600 && derevo >= 0.150 && priborf == -1) { iron -= 0.600; derevo -= 0.150; priborf = 1; }
@@ -354,7 +339,7 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 		nickel -= 0.300;
 		int zaryad = 2;
 		std::string a = " выберите";
-		std::string b = " предмет чей заряд увеличить на 1 (1 прибор для шапок. 2 прибор для шарфов. 3 инвертор. 4 деревянный механический кот. 5 прибор для металлов. 6 прибор для электростанций. 7 прибор для просмотра значений металов. 8 прибор для просмотра значений электростанций. 9 прибор для просмотра значений чая)\n";
+		std::string b = " предмет чей заряд увеличить на 1 (1 прибор для просмотра значений шапок. 2 прибор для просмотра значений шарфов. 3 инвертор. 4 деревянный механический кот. 5 прибор для просмотра значений металлов. 6 прибор для просмотра значений электростанций. 7 прибор для просмотра значений металов. 8 прибор для просмотра значений электростанций. 9 прибор для просмотра значений чая)\n";
 		std::string c = " ещё раз";
 		while (zaryad > 0) {
 			std::cout << a + b;
@@ -390,6 +375,26 @@ int craft(int& pribor,int& priborf, int& invertor, bool& organ, double& imunitet
 	else if (chto == 9 && derevo >= 2.5 && cat == -1) {
 		derevo -= 2.5;
 		cat = 10;
+	}
+	else if (chto == 10 && derevo >= 2.0 && pribor_metall == -1) {
+		derevo -= 2.0;
+		pribor_metall = 1;
+	}
+	else if (chto == 11 && derevo >= 2.0 && pribor_es == -1) {
+		derevo -= 2.0;
+		pribor_es = 1;
+	}
+	else if (chto == 12 && derevo >= 0.8 && znachenie_metall == -1) {
+		derevo -= 0.8;
+		znachenie_metall = 1;
+	}
+	else if (chto == 13 && derevo >= 0.8 && znachenie_es == -1) {
+		derevo -= 0.8;
+		znachenie_es = 1;
+	}
+	else if (chto == 14 && derevo >= 1.0 && znachenie_chai == -1) {
+		derevo -= 1.0;
+		znachenie_chai = 1;
 	}
 	else if (chto == 0) { return 0; }
 	else { std::cout << "\n = = = = = не получилось создать предмет, причины этому могут быть: неправельный ввод, нехватка ресурсов, предмет уже создан = = = = =\n\n"; }
