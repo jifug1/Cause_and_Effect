@@ -25,13 +25,44 @@ std::string txt22 = "\n . . . . . . . . . . началась новая игра! . . . . . . . .
 std::string txt23 = " . . . . . вас укусил монстр . . . . .\n";
 std::string txt24 = "Зелёная";
 std::string txt25 = "Красная";
-std::string txt26 = "";
-std::string txt27 = "";
-std::string txt28 = "";
+std::string txt26 = "Белая с Жёлтой Полоской";
+std::string txt27 = "Грязная";
+std::string txt28 = "Знатный";
 std::string txt9201 = " введите 2 числа через пробел, первое число отвечает за количество шарфов и шапок (введёте 10 будет 10 шапок и 10 шарфов) второе число отвечает за количество чаёв\n";
 std::string txt9202 = " готово, количество шапок и шарфов: ";
 std::string txt9203 = " количество чаёв: ";
 std::string null = " null ";
+std::string txt29 = "Розовый";
+std::string txt30 = "из Урановой Руды";
+std::string txt31 = "из Стальных Пластин";
+std::string txt32 = "Зелёный";
+std::string txt33 = "Чёрный";
+std::string txt34 = "Кофе";
+std::string txt35 = "Вкусный";
+std::string txt36 = "\n . . . шапка:  ";
+std::string txt37 = "  шарф:  ";
+std::string txt38 = "  любимый чай:  ";
+std::string txt39 = "ТЭС";
+std::string txt40 = "ГЭС";
+std::string txt41 = "ВЭС";
+std::string txt42 = "ГеоТЭС";
+std::string txt43 = "Кобальт";
+std::string txt44 = "Вольфрам";
+std::string txt45 = "Хром";
+std::string txt46 = "Цинк";
+std::string txt47 = " любимый тип электростанций:  ";
+std::string txt48 = "  любимый металл:  ";
+std::string txt49 = "  . . .\n\n";
+std::string txt50 = " 0 попасть в меню. 1 укусить. 2 пройти мимо. 3 поздароваться. 100 рассказать анекдот. 4 меню крафта.";
+std::string txt51 = " . . . . . вы остановились идти по тропинке в лесу . . . . . 0 попасть в меню. 1 продолжить идти. 2 пойти в пищеру. 4 меню крафта. 44 ничего не делать\n";
+std::string txt52 = "\n [===============\n ваше здоровье:  ";
+std::string txt53 = "  орган:  ";
+std::string txt54 = "  инфекция:  ";
+std::string txt55 = "  иммунитет:  ";
+std::string txt56 = "";
+std::string txt57 = "";
+std::string txt58 = "";
+std::string txt59 = "";
 
 
 
@@ -39,4 +70,10 @@ std::string null = " null ";
 
 
 
+
+
+
+std::string txt100 = "[";
+std::string txt101 = "]";
+std::string txt110 = " . . . ";
 #endif

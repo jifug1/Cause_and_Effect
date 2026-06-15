@@ -559,97 +559,75 @@ int main()
 					shp = txt25;
 				}
 				else if (s == 2) {
-					shp = "Белая с Жёлтой Полоской";
+					shp = txt26;
 				}
 				else if (s == 3) {
-					shp = "Грязная";
+					shp = txt27;
 				}
 
 				if (f == 0) {
-					shf = "Знатный";
+					shf = txt28;
 				}
 				else if (f == 1) {
-					shf = "Розовый";
+					shf = txt29;
 				}
 				else if (f == 2) {
-					shf = "из Урановой Руды";
+					shf = txt30;
 				}
 				else if (f == 3) {
-					shf = "из Стальных Пластин";
+					shf = txt31;
 				}
-				std::string c = " null ";
+				std::string c = null;
 				if (chai == 0) {
-					c = "Зелёный";
+					c = txt32;
 				}
 				else if (chai == 1) {
-					c = "Чёрный";
+					c = txt33;
 				}
 				else if (chai == 2) {
-					c = "Кофе";
+					c = txt34;
 				}
 				else if (chai == 3) {
-					c = "Вкусный";
+					c = txt35;
 				}
-				std::cout << "\n . . . шапка:  [" << shp << "]  шарф:  [" << shf << "]  любимый чай:  [" << c << "]\n";
-				std::string e = " null ";
-				std::string m = " null ";
+				std::cout << txt36 << txt100 << shp << txt101 << txt37 << txt100 << shf << txt101 << txt38 << txt100 << c << txt101 << "\n";
+				std::string e = null;
+				std::string m = null;
 				if (ES == 0) {
-					e = "ТЭС";
+					e = txt39;
 				}
 				else if (ES == 1) {
-					e = "ГЭС";
+					e = txt40;
 				}
 				else if (ES == 2) {
-					e = "ВЭС";
+					e = txt41;
 				}
 				else if (ES == 3) {
-					e = "ГеоТЭС";
+					e = txt42;
 				}
 
 				if (ME == 0) {
-					m = "Кобальт";
+					m = txt43;
 				}
 				else if (ME == 1) {
-					m = "Вольфрам";
+					m = txt44;
 				}
 				else if (ME == 2) {
-					m = "Хром";
+					m = txt45;
 				}
 				else if (ME == 3) {
-					m = "Цинк";
+					m = txt46;
 				}
-				std::cout << " любимый тип электростанций:  [" << e << "]  любимый металл:  [" << m << "]  . . .\n\n";
-				if (pokozat == 1) { std::cout << " . . . " << shp << ":  [" << shapka[s].kak << "]  " << shf << ":  [" << sharf[f].kak << "]  " << c << ":  [" << zele[chai].kak << "]  " << e << ":  [" << es[ES].kak << "]  " << m << ":  [" << metall[ME].kak << "] . . .\n\n"; pokozat = 0; }
+				std::cout << txt47 << txt100 << e << txt101 << txt48 << txt100 << m << txt101 << txt49;
+				if (pokozat == 1) { std::cout << txt110 << shp << ":  " << txt100 << shapka[s].kak << txt101 << "  " << shf << ":  " << txt100 << sharf[f].kak << txt101 << "  " << c << ":  " << txt100 << zele[chai].kak << txt101 << "  " << e << ":  " << txt100 << es[ES].kak << txt101 << "  " << m << ":  " << txt100 << metall[ME].kak << txt101 << txt49; pokozat = 0; }
 
 
-				std::cout << " 0 попасть в меню. 1 укусить. 2 пройти мимо. 3 поздароваться. 100 рассказать анекдот. 4 меню крафта.";
+				std::cout << txt50;
 			}
 			else {
-				std::cout << " . . . . . вы остановились идти по тропинке в лесу . . . . . 0 попасть в меню. 1 продолжить идти. 2 пойти в пищеру. 4 меню крафта. 44 ничего не делать.";
-			/*for (int i = 0; i < line.size(); ++i) {
-				std::cout << "\n " << line[i].otx << " " << line[i].kx << " " << line[i].oty << " " << line[i].ky;
+				std::cout << txt51;
 			}
-			std::cout << "\n";
-			for (int x = -25; x < 25; ++x) {
-				for (int y = -50; y < 50; ++y) {
-					int index = 0; 
-					int chto_risovat = 0;
-					while (index < line.size()) {
-						if (((y <= line[index].oty && y >= line[index].ky) || (y >= line[index].oty && y <= line[index].ky)) && ((x <= line[index].otx && x >= line[index].kx) || (x >= line[index].otx && x <= line[index].kx))) {
-			
-							chto_risovat = 1;
-							break;
-						}
-						++index;
-					}
-					if (x == 0 && y == 0) { std::cout << "0"; }
-					else if (chto_risovat == 1) { std::cout << "."; }
-					else{std::cout << " "; }
-				}
-				std::cout << ",\n";
-			}*/
-			}
-			std::cout << "\n [===============\n ваше здоровье:  [" << golo << "]  орган:  [" << organ << "]  инфекция:  [" << infection << "]  иммунитет:  [" << imunitet << "]\n";
+			std::cout << txt52 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt54 << txt100 << infection << txt101 << txt55 << txt100 << imunitet << txt101 << "\n";
 			bool pravda = 0;
 			if (iron != 0) { std::cout << "\n у вас кг железа: " << iron; pravda = 1; }
 			if (copper != 0) { std::cout << "\n у вас кг меди: " << copper; pravda = 1; }
