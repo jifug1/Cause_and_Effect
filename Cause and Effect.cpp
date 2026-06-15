@@ -629,30 +629,30 @@ int main()
 			}
 			std::cout << txt52 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt54 << txt100 << infection << txt101 << txt55 << txt100 << imunitet << txt101 << "\n";
 			bool pravda = 0;
-			if (iron != 0) { std::cout << "\n у вас кг железа: " << iron; pravda = 1; }
-			if (copper != 0) { std::cout << "\n у вас кг меди: " << copper; pravda = 1; }
-			if (derevo != 0) { std::cout << "\n у вас кг дерева: " << derevo; pravda = 1; }
-			if (coal != 0) { std::cout << "\n у вас кг угля: " << coal; pravda = 1; }
-			if (nickel != 0) { std::cout << "\n у вас кг никеля: " << nickel; pravda = 1; }
-			if (steel != 0) { std::cout << "\n у вас кг стали: " << steel; pravda = 1; }
+			if (iron != 0) { std::cout << txt56 << iron; pravda = 1; }
+			if (copper != 0) { std::cout << txt57 << copper; pravda = 1; }
+			if (derevo != 0) { std::cout << txt58 << derevo; pravda = 1; }
+			if (coal != 0) { std::cout << txt59 << coal; pravda = 1; }
+			if (nickel != 0) { std::cout << txt60 << nickel; pravda = 1; }
+			if (steel != 0) { std::cout << txt61 << steel; pravda = 1; }
 			if (pravda) { std::cout << "\n"; }
 
 			bool pravda2 = 0;
-			if (pribor != -1) { std::cout << "\n заряд прибора для шапок (11 использовать): " << pribor; pravda2 = 1; }
-			if (priborf != -1) { std::cout << "\n заряд прибора для шарфов (22 использовать): " << priborf; pravda2 = 1; }
-			if (invertor != -1) { std::cout << "\n заряд инвертора (33 использовать): " << invertor; pravda2 = 1; }
-			if (cat != -1) { std::cout << "\n заряд деревянного механического кота: " << cat; pravda2 = 1; }
-			if (pribor_metall != -1) { std::cout << "\n заряд прибора для металлов (44 использовать): " << pribor_metall; pravda2 = 1; }
-			if (pribor_es != -1) { std::cout << "\n заряд прибора для электростанций (55 использовать):" << pribor_es; pravda2 = 1; }
-			if (znachenie_metall != -1) { std::cout << "\n заряд прибора для просмотра значений металлов (66 использовать): " << znachenie_metall; pravda2 = 1; }
-			if (znachenie_es != -1) { std::cout << "\n заряд прибора для просмотра значений электростанций (77 использовать): " << znachenie_es; pravda2 = 1; }
-			if (znachenie_chai != -1) { std::cout << "\n заряд прибора для просмотра значений чая (88 использовать) : " << znachenie_chai; pravda2 = 1; }
+			if (pribor != -1) { std::cout << txt62 << pribor; pravda2 = 1; }
+			if (priborf != -1) { std::cout << txt63 << priborf; pravda2 = 1; }
+			if (invertor != -1) { std::cout << txt64 << invertor; pravda2 = 1; }
+			if (cat != -1) { std::cout << txt65 << cat; pravda2 = 1; }
+			if (pribor_metall != -1) { std::cout << txt66 << pribor_metall; pravda2 = 1; }
+			if (pribor_es != -1) { std::cout << txt67 << pribor_es; pravda2 = 1; }
+			if (znachenie_metall != -1) { std::cout << txt68 << znachenie_metall; pravda2 = 1; }
+			if (znachenie_es != -1) { std::cout << txt69 << znachenie_es; pravda2 = 1; }
+			if (znachenie_chai != -1) { std::cout << txt70 << znachenie_chai; pravda2 = 1; }
 			if (pravda2) { std::cout << "\n"; }
 			
 
 
 
-			std::cout << " ===============]\n" << " вы прошли монстров:  [" << proideno << "]  вы прошли за всё время:  [" << vsego_proideno << "]  время в игре за всё время в секундах:  [" << vremya << "]\n\n\n";
+			std::cout << txt71 << txt72 << txt100 << proideno << txt101 << txt73 << txt100 << vsego_proideno << txt101 << txt74 << txt100 << vremya << txt101 << "\n\n\n";
 
 			bool cikl = 0;
 			do {
@@ -660,39 +660,39 @@ int main()
 				int chto = vvod();
 				if (chto == 1 && faza > 0) {
 					if (sf <= bite) {
-						if (shapka[s].kak < 1) { std::cout << " шапка +1\n"; shapka[s].kak += 1; }
-						else if (sharf[f].kak < 1) { std::cout << " шарф +1\n"; sharf[f].kak += 1; }
+						if (shapka[s].kak < 1) { std::cout << txt75 ; shapka[s].kak += 1; }
+						else if (sharf[f].kak < 1) { std::cout << txt76; sharf[f].kak += 1; }
 					}
-					else if (zele[chai].kak >= bite2) { std::cout << " чай +1\n"; zele[chai].kak += 1; }
+					else if (zele[chai].kak >= bite2) { std::cout << txt77; zele[chai].kak += 1; }
 					else if (zele[chai].kak == (bite2 - 1) && esme <= 5) {
-						if (es[ES].kak > 0) { std::cout << " ЭС -1\n"; es[ES].kak -= 1; }
-						else{ std::cout << " металл -1\n"; metall[ME].kak -= 1; }
+						if (es[ES].kak > 0) { std::cout << txt78; es[ES].kak -= 1; }
+						else{ std::cout << txt79; metall[ME].kak -= 1; }
 					}
 					else {
 						if (sf == (bite + 1)) {
 							if (otvet == 1) {
-								std::cout << " монстр: здраствуйте, куда вы идёте по этой тропинке в лесу?  (1 ответить: доставляю уран на гидрометаллургический завод (правда) 2 ответить: доставляю стекловату для Черемши (ложь) 3 ничего не ответить)\n";
+								std::cout << txt80;
 								chto = vvod();
 							}
 							else if (otvet == 2) {
-								std::cout << " здрасьте, вы не боитесь монстра 170? (1 ответить: боюсь, а кто это? (правда) 2 ответить: уверуй в монолит (истина))\n";
+								std::cout << txt81;
 								chto = vvod();
 								if (chto == 1) {
-									std::cout << " монстр: он очень злой и страшный. и вообще он 170 килограмм урановой руды добыл (1 ответить: ясно)\n";
+									std::cout << txt82;
 									chto = vvod();
-									if (chto == 1) { std::cout << " монстр: чё те ясно\n"; }
+									if (chto == 1) { std::cout << txt83; }
 								}
 								else if (chto == 2) {
-									std::cout << " монстр: за монолит!\n";
+									std::cout << txt84;
 								}
 							}
 
 							if (otvet == 1) {
-								std::cout << " монстр: могу вам дать " << sz[szeleza].kg << " килограмм железа либо " << der[dereva].kg << " калограмм дерева (1 взять железо 2 взять дерево)\n";
+								std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << " калограмм дерева (1 взять железо 2 взять дерево)\n";
 								chto = vvod();
 							}
 							if (otvet == 2) {
-								std::cout << " монстр: могу вам дать " << nick[Nickel].kg << " килограмм никеля либо " << med[Copper].kg << " калограмм меди (1 взять никель 2 взять медь)\n";
+								std::cout << txt85 << nick[Nickel].kg << " килограмм никеля либо " << med[Copper].kg << " калограмм меди (1 взять никель 2 взять медь)\n";
 								chto = vvod();
 							}
 
