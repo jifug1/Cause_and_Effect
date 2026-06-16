@@ -7,6 +7,7 @@
 #include <string>
 #include <conio.h>
 #include "text.h"
+#include <mutex>
 int iii = 2;
 int skoko_chaev = 3;
 int potok = 1;
@@ -19,6 +20,7 @@ int vsego_proideno = 0;
 
 int save_time = 0;
 int save_proideno = 0;
+std::mutex save_mutex;
 
 double iron = 0;
 double copper = 0;
@@ -100,7 +102,7 @@ int vvod() {
 	do {
 		r = 0;
 		std::cin >> x;
-		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(); r = 1; std::cout << " . . . . . неправельный ввод . . . . .\n "; }
+		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(100,'\n'); r = 1; std::cout << " . . . . . неправельный ввод . . . . .\n "; }
 	} while (r);
 	return x;
 }
@@ -123,7 +125,9 @@ std::thread a([&]() {
 	while (potok) {
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		save_mutex.lock();
 		++sec;
+		save_mutex.unlock();
 	}
 
 }
@@ -506,9 +510,9 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 	int chto = vvod();
 	if (chto == 0) { mozhno_v_les = 0; return; }
 	else if (chto != 1 && chto != 2 && chto != 3) { std::cout << txt20; return; }
-	if (chto == 1) { spear -= 1; }
-	else if (chto == 2) { fakel -= 1; }
-	else if (chto == 3) { look -= 1; }
+	if (chto == 1 && spear > -1) { spear -= 1; }
+	else if (chto == 2 && fakel > -1) { fakel -= 1; }
+	else if (chto == 3 && look > -1) { look -= 1; }
 
 	if ((chto == 1 && oruzhie_u_monstra == 0) || (chto == 3 && oruzhie_u_monstra == 0) || (chto == 3 && oruzhie_u_monstra == 1) || (chto == 1 && oruzhie_u_monstra == 2) || (chto == 3 && oruzhie_u_monstra == 4)) { pobeda = 1; }
 	else if (chto == 2 && oruzhie_u_monstra == 0) { std::cout << txt117; }
@@ -531,10 +535,11 @@ int main()
 	while (shapka.size() < 1 || sharf.size() < 1 || zele.size() < 1 ){
 		menu();
 	}
-
+	
 	while(true){
-		read_save();
-		igra = 1;
+	read_save();
+
+	igra = 1;
 	golo = 15;
 	int bite = -1;
 	int bite2 = 3;
@@ -565,7 +570,7 @@ int main()
 	int inffection = 0;
 	
 	int faza = 5;
-	bool prodolszit_put = 0;
+	
 
 	std::cout << txt22;
 	while (igra) {
@@ -586,12 +591,9 @@ int main()
 		int ES = podarok(chislo);
 		int ME = podarok(chislo);
 		int esme = (es[ES].kak + metall[ME].kak);
-
+		
+		bool prodolszit_put = 0;
 		bool mozhno_v_les = 1;
-
-		if (faza == 0) {
-			create_cave();
-		}
 
 		if (dlya_organa == 0) { if (organ == 0) { bite += 1; dlya_organa = 1; } }
 		if (dlya_organa == 1) { if (organ == 1) { bite -= 1; dlya_organa = 0; } }
@@ -916,7 +918,7 @@ int main()
 				else if (chto == 4 && faza == 0) { cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
 				else if (chto == 2 && faza == 0) { pishera(); }
-				else if (chto == 3 && faza == 0 && mozhno_v_les && (spear > -1 || fakel > -1 || look > -1)) { les(spear,fakel,look,mozhno_v_les); }
+				else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les); }
 				else { std::cout << txt20; cikl = 1; }
 
 			} while (cikl);
@@ -964,12 +966,16 @@ int main()
 			infection = -1;
 		}
 		inffection = 0;
-		if (faza > 0) {++proideno;}
+		if (faza > 0 && igra == 1) {++proideno;}
 		if (cat > 0 && faza > 0) { --cat; }
 		if (prodolszit_put) { faza = 5; }
 		else if (faza > 0) { --faza; }
+
 		vsego_proideno = proideno + save_proideno;
+		
+		save_mutex.lock();
 		vremya = sec + save_time;
+		save_mutex.unlock();
 		save();
 	}
 	}
