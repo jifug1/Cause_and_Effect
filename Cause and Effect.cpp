@@ -504,7 +504,7 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 
 	bool pobeda = 0;
 	int chto = vvod();
-	if (chto == 0) { return; }
+	if (chto == 0) { mozhno_v_les = 0; return; }
 	else if (chto != 1 && chto != 2 && chto != 3) { std::cout << txt20; return; }
 	if (chto == 1) { spear -= 1; }
 	else if (chto == 2) { fakel -= 1; }
@@ -702,19 +702,22 @@ int main()
 			if (pravda) { std::cout << "\n"; }
 
 			bool pravda2 = 0;
-			if (pribor != -1) { std::cout << txt62 << pribor; pravda2 = 1; }
-			if (priborf != -1) { std::cout << txt63 << priborf; pravda2 = 1; }
-			if (invertor != -1) { std::cout << txt64 << invertor; pravda2 = 1; }
-			if (cat != -1) { std::cout << txt65 << cat; pravda2 = 1; }
-			if (pribor_metall != -1) { std::cout << txt66 << pribor_metall; pravda2 = 1; }
-			if (pribor_es != -1) { std::cout << txt67 << pribor_es; pravda2 = 1; }
-			if (znachenie_metall != -1) { std::cout << txt68 << znachenie_metall; pravda2 = 1; }
-			if (znachenie_es != -1) { std::cout << txt69 << znachenie_es; pravda2 = 1; }
-			if (znachenie_chai != -1) { std::cout << txt70 << znachenie_chai; pravda2 = 1; }
+			if (pribor > -1) { std::cout << txt62 << pribor; pravda2 = 1; }
+			if (priborf > -1) { std::cout << txt63 << priborf; pravda2 = 1; }
+			if (invertor > -1) { std::cout << txt64 << invertor; pravda2 = 1; }
+			if (cat > -1) { std::cout << txt65 << cat; pravda2 = 1; }
+			if (pribor_metall > -1) { std::cout << txt66 << pribor_metall; pravda2 = 1; }
+			if (pribor_es > -1) { std::cout << txt67 << pribor_es; pravda2 = 1; }
+			if (znachenie_metall > -1) { std::cout << txt68 << znachenie_metall; pravda2 = 1; }
+			if (znachenie_es > -1) { std::cout << txt69 << znachenie_es; pravda2 = 1; }
+			if (znachenie_chai > -1) { std::cout << txt70 << znachenie_chai; pravda2 = 1; }
 			if (pravda2) { std::cout << "\n"; }
 			
-
-
+			bool pravda3 = 0;
+			if (spear > -1) { std::cout << txt121 << spear; }
+			if (fakel > -1) { std::cout << txt122 << fakel; }
+			if (look > -1) { std::cout << txt123 << look; }
+			if (pravda3) { std::cout << "\n"; }
 
 			std::cout << txt71 << txt72 << txt100 << proideno << txt101 << txt73 << txt100 << vsego_proideno << txt101 << txt74 << txt100 << vremya << txt101 << "\n\n\n";
 
