@@ -102,7 +102,7 @@ int vvod() {
 	do {
 		r = 0;
 		std::cin >> x;
-		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(100,'\n'); r = 1; std::cout << " . . . . . неправельный ввод . . . . .\n "; }
+		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(100,'\n'); r = 1; std::cout << txt20; }
 	} while (r);
 	return x;
 }
@@ -527,6 +527,9 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 
 	mozhno_v_les = 0;
 }
+void znacheniya_igroka(int organ, double infection, double imunitet) {
+	std::cout << txt502 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt54 << txt100 << infection << txt101 << txt55 << txt100 << imunitet << txt101;
+}
 
 int main()
 {
@@ -691,13 +694,15 @@ int main()
 				std::cout << txt47 << txt100 << e << txt101 << txt48 << txt100 << m << txt101 << txt49;
 				if (pokozat == 1) { std::cout << txt110 << shp << ":  " << txt100 << shapka[s].kak << txt101 << "  " << shf << ":  " << txt100 << sharf[f].kak << txt101 << "  " << c << ":  " << txt100 << zele[chai].kak << txt101 << "  " << e << ":  " << txt100 << es[ES].kak << txt101 << "  " << m << ":  " << txt100 << metall[ME].kak << txt101 << txt49; pokozat = 0; }
 
-				std::cout << txt52 << txt502 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt54 << txt100 << infection << txt101 << txt55 << txt100 << imunitet << txt101;
+				std::cout << txt52;
+				znacheniya_igroka(organ,infection,imunitet);
 				std::cout << txt50;
 			}
 			else {
 				std::cout << txt51 << txt52 << txt553;
 				if ((spear > -1 || fakel > -1 || look > -1) && mozhno_v_les) { std::cout << txt551; }
 				std::cout << txt552;
+				znacheniya_igroka(organ, infection, imunitet);
 			}
 			if (iron != 0) { std::cout << txt56 << iron; }
 			if (copper != 0) { std::cout << txt57 << copper; }
