@@ -322,7 +322,7 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 	if (iron >= 1.3 && invertor <= -1) { std::cout << txt5; }
 	if (derevo >= 0.31) { std::cout << txt6; }
 	if (nickel >= 0.300) { std::cout << txt7; }
-	if (nickel >= 0.600 && organ <= 0) { std::cout << txt8; }
+	if (nickel >= 0.600 && organ == 0) { std::cout << txt8; }
 	if (nickel >= 0.100 && iron >= 0.200) { std::cout << txt9; }
 	if (nickel >= 0.080 && iron >= 0.150) { std::cout << txt10; }
 	if (derevo >= 2.5 && cat <= -1) { std::cout << txt11; }
@@ -527,7 +527,11 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 int main()
 {
 	system("chcp 1251 > nul");
-	menu();
+
+	while (shapka.size() < 1 || sharf.size() < 1 || zele.size() < 1 ){
+		menu();
+	}
+
 	while(true){
 		read_save();
 		igra = 1;
@@ -609,7 +613,7 @@ int main()
 		do {
 			cikl2 = 0;
 			if (faza > 0) {
-				if (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 5)) { std::cout << txt23; }
+				if (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= 2)) { std::cout << txt23; }
 
 
 				std::string shp = null;
@@ -790,7 +794,7 @@ int main()
 						if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
 						else{ std::cout << txt91; sharf[f].kak -= 1; }
 					}
-					else if (zele[chai].kak == (bite2 - 1) && esme <= 5) {
+					else if (zele[chai].kak == (bite2 - 1) && esme <= 2) {
 						if (es[ES].kak > 0) { std::cout << txt78; es[ES].kak -= 1; }
 						else{ std::cout << txt79; metall[ME].kak -= 1; }
 					}
