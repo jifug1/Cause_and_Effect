@@ -488,19 +488,40 @@ void pishera() {
 		
 	}
 }
-void les(int& spear, int& fakel, int& look) {
+void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 	int oruzhie_u_monstra = bite_chai(chislo);
 	switch (oruzhie_u_monstra) {
 	case 0: { txt_monstr = txtM1; break; }
 	case 1: { txt_monstr = txtM2; break; }
 	case 2: { txt_monstr = txtM3; break; }
-    case 3:{txt_monstr = txtM4; break;}
+    case 3: { txt_monstr = txtM4; break; }
 	case 4: { txt_monstr = txtM5; break; }
 	};
 	std::cout << text_v_lesu << txt_monstr;
+	if (spear > -1) { std::cout << txtMA1; }
+	if (fakel > -1) { std::cout << txtMA2; }
+	if (look > -1) { std::cout << txtMA3; }
+
+	bool pobeda = 0;
+	int chto = vvod();
+	if (chto == 0) { return; }
+	else if (chto != 1 && chto != 2 && chto != 3) { std::cout << txt20; return; }
+	if (chto == 1) { spear -= 1; }
+	else if (chto == 2) { fakel -= 1; }
+	else if (chto == 3) { look -= 1; }
+
+	if ((chto == 1 && oruzhie_u_monstra == 0) || (chto == 3 && oruzhie_u_monstra == 0) || (chto == 3 && oruzhie_u_monstra == 1) || (chto == 1 && oruzhie_u_monstra == 2) || (chto == 3 && oruzhie_u_monstra == 4)) { pobeda = 1; }
+	else if (chto == 2 && oruzhie_u_monstra == 0) { std::cout << txt117; }
+	else if (chto == 3 && oruzhie_u_monstra == 2) { std::cout << txt118; }
+	else if (chto == 2 && oruzhie_u_monstra == 3) { std::cout << txt119; pobeda = 1; }
+	else if (chto == 1 && oruzhie_u_monstra == 4) { std::cout << txt120; }
 
 
 
+	if (!pobeda) { std::cout << txt116; --golo; }
+	else { std::cout << txt115; derevo += 0.400; }
+
+	mozhno_v_les = 0;
 }
 
 int main()
@@ -532,7 +553,7 @@ int main()
 	int spear = -1;
 	int fakel = -1;
 	int look = -1;
-
+	
 	double infection = -1;
 	double imunitet = 175;
 	int inffection = 0;
@@ -559,6 +580,8 @@ int main()
 		int ES = podarok(chislo);
 		int ME = podarok(chislo);
 		int esme = (es[ES].kak + metall[ME].kak);
+
+		bool mozhno_v_les = 1;
 
 		if (faza == 0) {
 			create_cave();
@@ -665,7 +688,7 @@ int main()
 			}
 			else {
 				std::cout << txt51;
-				if (spear > -1 || fakel > -1 || look > -1) { std::cout << txt551; }
+				if ((spear > -1 || fakel > -1 || look > -1) && mozhno_v_les) { std::cout << txt551; }
 				std::cout << txt552;
 			}
 			std::cout << txt52 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt54 << txt100 << infection << txt101 << txt55 << txt100 << imunitet << txt101 << "\n";
@@ -899,7 +922,7 @@ int main()
 				else if (chto == 44 && faza == 0) { cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
 				else if (chto == 2 && faza == 0) { pishera(); }
-				else if (chto == 3 && faza == 0 && (spear > -1 || fakel > -1 || look > -1)) { les(spear,fakel,look); }
+				else if (chto == 3 && faza == 0 && mozhno_v_les && (spear > -1 || fakel > -1 || look > -1)) { les(spear,fakel,look,mozhno_v_les); }
 				else { std::cout << txt20; cikl = 1; }
 
 			} while (cikl);
