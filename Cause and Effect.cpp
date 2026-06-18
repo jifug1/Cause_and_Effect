@@ -307,6 +307,8 @@ int menu() {
 void pishera() {
 	bool vyhod = 1;
 	int razmer = 0;
+	entity[0].x = 0;
+	entity[0].y = 0;
 	while (razmer < entity.size()) {
 		if (entity[razmer].id == 1) {
 			entity.erase(entity.begin()+razmer); 
@@ -322,19 +324,26 @@ void pishera() {
 		}
 		++razmer;
 	}
-	for (int x = 0; x < 4; ++x) {
-		for (int y = 0; y < 19; ++y) {
+	int ruda_nickel = 5;
+	int ruda_iron = 5;
+	int lovushka = 15;
+	for (int x = 0; x < 5; ++x) {
+		for (int y = 0; y < 20; ++y) {
 			int sluchano = chance(chislo);
-			if (sluchano <= 5) {
+			if (sluchano <= 5 && ruda_nickel > 0) {
 				entity.push_back({x,y,1});
+				--ruda_nickel;
 			}
-			else if (sluchano <= 10) {
+			else if (sluchano <= 10 && ruda_iron > 0) {
 				entity.push_back({ x,y,2 });
+				--ruda_iron;
 			}
 			else if (sluchano <= 20) {
 				entity.push_back({ x,y,3 });
+				--lovushka;
 			}
 		}
+		if (ruda_nickel <= 0 && ruda_iron <= 0 && lovushka <= 0) { break; }
 	}
 	auto mozhno = [&](int x, int y){
 		if ((x < 0 || x > 4) || (y < 0 || y > 19)) { return 0; }
@@ -361,22 +370,25 @@ void pishera() {
 		int chto = 0;
 		for (int x = 0; x < 5; ++x) {
 			for (int y = 0; y < 20; ++y) {
+				
+				if(entity[0].x == x && entity[0].y == y) {
+					chto = 1; 
+				}
+				else {
+					for (int index = 0; index < entity.size(); ++index) {
 
-				for (int index = 0; index < entity.size(); ++index) {
-					if (entity[index].id == 0 && entity[index].x == x && entity[index].y == y) {
-					chto = 1; break;
+						if (entity[index].id == 1 && entity[index].x == x && entity[index].y == y) {
+							chto = 2; break;
+						}
+						else if (entity[index].id == 2 && entity[index].x == x && entity[index].y == y) {
+							chto = 3; break;
+						}
+						else if (entity[index].id == 3 && entity[index].x == x && entity[index].y == y) {
+							chto = 4; break;
+						}
+						else { chto = 0; }
+					}
 				}
-				else if (entity[index].id == 1 && entity[index].x == x && entity[index].y == y) {
-					chto = 2; break;
-				}
-				else if (entity[index].id == 2 && entity[index].x == x && entity[index].y == y) {
-					chto = 3; break;
-				}
-				else if (entity[index].id == 3 && entity[index].x == x && entity[index].y == y) {
-					chto = 4; break;
-				}
-				else { chto = 0; }
-			}
 				switch (chto) {
 				case 0: { std::cout << "."; break; }
 				case 1: { std::cout << "|"; break; }
