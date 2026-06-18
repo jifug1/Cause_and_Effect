@@ -14,6 +14,8 @@ int potok = 1;
 
 int proideno = 0;
 int sec = 0;
+int record = 0;
+int languge = 0;
 
 int vremya = 0;
 int vsego_proideno = 0;
@@ -119,12 +121,12 @@ std::thread a([&]() {
 void save() {
 	std::ofstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
-		file << vsego_proideno << " " << vremya;
+		file << vsego_proideno << " " << vremya << " " << record << " " << languge;
 }
 void read_save() {
 	std::ifstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
-		file >> save_proideno >> save_time;
+		file >> save_proideno >> save_time >> record >> languge;
 }
 void create(int x = 4, int y = 4, int z = 4) {
 	while (shapka.size() > 0)
@@ -306,12 +308,12 @@ int menu() {
 			int sho = vvod();
 			create(chto,sho);
 			std::cout << txt9202 << shapka.size() << " " << sharf.size() << txt9203 << zele.size() << "\n\n";
+			txt50 += "@были использованы читы@";
 		}
 		else if (chto == 2) { return 0; }
-		else if (chto == 3) {
-			std::cout << txt_;
-			r = 1;
-		}
+		else if (chto == 3) {std::cout << txt_; r = 1;}
+		else if (chto == 4) { languge = 0; r = 1; }
+		else if (chto == 5) { languge = 1; english(); r = 1; }
 	} while (r);
 	menu2();
 	return 1;
@@ -502,6 +504,9 @@ void znacheniya_igroka(int organ, double infection, double imunitet) {
 int main()
 {
 	system("chcp 1251 > nul");
+	read_save();
+	if (languge == 1) { english(); }
+
 	while (shapka.size() < 1 || sharf.size() < 1 || zele.size() < 1 ){
 		menu();
 	}
@@ -700,7 +705,7 @@ int main()
 			if (look > -1) { std::cout << txt123 << look; }
 			
 
-			std::cout << txt72 << proideno << txt73 << vsego_proideno << txt74 << vremya << txt71 << "\n\n\n";
+			std::cout << txt72 << proideno << txt73 << vsego_proideno << txt74 << vremya << txt072 << record << txt71 << "\n\n\n";
 
 			bool cikl = 0;
 			do {
@@ -961,6 +966,7 @@ int main()
 		
 		save_mutex.lock();
 		vremya = sec + save_time;
+		if (proideno > record) { record = proideno; }
 		save_mutex.unlock();
 		save();
 	}
