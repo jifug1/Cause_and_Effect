@@ -32,7 +32,6 @@ double steel = 0;
 std::mt19937 chislo(std::chrono::steady_clock::now().time_since_epoch().count());
 std::uniform_int_distribution j(-1, 1);
 std::uniform_int_distribution da(0, skoko_chaev);
-std::uniform_int_distribution Cave(1, 4);
 std::uniform_int_distribution dlyashapok(0, iii);
 std::uniform_int_distribution bite_chai(0, 4);
 std::uniform_int_distribution podarok(0, 3);
@@ -41,29 +40,18 @@ std::uniform_int_distribution chance(1, 100);
 
 struct kto {
 	int kak;
-	double kg;
-};
+	double kg;};
 struct cave {
-	int otx;
-	int kx;
-	int oty;
-	int ky;
+	int x = 0;
+	int y = 0;
+	int id = -1;
 };
-struct route_struct {
-	int route_point;
-	int y;
-	int x;
+std::vector<cave> entity{
+	{(0,0,0)},
 };
-
-
-std::vector<cave> line{};
-std::vector<route_struct> point{};
 std::vector<kto> shapka{};
-
 std::vector<kto> sharf{};
-
 std::vector<kto> zele{};
-
 std::vector<kto> sz{
 	{0,0.150},
 	{0,0.200},
@@ -137,13 +125,11 @@ void save() {
 	std::ofstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
 		file << vsego_proideno << " " << vremya;
-
 }
 void read_save() {
 	std::ifstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
 		file >> save_proideno >> save_time;
-
 }
 void create(int x = 4, int y = 4, int z = 4) {
 	while (shapka.size() > 0)
@@ -188,135 +174,6 @@ void create(int x = 4, int y = 4, int z = 4) {
 	iii = x - 1;
 	dlyashapok.param(std::uniform_int_distribution<int>::param_type(0, iii));
 	da.param(std::uniform_int_distribution<int>::param_type(0, skoko_chaev));
-
-}
-void create_cave() {
-	while (line.size() > 0) {
-		line.pop_back();}
-	while (point.size() > 0) {
-		point.pop_back();
-	}
-
-
-	point.push_back({-1,0,0});
-	int index = 0;
-	int point_index = 0;
-	int error = 0;
-
-	while (index < 60 && error < 10000) {
-		line.push_back({ 0,0,0,0, });
-
-
-
-
-
-
-		int route = Cave(chislo);
-		int sto = chance(chislo);
-		if (route == point[point_index].route_point) { line.pop_back(); continue; }
-
-		if (route == 1) {
-			line[index].oty = (point[point_index].y);
-			line[index].ky = (point[point_index].y - 4);
-			line[index].otx = (point[point_index].x);
-			line[index].kx = (point[point_index].x);
-		}
-		else if (route == 2) {
-			line[index].oty = (point[point_index].y);
-			line[index].ky = (point[point_index].y + 4);
-			line[index].otx = (point[point_index].x);
-			line[index].kx = (point[point_index].x);
-		}
-		else if (route == 3) {
-			line[index].oty = (point[point_index].y);
-			line[index].ky = (point[point_index].y);
-			line[index].otx = (point[point_index].x);
-			line[index].kx = (point[point_index].x - 4);
-		}
-		else if (route == 4) {
-			line[index].oty = (point[point_index].y);
-			line[index].ky = (point[point_index].y);
-			line[index].otx = (point[point_index].x);
-			line[index].kx = (point[point_index].x + 4);
-		}
-		else { line.pop_back(); continue; }
-
-		int i = 0;
-		bool cont = 0;
-		while (i < line.size()) {
-			if (index == i) { ++i; continue; }
-			if (((line[i].oty <= line[index].oty && line[i].ky >= line[index].ky) || (line[i].oty >= line[index].oty && line[i].ky <= line[index].ky)) && ((line[i].otx <= line[index].otx && line[i].kx >= line[index].kx) || (line[i].otx >= line[index].otx && line[i].kx <= line[index].kx))) {
-				cont = 1; break;
-			}
-			++i;
-		}
-		if (cont == 1) {
-			line.pop_back();
-			++error;
-			continue;
-		}
-		if (point.size() < 60) {
-		if (route == 1) {
-			if (sto <= 33) {
-				point.push_back({ 2,line[index].ky - 1, line[index].kx });
-
-			}
-			if (sto <= 66) {
-				point.push_back({ 4,line[index].ky, line[index].kx - 1 });
-
-			}
-			if (sto <= 100) {
-				point.push_back({ 3,line[index].ky, line[index].kx + 1 });
-
-			}
-		}
-		else if (route == 2) {
-			if (sto <= 33) {
-				point.push_back({ 1,line[index].ky + 1, line[index].kx });
-
-			}
-			if (sto <= 66) {
-				point.push_back({ 4,line[index].ky, line[index].kx - 1 });
-
-			}
-			if (sto <= 100) {
-				point.push_back({ 3,line[index].ky, line[index].kx + 1 });
-
-			}
-		}
-		else if (route == 3) {
-			if (sto <= 33) {
-				point.push_back({ 1,line[index].ky + 1, line[index].kx });
-
-			}
-			if (sto <= 66) {
-				point.push_back({ 2,line[index].ky - 1, line[index].kx });
-
-			}
-			if (sto <= 100) {
-				point.push_back({ 4,line[index].ky, line[index].kx + 1 });
-
-			}
-		}
-		else if (route == 4) {
-			if (sto <= 33) {
-				point.push_back({ 1,line[index].ky + 1, line[index].kx });
-
-			}
-			if (sto <= 66) {
-				point.push_back({ 2,line[index].ky - 1, line[index].kx });
-
-			}
-			if (sto <= 100) {
-				point.push_back({ 3,line[index].ky, line[index].kx - 1 });
-
-			}
-		}
-	    }
-			++index;
-			++point_index;
-	}
-
 
 }
 int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai, int& spear, int& fakel, int& look) {
@@ -448,8 +305,6 @@ int menu() {
 	return 1;
 }
 void pishera() {
-	int ix = 0;
-	int iy = 0;
 	bool vyhod = 1;
 	
 
@@ -466,16 +321,16 @@ void pishera() {
 		int vvod_ = srazu_vvod();
 		switch (vvod_) {
 		case 48: { vyhod = 0; continue; }
-		case 119: { if (mozhno(ix - 1, iy)) { ix -= 1; } break; }
-		case 97: { if (mozhno(ix, iy - 1)) { iy -= 1; }break; }
-		case 115: { if (mozhno(ix + 1, iy)) { ix += 1; } break; }
-		case 100:{if (mozhno(ix, iy + 1)) { iy += 1; } break;}
+		case 119: { if (mozhno(entity[0].x - 1, entity[0].y)) { entity[0].x -= 1; } break; }
+		case 97: { if (mozhno(entity[0].x, entity[0].y - 1)) { entity[0].y -= 1; }break; }
+		case 115: { if (mozhno(entity[0].x + 1, entity[0].y)) { entity[0].x += 1; } break; }
+		case 100:{if (mozhno(entity[0].x, entity[0].y + 1)) { entity[0].y += 1; } break;}
 		};
 
 		for (int x = 0; x < 5; ++x) {
 			for (int y = 0; y < 20; ++y) {
 
-				if (ix == x && iy == y) {
+				if (entity[0].x == x && entity[0].y == y) {
 					chto = 1;
 				}
 				else{chto = 0;}
