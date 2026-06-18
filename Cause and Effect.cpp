@@ -304,6 +304,38 @@ int menu() {
 	menu2();
 	return 1;
 }
+void sobrat(int x, int y) {
+	int index = 0;
+	while (index < entity.size()) {
+		if (entity[index].id == 1 && entity[index].x == x && entity[index].y == y) {
+			entity.erase(entity.begin() + index);
+			--index;
+			nickel += 0.020;
+			std::cout << txt124;
+			break;
+		}
+		else if (entity[index].id == 2 && entity[index].x == x && entity[index].y == y) {
+			entity.erase(entity.begin() + index);
+			--index;
+			iron += 0.020;
+			std::cout << txt125;
+			break;
+		}
+		++index;
+	}
+}
+void proverka_lovushka(int x, int y) {
+	int index = 0;
+	while (index < entity.size()) {
+		if (entity[index].id == 3 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x == x + 1 && entity[index].y == y) || (entity[index].x == x - 1 && entity[index].y == y) || (entity[index].x == x && entity[index].y == y + 1) || (entity[index].x == x && entity[index].y == y - 1))) {
+			std::cout << txt126;
+			golo -= 1;
+			entity.erase(entity.begin()+index);
+			index;
+		}
+		++index;
+	}
+}
 void pishera() {
 	bool vyhod = 1;
 	int razmer = 0;
@@ -338,7 +370,7 @@ void pishera() {
 				entity.push_back({ x,y,2 });
 				--ruda_iron;
 			}
-			else if (sluchano <= 20) {
+			else if (sluchano <= 20 && !(x <= 2 && y <= 2)) {
 				entity.push_back({ x,y,3 });
 				--lovushka;
 			}
@@ -366,7 +398,10 @@ void pishera() {
 		case 65: { if (mozhno(entity[0].x, entity[0].y - 1)) { entity[0].y -= 1; }break; }
 		case 83: { if (mozhno(entity[0].x + 1, entity[0].y)) { entity[0].x += 1; } break; }
 		case 68: { if (mozhno(entity[0].x, entity[0].y + 1)) { entity[0].y += 1; } break; }
+		case 69: { sobrat(entity[0].x, entity[0].y); break; }
+		case 101: { sobrat(entity[0].x, entity[0].y); break; }
 		};
+		proverka_lovushka(entity[0].x,entity[0].y);
 		int chto = 0;
 		for (int x = 0; x < 5; ++x) {
 			for (int y = 0; y < 20; ++y) {
