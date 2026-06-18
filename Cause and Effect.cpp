@@ -41,6 +41,7 @@ std::uniform_int_distribution chance(1, 100);
 struct kto {
 	int kak;
 	double kg;};
+
 struct cave {
 	int x = 0;
 	int y = 0;
@@ -49,9 +50,10 @@ struct cave {
 std::vector<cave> entity{
 	{(0,0,0)},
 };
-std::vector<kto> shapka{};
-std::vector<kto> sharf{};
-std::vector<kto> zele{};
+cave igrok;
+std::vector<kto> shapka;
+std::vector<kto> sharf;
+std::vector<kto> zele;
 std::vector<kto> sz{
 	{0,0.150},
 	{0,0.200},
@@ -76,10 +78,8 @@ std::vector<kto> nick{
 	{0,0.160},
 	{0,0.175},
 };
-std::vector<kto> es{
-};
-std::vector<kto> metall{
-};
+std::vector<kto> es;
+std::vector<kto> metall;
 
 int golo = 14;
 bool igra = 1;
@@ -306,8 +306,36 @@ int menu() {
 }
 void pishera() {
 	bool vyhod = 1;
-	
-
+	int razmer = 0;
+	while (razmer < entity.size()) {
+		if (entity[razmer].id == 1) {
+			entity.erase(entity.begin()+razmer); 
+			--razmer;
+		}
+		else if (entity[razmer].id == 2) {
+			entity.erase(entity.begin() + razmer);
+			--razmer;
+		}
+		else if (entity[razmer].id == 3) {
+			entity.erase(entity.begin() + razmer);
+			--razmer;
+		}
+		++razmer;
+	}
+	for (int x = 0; x < 4; ++x) {
+		for (int y = 0; y < 19; ++y) {
+			int sluchano = chance(chislo);
+			if (sluchano <= 5) {
+				entity.push_back({x,y,1});
+			}
+			else if (sluchano <= 10) {
+				entity.push_back({ x,y,2 });
+			}
+			else if (sluchano <= 20) {
+				entity.push_back({ x,y,3 });
+			}
+		}
+	}
 	auto mozhno = [&](int x, int y){
 		if ((x < 0 || x > 4) || (y < 0 || y > 19)) { return 0; }
 		else { return 1; }
@@ -317,7 +345,7 @@ void pishera() {
 	std::cout << txt21;
 	while (vyhod) {
 		
-		int chto = 0;
+		
 		int vvod_ = srazu_vvod();
 		switch (vvod_) {
 		case 48: { vyhod = 0; continue; }
@@ -325,19 +353,36 @@ void pishera() {
 		case 97: { if (mozhno(entity[0].x, entity[0].y - 1)) { entity[0].y -= 1; }break; }
 		case 115: { if (mozhno(entity[0].x + 1, entity[0].y)) { entity[0].x += 1; } break; }
 		case 100:{if (mozhno(entity[0].x, entity[0].y + 1)) { entity[0].y += 1; } break;}
+		case 87: { if (mozhno(entity[0].x - 1, entity[0].y)) { entity[0].x -= 1; } break; }
+		case 65: { if (mozhno(entity[0].x, entity[0].y - 1)) { entity[0].y -= 1; }break; }
+		case 83: { if (mozhno(entity[0].x + 1, entity[0].y)) { entity[0].x += 1; } break; }
+		case 68: { if (mozhno(entity[0].x, entity[0].y + 1)) { entity[0].y += 1; } break; }
 		};
-
+		int chto = 0;
 		for (int x = 0; x < 5; ++x) {
 			for (int y = 0; y < 20; ++y) {
 
-				if (entity[0].x == x && entity[0].y == y) {
-					chto = 1;
+				for (int index = 0; index < entity.size(); ++index) {
+					if (entity[index].id == 0 && entity[index].x == x && entity[index].y == y) {
+					chto = 1; break;
 				}
-				else{chto = 0;}
-				
+				else if (entity[index].id == 1 && entity[index].x == x && entity[index].y == y) {
+					chto = 2; break;
+				}
+				else if (entity[index].id == 2 && entity[index].x == x && entity[index].y == y) {
+					chto = 3; break;
+				}
+				else if (entity[index].id == 3 && entity[index].x == x && entity[index].y == y) {
+					chto = 4; break;
+				}
+				else { chto = 0; }
+			}
 				switch (chto) {
 				case 0: { std::cout << "."; break; }
 				case 1: { std::cout << "|"; break; }
+				case 2: { std::cout << "&"; break; }
+				case 3: { std::cout << "@"; break; }
+				case 4: { std::cout << ","; break; }
 				}
 
 			}
@@ -389,11 +434,9 @@ void znacheniya_igroka(int organ, double infection, double imunitet) {
 int main()
 {
 	system("chcp 1251 > nul");
-
 	while (shapka.size() < 1 || sharf.size() < 1 || zele.size() < 1 ){
 		menu();
 	}
-	
 	while(true){
 	read_save();
 
