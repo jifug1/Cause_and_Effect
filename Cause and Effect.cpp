@@ -48,7 +48,7 @@ struct cave {
 	int id = -1;
 };
 std::vector<cave> entity{
-	{(0,0,0)},
+	{0,0,0},
 };
 cave igrok;
 std::vector<kto> shapka;
@@ -105,10 +105,6 @@ int srazu_vvod() {
 	int x = _getch();
 	return x;
 }
-
-
-
-
 std::thread a([&]() {
 	while (potok) {
 
@@ -120,7 +116,6 @@ std::thread a([&]() {
 
 }
 );
-
 void save() {
 	std::ofstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
@@ -331,12 +326,12 @@ void proverka_lovushka(int x, int y) {
 			std::cout << txt126;
 			golo -= 1;
 			entity.erase(entity.begin()+index);
-			index;
+			--index;
 		}
 		++index;
 	}
 }
-void pishera() {
+void pishera(bool& mozhno_v_pisheru) {
 	bool vyhod = 1;
 	int razmer = 0;
 	entity[0].x = 0;
@@ -438,6 +433,7 @@ void pishera() {
 		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 		
 	}
+	mozhno_v_pisheru = 0;
 }
 void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 	int oruzhie_u_monstra = bite_chai(chislo);
@@ -542,6 +538,7 @@ int main()
 		
 		bool prodolszit_put = 0;
 		bool mozhno_v_les = 1;
+		bool mozhno_v_pisheru = 1;
 
 		if (dlya_organa == 0) { if (organ == 0) { bite += 1; dlya_organa = 1; } }
 		if (dlya_organa == 1) { if (organ == 1) { bite -= 1; dlya_organa = 0; } }
@@ -645,6 +642,7 @@ int main()
 			}
 			else {
 				std::cout << txt51 << txt52 << txt553;
+				if (mozhno_v_pisheru) { std::cout << txt554; }
 				if ((spear > -1 || fakel > -1 || look > -1) && mozhno_v_les) { std::cout << txt551; }
 				std::cout << txt552;
 				znacheniya_igroka(organ, infection, imunitet);
@@ -867,7 +865,7 @@ int main()
 				else if (chto == 1 && faza == 0) { prodolszit_put = 1; cikl = 0; cikl2 = 0; }
 				else if (chto == 4 && faza == 0) { cikl = 0; cikl2 = 0; }
 				else if (chto == 7089) { faza = 1; }
-				else if (chto == 2 && faza == 0) { pishera(); }
+				else if (chto == 2 && faza == 0 && mozhno_v_pisheru == 1) { pishera(mozhno_v_pisheru); }
 				else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les); }
 				else { std::cout << txt20; cikl = 1; }
 
