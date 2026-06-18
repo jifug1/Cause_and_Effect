@@ -204,7 +204,18 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 		std::string b = txt18;
 		std::string c = txt19;
 		while (zaryad > 0) {
-			std::cout << a + b;
+			std::cout << a + b << txt100;
+			if (pribor > -1) { std::cout << txtZ1; }
+			if (priborf > -1) { std::cout << txtZ2; }
+			if (invertor > -1) { std::cout << txtZ3; }
+			if (cat > -1) { std::cout << txtZ4; }
+			if (pribor_metall > -1) { std::cout << txtZ5; }
+			if (pribor_es > -1) { std::cout << txtZ6; }
+			if (znachenie_metall > -1) { std::cout << txtZ7; }
+			if (znachenie_es > -1) { std::cout << txtZ8; }
+			if (znachenie_chai > -1) { std::cout << txtZ9; }
+			if (pribor_chai > -1) { std::cout << txtZ10; }
+			std::cout << txt101 << "\n";
 			int chto = vvod();
 			if (chto == 1 && pribor > -1) { pribor += 1; }
 			else if (chto == 2 && priborf > -1) { priborf += 1; }
@@ -829,6 +840,7 @@ int main()
 					for (int x = 0; x < zele.size(); ++x) {
 						std::cout << " чай: " << zele[x].kak << "\n";
 					}
+					txt50 += "*были использованы читы*";
 					cikl2 = 1;
 				}
 				else if (chto == 11 && pribor > 0 && faza > 0) {
@@ -850,13 +862,13 @@ int main()
 					std::cout << txt127;
 					cikl2 = 1;
 				}
-				else if (chto == 44 && pribor_metall > 0 && faza > 0) {
+				else if (chto == 44 && pribor_metall > 0 && faza > 0 && metall[ME].kak < 4) {
 					--pribor_metall;
 					metall[ME].kak += 1;
 					std::cout << txt94;
 					cikl2 = 1;
 				}
-				else if (chto == 55 && pribor_es > 0 && faza > 0) {
+				else if (chto == 55 && pribor_es > 0 && faza > 0 && es[ES].kak < 4) {
 					--pribor_es;
 					es[ES].kak += 1;
 					std::cout << txt93;
@@ -877,7 +889,7 @@ int main()
 					std::cout << txt99 << zele[chai].kak << "\n";
 					cikl2 = 1;
 				}
-				else if (chto == 99 && pribor_chai > 0 && faza > 0) {
+				else if (chto == 99 && pribor_chai > 0 && faza > 0 && zele[chai].kak > 0) {
 					--pribor_chai;
 					zele[chai].kak -= 1;
 					std::cout << txt92;
@@ -890,7 +902,7 @@ int main()
 				}
 				else if (chto == 1 && faza == 0) { prodolszit_put = 1; cikl = 0; cikl2 = 0; }
 				else if (chto == 4 && faza == 0) { cikl = 0; cikl2 = 0; }
-				else if (chto == 7089) { faza = 1; }
+				else if (chto == 7089) { txt51 += "&были использованы читы&"; faza = 1; }
 				else if (chto == 2 && faza == 0 && mozhno_v_pisheru == 1) { pishera(mozhno_v_pisheru,spear); }
 				else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les); }
 				else { std::cout << txt20; cikl = 1; }
