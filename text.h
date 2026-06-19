@@ -107,16 +107,22 @@ std::string txt76 = " . . . . . шарф +1 . . . . .\n";
 std::string txt77 = " . . . . . чай +1 . . . . .\n";
 std::string txt78 = " . . . . . ЭС -1 . . . . .\n";
 std::string txt79 = " . . . . . металл -1 . . . . .\n";
-std::string txt80 = " монстр: здраствуйте, куда вы идёте по этой тропинке в лесу?  (1 ответить: доставляю уран на гидрометаллургический завод (правда) 2 ответить: доставляю стекловату для Черемши (ложь) 3 ничего не ответить)\n";
-std::string txt81 = " монстр: здрасьте, вы не боитесь монстра 170? (1 ответить: боюсь, а кто это? (правда) 2 ответить: уверуй в монолит (истина))\n";
-std::string txt82 = " монстр: он очень злой и страшный. и вообще он 170 килограмм урановой руды добыл (1 ответить: ясно)\n";
+
+std::string txt80 = " монстр: здраствуйте (1 ответить: а почему меня здесь все кусают? 2 ответить: а почему тут у всех шапки шарфы и любимые чаи у всех одинаковые?)\n";
+std::string txt81 = " монстр: а потому что здесь все добрые и милые, но у всех разные представления о том как нужно ввести себя при встрече (1 ответить: ясно. 2 ответить: я кстати достовляю урановую руду на гидрометаллургический завод (правда))\n";
+std::string txt82 = " монстр: а потому что на острове малая токмачка только один магазин N4020, в нём только 4 вида шапок, 4 вида шарфов, зелёный чёрный чай, кофе, и несколько чаёв с неизвестным названием но некоторые из них вкусные (1 ответить: услышал тебя родной. 2 ответить: а на что их покупают?)\n";
 std::string txt83 = " монстр: чё те ясно\n";
-std::string txt84 = " монстр: за монолит!\n";
+std::string txt84 = " монстр: ты не боишься монстра 170? (1 ответить: боюсь, а кто это? (правда) 2 ответить: меня защитит монстр 61 (истина))\n";
+std::string txt082 = " монстр: на уран который извлекают из урановой руды на гидрометаллургическом заводе, а урановую руду добывают на урановой шахте, которую достовляют на гидрометаллургический завод по этой тропинке, идя по этой тропинке можно встретить магазин N4020, по сути это единственная тропинка и единственные 3 здания на всей малой токмачке, всё население малой токмачки живёт в палатках в лесу\n";
+std::string txt084 = " монстр: он очень злой и страшный, и вообще он 170 килограмм урановой руды добыл. в последнее время он ворует урановую руду\n";
+std::string txt0083 = " монстр: не думаю что владелец гидрометаллургического завода и урановой шахты тебя защитит\n";
+
 std::string txt85 = " монстр: могу вам дать ";
 std::string txt86 = " килограмм железа либо ";
 std::string txt87 = " калограмм дерева (1 взять железо 2 взять дерево)\n";
 std::string txt88 = " килограмм никеля либо ";
 std::string txt89 = " калограмм меди (1 взять никель 2 взять медь)\n";
+
 std::string txt90 = " . . . . . шапка -1 . . . . .\n";
 std::string txt91 = " . . . . . шарф -1 . . . . .\n";
 std::string txt92 = " . . . . . чай -1 . . . . .\n";
@@ -286,11 +292,16 @@ void english() {
     txt78 = " . . . . . PP -1 . . . . .\n";
     txt79 = " . . . . . metal -1 . . . . .\n";
     txt072 = " record of passed monsters: ";
-    txt80 = " monster: hello, where are you going along this forest path? (1 answer: I’m delivering uranium to the hydrometallurgical plant (truth) 2 answer: I’m delivering glass wool to Cheremsha (lie) 3 say nothing)\n";
-    txt81 = " monster: hey, aren’t you afraid of monster 170? (1 answer: I am afraid, who is that? (truth) 2 answer: believe in the Monolith (truth))\n";
-    txt82 = " monster: he is very angry and scary. And anyway, he mined 170 kilograms of uranium ore (1 answer: I see)\n";
-    txt83 = " monster: what do you mean ‘I see’\n";
-    txt84 = " monster: for the Monolith!\n";
+
+    txt80 = "monster: hello (1 answer: why does everyone here bite me? 2 answer: why do you all have the same hats, scarves and teas?)\n";
+    txt81 = "monster: because we are all kind and nice, but everyone has their own idea of how to behave when meeting someone (1 answer: I see. 2 answer: by the way, I'm delivering uranium ore to the hydrometallurgical plant (truth))\n";
+    txt82 = "monster: because on the island of Malaya Tokmachka there is only one shop N4020, it has only 4 kinds of hats, 4 kinds of scarves, green tea, black tea, coffee and a few teas with unknown names, some of them tasty (1 answer: I hear you, mate. 2 answer: what do they buy them with?)\n";
+    txt83 = "monster: what do you mean ‘I see’\n";
+    txt84 = "monster: aren't you afraid of monster 170? (1 answer: I am, who is that? (truth) 2 answer: monster 61 will protect me (truth))\n";
+    txt082 = "monster: with the uranium extracted from uranium ore at the hydrometallurgical plant, the ore is mined at the uranium mine and delivered to the plant along this path. Walking this path you can find the shop N4020. Actually this is the only path and the only 3 buildings in the whole Malaya Tokmachka; all the inhabitants live in tents in the forest\n";
+    txt084 = "monster: he is very angry and scary, and he mined 170 kilograms of uranium ore. Lately he has been stealing uranium ore\n";
+    txt0083 = "monster: I don't think the owner of the hydrometallurgical plant and the uranium mine will protect you\n";
+    
     txt85 = " monster: I can give you ";
     txt86 = " kilograms of iron or ";
     txt87 = " kilograms of wood (1 take iron 2 take wood)\n";

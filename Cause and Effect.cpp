@@ -517,10 +517,10 @@ void operation(int x = 0, int index = 0, int i = 0) {
 		else if (sharf[i].kak < 1) { std::cout << txt76; ++sharf[i].kak; }
 	}
 	else if (x == 2) {
-		std::cout << txt92; --zele[index].kak;
-	}
-	else if (x == 3 && zele[index].kak < 4) {
 		std::cout << txt77; ++zele[index].kak;
+	}
+	else if (x == 3 && zele[index].kak > 0) {
+		std::cout << txt92; --zele[index].kak;
 	}
 	else if(x == 4){
 		if (es[index].kak > 0) { std::cout << txt78; --es[index].kak; }
@@ -534,22 +534,34 @@ void operation(int x = 0, int index = 0, int i = 0) {
 }
 void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper) {
 	int chto;
-	if (otvet == 1) {
-		std::cout << txt80;
-		chto = vvod();
-	}
-	else if (otvet == 2) {
+	std::cout << txt80;
+	chto = vvod();
+	if (chto == 1) {
 		std::cout << txt81;
 		chto = vvod();
 		if (chto == 1) {
-			std::cout << txt82;
-			chto = vvod();
-			if (chto == 1) { std::cout << txt83; }
+			std::cout << txt83;
 		}
 		else if (chto == 2) {
 			std::cout << txt84;
+			chto = vvod();
+			if (chto == 1) {
+				std::cout << txt084;
+			}
+			else if (chto == 2) {
+				std::cout << txt0083;
+			}
 		}
 	}
+	else if (chto == 2) {
+		std::cout << txt82;
+		chto = vvod();
+		if (chto == 2) {
+			std::cout << txt082;
+		}
+
+	}
+
 
 	if (otvet == 1) {
 		std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
@@ -806,13 +818,13 @@ int main()
 					if (uslovie_bite) {
 						operation(1,s,f);
 					}
-					else if (uslovie_bite2) { operation(3,chai); }
+					else if (uslovie_bite2) { operation(2,chai); }
 					else if (uslovie_bite_esme) {operation(4,ES,ME);}
 					else {
 						if (sf == bite + 1) {
 							razgovor(otvet,szeleza,dereva,Nickel,Copper);
 						}
-						else if (sf >= bite + 2) {
+						else{
 							operation(0,s,f);
 						}
 					}
@@ -831,7 +843,7 @@ int main()
 					if (sf >= bite + 2) {
 						razgovor(otvet,szeleza,dereva,Nickel,Copper);
 					}
-					else if (sf == bite + 1) {
+					else{
 						operation(0, s, f);
 					}
 				}
@@ -846,7 +858,7 @@ int main()
 					else if (uslovie_bite) {
 						operation(0,s,f);
 					}
-					else if (uslovie_bite2) { operation(3, chai); }
+					else if (uslovie_bite2) { operation(2, chai); }
 
 				}
 				else if (chto == 9201) {
