@@ -507,7 +507,31 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les) {
 void znacheniya_igroka(bool organ, double infection, double imunitet, bool organ2) {
 	std::cout << txt502 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt54 << txt100 << infection << txt101 << txt55 << txt100 << imunitet << txt101 << txt053 << txt100 << organ2 << txt101;
 }
+void operation(int x = 0, int index = 0, int i = 0) {
+	if (x == 0) {
+		if (shapka[index].kak > -1) { std::cout << txt90; --shapka[index].kak; }
+		else { std::cout << txt91; --sharf[i].kak; }
+	}
+	else if (x == 1) {
+		if (shapka[index].kak < 1) { std::cout << txt75; ++shapka[index].kak; }
+		else if (sharf[i].kak < 1) { std::cout << txt76; ++sharf[i].kak; }
+	}
+	else if (x == 2) {
+		std::cout << txt92; --zele[index].kak;
+	}
+	else if (x == 3 && zele[index].kak < 4) {
+		std::cout << txt77; ++zele[index].kak;
+	}
+	else if(x == 4){
+		if (es[index].kak > 0) { std::cout << txt78; --es[index].kak; }
+		else { std::cout << txt79; --metall[i].kak; }
+	}
+	else if (x == 5) {
+		if (es[index].kak < 4) { std::cout << txt93; ++es[index].kak; }
+		else if(metall[i].kak < 4) { std::cout << txt94; ++metall[i].kak; }
+	}
 
+}
 int main()
 {
 	system("chcp 1251 > nul");
@@ -580,9 +604,17 @@ int main()
 		bool prodolszit_put = 0;
 		bool mozhno_v_les = 1;
 		bool mozhno_v_pisheru = 1;
+
 		bool uslovie_ukusa = 0;
-		if (!(esme >= anti_bite && zele[chai].kak == 2) && (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= bite_esme))) {
+		bool uslovie_bite = 0;
+		bool uslovie_bite2 = 0;
+		bool uslovie_bite_esme = 0;
+
+		if (!(esme >= anti_bite && zele[chai].kak == 2) && (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == bite2 - 1 && esme <= bite_esme))) {
 			uslovie_ukusa = 1;
+			if (sf <= bite) { uslovie_bite = 1; }
+			if (zele[chai].kak >= bite2) { uslovie_bite2 = 1; }
+			if (zele[chai].kak == bite2 - 1 && esme <= bite_esme) { uslovie_bite_esme = 1; }
 		}
 		
 		if (dlya_organa == 0) { if (organ == 0) { bite += 1; dlya_organa = 1; } }
@@ -729,17 +761,13 @@ int main()
 				cikl = 0;
 				int chto = vvod();
 				if (chto == 1 && faza > 0) {
-					if (sf <= bite) {
-						if (shapka[s].kak < 1) { std::cout << txt75 ; shapka[s].kak += 1; }
-						else if (sharf[f].kak < 1) { std::cout << txt76; sharf[f].kak += 1; }
+					if (uslovie_bite) {
+						operation(1,s,f);
 					}
-					else if (zele[chai].kak >= bite2) { std::cout << txt77; zele[chai].kak += 1; }
-					else if (zele[chai].kak == (bite2 - 1) && esme <= bite_esme) {
-						if (es[ES].kak > 0) { std::cout << txt78; es[ES].kak -= 1; }
-						else{ std::cout << txt79; metall[ME].kak -= 1; }
-					}
+					else if (uslovie_bite2) { operation(3,chai); }
+					else if (uslovie_bite_esme) {operation(4,ES,ME);}
 					else {
-						if (sf == (bite + 1)) {
+						if (sf == bite + 1) {
 							if (otvet == 1) {
 								std::cout << txt80;
 								chto = vvod();
@@ -776,26 +804,23 @@ int main()
 
 							}
 						}
-						else if (sf >= (bite + 2)) {
-							if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
-							else if (sharf[f].kak > -1) { std::cout << txt91; sharf[f].kak -= 1; }
+						else if (sf >= bite + 2) {
+							operation(0,s,f);
 						}
 					}
 
 				}
 				else if (chto == 2 && faza > 0) {
-					if (zele[chai].kak >= bite2) { std::cout << txt92; zele[chai].kak -= 1; }
-					else if (sf <= bite) {
-						if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
-						else{ std::cout << txt91; sharf[f].kak -= 1; }
+					if (uslovie_bite2) { operation(3,chai); }
+					else if (uslovie_bite) {
+						operation(0,s,f);
 					}
-					else if (zele[chai].kak == (bite2 - 1) && esme <= bite_esme) {
-						if (es[ES].kak > 0) { std::cout << txt78; es[ES].kak -= 1; }
-						else{ std::cout << txt79; metall[ME].kak -= 1; }
+					else if (uslovie_bite_esme) {
+						operation(4,ES,ME);
 					}
 				}
-				else if (chto == 3 && faza > 0 && !(sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == (bite2 - 1) && esme <= bite_esme))) {
-					if (sf >= (bite + 2)) {
+				else if (chto == 3 && faza > 0 && !uslovie_ukusa) {
+					if (sf >= bite + 2) {
 						int chto;
 						if (otvet == 1) {
 							std::cout << txt80;
@@ -832,9 +857,8 @@ int main()
 							else if (chto == 2) { copper += med[Copper].kg; }
 						}
 					}
-					else if (sf == (bite + 1)) {
-						if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
-						else if (sharf[f].kak > -1) { std::cout << txt91; sharf[f].kak -= 1; }
+					else if (sf == bite + 1) {
+						operation(0, s, f);
 					}
 
 				}
@@ -843,15 +867,13 @@ int main()
 					cikl2 = 1;
 				}
 				else if (chto == 4 && faza > 0) {
-					if ((zele[chai].kak == (bite2 - 1) && esme <= bite_esme) || (sf > bite && zele[chai].kak < bite2)) {
-						if (es[ES].kak < 4) { std::cout << txt93; es[ES].kak += 1; }
-						else if (metall[ME].kak < 4) { std::cout << txt94; metall[ME].kak += 1; }
+					if (uslovie_bite_esme && !(uslovie_bite && uslovie_bite2)) {
+						operation(5,ES,ME);
 					}
-					else if (sf <= bite) {
-					if (shapka[s].kak > -1) { std::cout << txt90; shapka[s].kak -= 1; }
-					else{ std::cout << txt91; sharf[f].kak -= 1; }
+					else if (uslovie_bite) {
+						operation(0,s,f);
 					}
-					else if (zele[chai].kak >= bite2) { std::cout << txt77; zele[chai].kak += 1; }
+					else if (uslovie_bite2) { operation(3, chai); }
 
 				}
 				else if (chto == 9201) {
