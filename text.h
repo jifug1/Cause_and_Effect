@@ -143,7 +143,7 @@ std::string txt124 = " никель + 0.020\n\n";
 std::string txt125 = " железо + 0.020\n\n";
 std::string txt126 = " на вас сработала ловушка\n\n";
 std::string txt127 = " шапка и шарф инвертированы\n ";
-std::string txt128 = "";
+std::string txt128 = " вы обезвредили ловушку копьём\n\n";
 std::string txt129 = "";
 
 std::string text_v_lesu = " . . . . . (0 выход) идя в лес вы наткулись на монстра 170, его оружие: ";
@@ -281,6 +281,7 @@ void english() {
     txt77 = " . . . . . tea +1 . . . . .\n";
     txt78 = " . . . . . PP -1 . . . . .\n";
     txt79 = " . . . . . metal -1 . . . . .\n";
+    txt072 = " record of passed monsters: ";
     txt80 = " monster: hello, where are you going along this forest path? (1 answer: I’m delivering uranium to the hydrometallurgical plant (truth) 2 answer: I’m delivering glass wool to Cheremsha (lie) 3 say nothing)\n";
     txt81 = " monster: hey, aren’t you afraid of monster 170? (1 answer: I am afraid, who is that? (truth) 2 answer: believe in the Monolith (truth))\n";
     txt82 = " monster: he is very angry and scary. And anyway, he mined 170 kilograms of uranium ore (1 answer: I see)\n";

@@ -342,12 +342,13 @@ void proverka_lovushka(int x, int y, int boevoy,int& spear) {
 	int index = 0;
 	while (index < entity.size()) {
 		if (entity[index].id == 3 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x == x + 1 && entity[index].y == y) || (entity[index].x == x - 1 && entity[index].y == y) || (entity[index].x == x && entity[index].y == y + 1) || (entity[index].x == x && entity[index].y == y - 1))) {
-			std::cout << txt126;
 			if (boevoy > 0 && spear > -1) {
 				--spear;
+				std::cout << txt128;
 			}
 			else {
 				golo -= 1;
+				std::cout << txt126;
 			}
 			entity.erase(entity.begin()+index);
 			--index;
@@ -403,9 +404,8 @@ void pishera(bool& mozhno_v_pisheru,int& spear) {
 	};
 
 	std::cout << txt21;
+	int boevoy = 0;
 	while (vyhod) {
-		int boevoy = 0;
-		
 		int vvod_ = srazu_vvod();
 
 		switch (vvod_) {
