@@ -179,10 +179,10 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 	if (iron >= 0.600 && derevo >= 0.150 && priborf <= -1) { std::cout << txt4; }
 	if (iron >= 1.3 && invertor <= -1) { std::cout << txt5; }
 	if (derevo >= 0.31) { std::cout << txt6; }
-	if (nickel >= 0.300) { std::cout << txt7; }
+	if (nickel >= 0.300 && (pribor > -1 || priborf > -1 || invertor > -1 || cat > -1 || pribor_metall > -1 || znachenie_metall > -1 || pribor_es > -1 || znachenie_es > -1 || znachenie_chai > -1 || pribor_chai > -1)) { std::cout << txt7; }
 	if (nickel >= 0.600 && organ == 0) { std::cout << txt8; }
 	if (nickel >= 0.100 && iron >= 0.200) { std::cout << txt9; }
-	if (nickel >= 0.080 && iron >= 0.150) { std::cout << txt10; }
+	if (nickel >= 0.080 && iron >= 0.150 && infection > -1) { std::cout << txt10; }
 	if (derevo >= 2.5 && cat <= -1) { std::cout << txt11; }
 	if (derevo >= 2.0 && pribor_metall <= -1) { std::cout << txt12; }
 	if (derevo >= 2.0 && pribor_es <= -1) { std::cout << txt13; }
@@ -243,7 +243,7 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 		nickel -= 0.100;
 		iron -= 0.200;
 	}
-	else if (chto == 8 && nickel >= 0.080 && iron >= 0.150) {
+	else if (chto == 8 && nickel >= 0.080 && iron >= 0.150 && infection > -1) {
 		infection -= 15;
 		nickel -= 0.080;
 		iron -= 0.150;
@@ -306,7 +306,9 @@ int menu() {
 			std::cout << txt9201;
 			int chto = vvod();
 			int sho = vvod();
-			create(chto,sho);
+			if (chto > -1 && sho > -1){
+				create(chto, sho);
+		}
 			std::cout << txt9202 << shapka.size() << " " << sharf.size() << txt9203 << zele.size() << "\n\n";
 			txt50 += "@были использованы читы@";
 		}
@@ -910,7 +912,7 @@ int main()
 				else if (chto == 7089) { txt51 += "&были использованы читы&"; faza = 1; }
 				else if (chto == 2 && faza == 0 && mozhno_v_pisheru == 1) { pishera(mozhno_v_pisheru,spear); }
 				else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les); }
-				else { std::cout << txt20; cikl = 1; }
+				else { std::cout << txt20; cikl2 = 1; }
 
 			} while (cikl);
 		} while (cikl2 || (prodolszit_put == 0 && faza <= 0));
@@ -962,9 +964,8 @@ int main()
 		if (prodolszit_put) { faza = 5; }
 		else if (faza > 0) { --faza; }
 
-		vsego_proideno = proideno + save_proideno;
-		
 		save_mutex.lock();
+		vsego_proideno = proideno + save_proideno;
 		vremya = sec + save_time;
 		if (proideno > record) { record = proideno; }
 		save_mutex.unlock();
