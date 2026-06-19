@@ -532,6 +532,45 @@ void operation(int x = 0, int index = 0, int i = 0) {
 	}
 
 }
+void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper) {
+	int chto;
+	if (otvet == 1) {
+		std::cout << txt80;
+		chto = vvod();
+	}
+	else if (otvet == 2) {
+		std::cout << txt81;
+		chto = vvod();
+		if (chto == 1) {
+			std::cout << txt82;
+			chto = vvod();
+			if (chto == 1) { std::cout << txt83; }
+		}
+		else if (chto == 2) {
+			std::cout << txt84;
+		}
+	}
+
+	if (otvet == 1) {
+		std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
+		chto = vvod();
+	}
+	if (otvet == 2) {
+		std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
+		chto = vvod();
+	}
+
+	if (otvet == 1) {
+		if (chto == 1) { iron += sz[szeleza].kg; }
+		else if (chto == 2) { derevo += der[dereva].kg; }
+	}
+	else if (otvet == 2) {
+		if (chto == 1) { nickel += nick[Nickel].kg; }
+		else if (chto == 2) { copper += med[Copper].kg; }
+
+	}
+
+}
 int main()
 {
 	system("chcp 1251 > nul");
@@ -768,41 +807,7 @@ int main()
 					else if (uslovie_bite_esme) {operation(4,ES,ME);}
 					else {
 						if (sf == bite + 1) {
-							if (otvet == 1) {
-								std::cout << txt80;
-								chto = vvod();
-							}
-							else if (otvet == 2) {
-								std::cout << txt81;
-								chto = vvod();
-								if (chto == 1) {
-									std::cout << txt82;
-									chto = vvod();
-									if (chto == 1) { std::cout << txt83; }
-								}
-								else if (chto == 2) {
-									std::cout << txt84;
-								}
-							}
-
-							if (otvet == 1) {
-								std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
-								chto = vvod();
-							}
-							if (otvet == 2) {
-								std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
-								chto = vvod();
-							}
-
-							if (otvet == 1) {
-								if (chto == 1) { iron += sz[szeleza].kg; }
-								else if (chto == 2) { derevo += der[dereva].kg; }
-							}
-							else if (otvet == 2) {
-								if (chto == 1) { nickel += nick[Nickel].kg; }
-								else if (chto == 2) { copper += med[Copper].kg; }
-
-							}
+							razgovor(otvet,szeleza,dereva,Nickel,Copper);
 						}
 						else if (sf >= bite + 2) {
 							operation(0,s,f);
@@ -821,53 +826,18 @@ int main()
 				}
 				else if (chto == 3 && faza > 0 && !uslovie_ukusa) {
 					if (sf >= bite + 2) {
-						int chto;
-						if (otvet == 1) {
-							std::cout << txt80;
-							chto = vvod();
-						}
-						else if (otvet == 2) {
-							std::cout << txt81;
-							chto = vvod();
-							if (chto == 1) {
-								std::cout << txt82;
-								chto = vvod();
-								if (chto == 1) { std::cout << txt83; }
-							}
-							else if (chto == 2) {
-								std::cout << txt84;
-							}
-						}
-						if (otvet == 1) {
-							std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
-							chto = vvod();
-						}
-						if (otvet == 2) {
-							std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
-							chto = vvod();
-						}
-
-
-						if (otvet == 1) {
-							if (chto == 1) { iron += sz[szeleza].kg; }
-							else if (chto == 2) { derevo += der[dereva].kg; }
-						}
-						else if (otvet == 2) {
-							if (chto == 1) { nickel += nick[Nickel].kg; }
-							else if (chto == 2) { copper += med[Copper].kg; }
-						}
+						razgovor(otvet,szeleza,dereva,Nickel,Copper);
 					}
 					else if (sf == bite + 1) {
 						operation(0, s, f);
 					}
-
 				}
 				else if (chto == 9) {
 					craft(pribor, priborf, invertor, organ, imunitet, infection, cat,pribor_metall,pribor_es,znachenie_metall,znachenie_es,znachenie_chai,spear,fakel,look,pribor_chai,organ2);
 					cikl2 = 1;
 				}
 				else if (chto == 4 && faza > 0) {
-					if (uslovie_bite_esme && !(uslovie_bite && uslovie_bite2)) {
+					if (uslovie_bite_esme || !(uslovie_bite || uslovie_bite2)) {
 						operation(5,ES,ME);
 					}
 					else if (uslovie_bite) {
