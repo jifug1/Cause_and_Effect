@@ -553,23 +553,85 @@ void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper) {
 
 	if (otvet == 1) {
 		std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
-		chto = vvod();
 	}
-	if (otvet == 2) {
+	else if (otvet == 2) {
 		std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
-		chto = vvod();
 	}
+	chto = vvod();
 
 	if (otvet == 1) {
 		if (chto == 1) { iron += sz[szeleza].kg; }
-		else if (chto == 2) { derevo += der[dereva].kg; }
+		else { derevo += der[dereva].kg; }
 	}
 	else if (otvet == 2) {
 		if (chto == 1) { nickel += nick[Nickel].kg; }
-		else if (chto == 2) { copper += med[Copper].kg; }
+		else { copper += med[Copper].kg; }
 
 	}
 
+}
+void pishutsya_nazvaniya_shapok(std::string& shp,std::string& shf, std::string& c,std::string& e, std::string& m,int s,int f,int chai,int ES,int ME) {
+	if (s == 0) {
+		shp = txt24;
+	}
+	else if (s == 1) {
+		shp = txt25;
+	}
+	else if (s == 2) {
+		shp = txt26;
+	}
+	else if (s == 3) {
+		shp = txt27;
+	}
+
+	if (f == 0) {
+		shf = txt28;
+	}
+	else if (f == 1) {
+		shf = txt29;
+	}
+	else if (f == 2) {
+		shf = txt30;
+	}
+	else if (f == 3) {
+		shf = txt31;
+	}
+	if (chai == 0) {
+		c = txt32;
+	}
+	else if (chai == 1) {
+		c = txt33;
+	}
+	else if (chai == 2) {
+		c = txt34;
+	}
+	else if (chai == 3) {
+		c = txt35;
+	}
+	if (ES == 0) {
+		e = txt39;
+	}
+	else if (ES == 1) {
+		e = txt40;
+	}
+	else if (ES == 2) {
+		e = txt41;
+	}
+	else if (ES == 3) {
+		e = txt42;
+	}
+	if (ME == 0) {
+		m = txt43;
+	}
+	else if (ME == 1) {
+		m = txt44;
+	}
+	else if (ME == 2) {
+		m = txt45;
+	}
+	else if (ME == 3) {
+		m = txt46;
+	}
 }
 int main()
 {
@@ -687,72 +749,13 @@ int main()
 
 				std::string shp = null;
 				std::string shf = null;
-				if (s == 0) {
-					shp = txt24;
-				}
-				else if (s == 1) {
-					shp = txt25;
-				}
-				else if (s == 2) {
-					shp = txt26;
-				}
-				else if (s == 3) {
-					shp = txt27;
-				}
-
-				if (f == 0) {
-					shf = txt28;
-				}
-				else if (f == 1) {
-					shf = txt29;
-				}
-				else if (f == 2) {
-					shf = txt30;
-				}
-				else if (f == 3) {
-					shf = txt31;
-				}
-				std::string c = null;
-				if (chai == 0) {
-					c = txt32;
-				}
-				else if (chai == 1) {
-					c = txt33;
-				}
-				else if (chai == 2) {
-					c = txt34;
-				}
-				else if (chai == 3) {
-					c = txt35;
-				}
-				std::cout << txt36 << txt100 << shp << txt101 << txt37 << txt100 << shf << txt101 << txt38 << txt100 << c << txt101 << "\n";
 				std::string e = null;
 				std::string m = null;
-				if (ES == 0) {
-					e = txt39;
-				}
-				else if (ES == 1) {
-					e = txt40;
-				}
-				else if (ES == 2) {
-					e = txt41;
-				}
-				else if (ES == 3) {
-					e = txt42;
-				}
+				std::string c = null;
+				pishutsya_nazvaniya_shapok(shp,shf,c,e,m,s,f,chai,ES,ME);
 
-				if (ME == 0) {
-					m = txt43;
-				}
-				else if (ME == 1) {
-					m = txt44;
-				}
-				else if (ME == 2) {
-					m = txt45;
-				}
-				else if (ME == 3) {
-					m = txt46;
-				}
+				std::cout << txt36 << txt100 << shp << txt101 << txt37 << txt100 << shf << txt101 << txt38 << txt100 << c << txt101 << "\n";
+				
 				std::cout << txt47 << txt100 << e << txt101 << txt48 << txt100 << m << txt101 << txt49;
 				if (pokozat == 1) { std::cout << txt110 << shp << ":  " << txt100 << shapka[s].kak << txt101 << "  " << shf << ":  " << txt100 << sharf[f].kak << txt101 << "  " << c << ":  " << txt100 << zele[chai].kak << txt101 << "  " << e << ":  " << txt100 << es[ES].kak << txt101 << "  " << m << ":  " << txt100 << metall[ME].kak << txt101 << txt49; pokozat = 0; }
 
