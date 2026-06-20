@@ -347,8 +347,25 @@ void sobrat(int x, int y) {
 }
 void proverka_lovushka(int x, int y, int boevoy,int& spear) {
 	int index = 0;
+	
+
 	while (index < entity.size()) {
+
+		bool uslovie_lovushka1 = 0;
+		bool uslovie_lovushka2 = 0;
+		bool uslovie_lovushka3 = 0;
+
 		if (entity[index].id == 3 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x == x + 1 && entity[index].y == y) || (entity[index].x == x - 1 && entity[index].y == y) || (entity[index].x == x && entity[index].y == y + 1) || (entity[index].x == x && entity[index].y == y - 1))) {
+			uslovie_lovushka1 = 1;
+		}
+		if (entity[index].id == 4 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x == x && entity[index].y == y - 2) || (entity[index].x == x && entity[index].y == y + 2))) {
+			uslovie_lovushka2 = 1;
+		}
+		if (entity[index].id == 5 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x >= x && entity[index].y == y))) {
+			uslovie_lovushka3 = 1;
+		}
+
+		if(uslovie_lovushka1 || uslovie_lovushka2 || uslovie_lovushka3) {
 			if (boevoy > 0 && spear > -1) {
 				--spear;
 				std::cout << txt128;
@@ -381,13 +398,24 @@ void pishera(bool& mozhno_v_pisheru,int& spear) {
 			entity.erase(entity.begin() + razmer);
 			--razmer;
 		}
+		else if (entity[razmer].id == 4) {
+			entity.erase(entity.begin() + razmer);
+			--razmer;
+		}
+		else if (entity[razmer].id == 5) {
+			entity.erase(entity.begin() + razmer);
+			--razmer;
+		}
 		++razmer;
 	}
 	int ruda_nickel = 5;
 	int ruda_iron = 5;
 	int lovushka = 15;
-	for (int x = 0; x < 5; ++x) {
-		for (int y = 0; y < 20; ++y) {
+	int lovushka2 = 10;
+	int lovushka3 = 3;
+
+	for (int x = 0; x <= 4; ++x) {
+		for (int y = 0; y <= 19; ++y) {
 			int sluchano = chance(chislo);
 			if (sluchano <= 5 && ruda_nickel > 0) {
 				entity.push_back({x,y,1});
@@ -397,12 +425,20 @@ void pishera(bool& mozhno_v_pisheru,int& spear) {
 				entity.push_back({ x,y,2 });
 				--ruda_iron;
 			}
-			else if (sluchano <= 20 && !(x <= 2 && y <= 2)) {
+			else if (sluchano <= 20 && lovushka > 0 && !(x <= 1 && y <= 1)) {
 				entity.push_back({ x,y,3 });
 				--lovushka;
 			}
+			else if (sluchano <= 30 && proideno > 30 && lovushka2 > 0 && !(y <= 2 || y >= 19)) {
+				entity.push_back({x,y,4});
+				--lovushka2;
+			}
+			else if (sluchano <= 40 && proideno > 50 && lovushka3 > 0 && !(x >= 4 || x <= 0)) {
+				entity.push_back({ x,y,5 });
+				--lovushka3;
+			}
 		}
-		if (ruda_nickel <= 0 && ruda_iron <= 0 && lovushka <= 0) { break; }
+		if (ruda_nickel <= 0 && ruda_iron <= 0 && lovushka <= 0 && lovushka2 <= 0 && lovushka3 <= 0) { break; }
 	}
 	auto mozhno = [&](int x, int y){
 		if ((x < 0 || x > 4) || (y < 0 || y > 19)) { return 0; }
@@ -432,8 +468,8 @@ void pishera(bool& mozhno_v_pisheru,int& spear) {
 		};
 		proverka_lovushka(entity[0].x,entity[0].y,boevoy,spear);
 		int chto = 0;
-		for (int x = 0; x < 5; ++x) {
-			for (int y = 0; y < 20; ++y) {
+		for (int x = 0; x <= 4; ++x) {
+			for (int y = 0; y <= 19; ++y) {
 				
 				if(entity[0].x == x && entity[0].y == y) {
 					chto = 1; 
@@ -450,6 +486,12 @@ void pishera(bool& mozhno_v_pisheru,int& spear) {
 						else if (entity[index].id == 3 && entity[index].x == x && entity[index].y == y) {
 							chto = 4; break;
 						}
+						else if (entity[index].id == 4 && entity[index].x == x && entity[index].y == y) {
+							chto = 5; break;
+						}
+						else if (entity[index].id == 5 && entity[index].x == x && entity[index].y == y) {
+							chto = 6; break;
+						}
 						else { chto = 0; }
 					}
 				}
@@ -459,6 +501,8 @@ void pishera(bool& mozhno_v_pisheru,int& spear) {
 				case 2: { std::cout << "&"; break; }
 				case 3: { std::cout << "@"; break; }
 				case 4: { std::cout << ","; break; }
+				case 5: { std::cout << "%"; break; }
+				case 6: { std::cout << "*"; break; }
 				}
 
 			}
