@@ -75,6 +75,7 @@ std::string txt551 = " 3 пойти в лес за деревом.";
 std::string txt552 = " 4 ничего не делать. 9 меню крафта.\n";
 std::string txt553 = " 0 попасть в меню. 1 продолжить идти.";
 std::string txt554 = " 2 пойти в пищеру.";
+std::string txt0554 = " 5 пойти собирать листья.";
 std::string txt52 = "\n [===============\n";
 std::string txt502 = " ваше здоровье:  ";
 std::string txt53 = "  орган:  ";
@@ -152,7 +153,8 @@ std::string txt125 = " железо + 0.020\n\n";
 std::string txt126 = " на вас сработала ловушка\n\n";
 std::string txt127 = " шапка и шарф инвертированы\n ";
 std::string txt128 = " вы обезвредили ловушку копьём\n\n";
-std::string txt129 = "";
+std::string txt129 = " кровь: ";
+std::string txt130 = " вы собрали листьев: ";
 
 std::string text_v_lesu = " . . . . . (0 выход) идя в лес вы наткулись на монстра 170, его оружие: ";
 std::string txt_monstr = " null\n";
