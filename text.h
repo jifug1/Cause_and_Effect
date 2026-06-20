@@ -321,6 +321,22 @@ void english() {
     txt084 = "monster: he is very angry and scary, and he mined 170 kilograms of uranium ore. Lately he has been stealing uranium ore\n";
     txt0083 = "monster: I don't think the owner of the hydrometallurgical plant and the uranium mine will protect you\n";
     
+    txt054 = "  disease:  ";
+    txt055 = "\n you have light bleeding";
+    txt056 = "\n you have medium bleeding";
+    txt057 = "\n you have heavy bleeding";
+    txt058 = "\n you have critically severe bleeding";
+    txt0554 = " 5 go collect leaves.";
+    txt0555 = "\n 6 bandage the bleeding with a bandage.";
+    txt_exit = " 0 exit\n";
+    txtK1 = " 1 bandage light bleeding\n";
+    txtK2 = " 2 bandage medium bleeding\n";
+    txtK3 = " 3 bandage heavy bleeding\n";
+    txtK4 = " 4 bandage critically severe bleeding\n";
+    txt129 = " blood: ";
+    txt130 = " you collected leaves: ";
+    txt1015 = " 20 craft a bandage for 4 leaves\n";
+
     txt85 = " monster: I can give you ";
     txt86 = " kilograms of iron or ";
     txt87 = " kilograms of wood (1 take iron 2 take wood)\n";

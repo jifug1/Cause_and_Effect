@@ -350,16 +350,15 @@ void proverka_lovushka(int x, int y, int boevoy,int& spear) {
 
 	while (index < entity.size()) {
 
-		bool uslovie_lovushka1 = entity[index].id == 3 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x == x + 1 && entity[index].y == y) || (entity[index].x == x - 1 && entity[index].y == y) || (entity[index].x == x && entity[index].y == y + 1) || (entity[index].x == x && entity[index].y == y - 1));
-		bool uslovie_lovushka2 = entity[index].id == 4 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x == x && entity[index].y == y - 2) || (entity[index].x == x && entity[index].y == y + 2));
-		bool uslovie_lovushka3 = entity[index].id == 5 && ((entity[index].x == x && entity[index].y == y) || (entity[index].x >= x && entity[index].y == y));
+		bool uslovie_lovushka1 = entity[index].id == 3 && ((entity[index].x == x && (entity[index].y == y || entity[index].y == y - 1 || entity[index].y == y + 1) || (entity[index].y == y && (entity[index].x == x || entity[index].x == x - 1 || entity[index].x == x + 1))));
+		bool uslovie_lovushka2 = entity[index].id == 4 && entity[index].x == x && (entity[index].y == y - 2 || entity[index].y == y + 2);
+		bool uslovie_lovushka3 = entity[index].id == 5 && entity[index].x >= x && entity[index].y == y;
 
 		bool krov_1 = entity[index].id == 3 && (entity[index].y == y && (entity[index].x == x - 1 || entity[index].x == x + 1));
 		bool krov_2 = (entity[index].id == 3 && (entity[index].x == x && (entity[index].y == y - 1 || entity[index].y == y + 1))) || (entity[index].id == 4 && entity[index].x == x && entity[index].y == y + 2);
+		bool krov_3 = entity[index].id == 4 && entity[index].x == x && entity[index].y == y - 2;
+		bool krov_4 = entity[index].id == 5 && entity[index].x >= x && entity[index].y == y;
 		
-		
-		
-
 
 		if(uslovie_lovushka1 || uslovie_lovushka2 || uslovie_lovushka3) {
 			if (boevoy > 0 && spear > -1) {
@@ -369,6 +368,8 @@ void proverka_lovushka(int x, int y, int boevoy,int& spear) {
 			else {
 				if (krov_1) { vector_krov.push_back({1}); }
 				if (krov_2) { vector_krov.push_back({2}); }
+				if (krov_3) { vector_krov.push_back({3}); }
+				if(krov_4) { vector_krov.push_back({4}); }
 
 				std::cout << txt126;
 			}
@@ -709,9 +710,9 @@ void krov_bint(int& bint) {
 	bool k4 = 0;
 	for (int index = 0; index < vector_krov.size(); ++index) {
 		if (vector_krov[index].tyazhest == 1) { k1 = 1; }
-		if (vector_krov[index].tyazhest == 2) { k2 = 1; }
-		if (vector_krov[index].tyazhest == 3) { k3 = 1; }
-		if (vector_krov[index].tyazhest == 4) { k4 = 1; }
+		else if (vector_krov[index].tyazhest == 2) { k2 = 1; }
+		else if (vector_krov[index].tyazhest == 3) { k3 = 1; }
+		else if (vector_krov[index].tyazhest == 4) { k4 = 1; }
 	}
 	std::cout << txt_exit;
 	if (k1) { std::cout << txtK1; }
@@ -1096,10 +1097,10 @@ int main()
 		if (krov <= 0) { golo -= 2; }
 		for (int index = 0; index < vector_krov.size(); ++index) {
 			int sluchano = chance(chislo);
-			if (vector_krov[index].tyazhest == 1) { if (sluchano <= 5) { bolezn = 0; } krov -= 2; }
-			else if (vector_krov[index].tyazhest == 2) { if (sluchano <= 5) { bolezn = 0; }krov -= 3; }
-			else if (vector_krov[index].tyazhest == 3) { if (sluchano <= 5) { bolezn = 0; }krov -= 5; }
-			else if (vector_krov[index].tyazhest == 4) { if (sluchano <= 5) { bolezn = 0; }krov -= 6; }
+			if (vector_krov[index].tyazhest == 1) { if (sluchano <= 5 && bolezn == -1) { bolezn = 0; } krov -= 2; }
+			else if (vector_krov[index].tyazhest == 2) { if (sluchano <= 5 && bolezn == -1) { bolezn = 0; }krov -= 3; }
+			else if (vector_krov[index].tyazhest == 3) { if (sluchano <= 5 && bolezn == -1) { bolezn = 0; }krov -= 5; }
+			else if (vector_krov[index].tyazhest == 4) { if (sluchano <= 5 && bolezn == -1) { bolezn = 0; }krov -= 6; }
 
 		}
 
