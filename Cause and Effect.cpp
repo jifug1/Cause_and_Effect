@@ -173,7 +173,7 @@ void create(int x = 4, int y = 4, int z = 4) {
 	kakoy_chai.param(std::uniform_int_distribution<int>::param_type(0, skoko_chaev));
 
 }
-int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai, int& spear, int& fakel, int& look, int& pribor_chai, bool& organ2, double& iron, double& nickel, double& derevo, double& copper, double& coal, double& steel, int& listya, int& bint, double& steel_kachestvo, bool& mednaya_pech) {
+void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai, int& spear, int& fakel, int& look, int& pribor_chai, bool& organ2, double& iron, double& nickel, double& derevo, double& copper, double& coal, double& steel, int& listya, int& bint, double& steel_kachestvo, bool& mednaya_pech) {
 	std::cout << txt2;
 	if (iron >= 0.600 && pribor <= -1) { std::cout << txt3; }
 	if (iron >= 0.600 && derevo >= 0.150 && priborf <= -1) { std::cout << txt4; }
@@ -196,7 +196,7 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 	if (nickel >= 0.200 && organ2 == 0) { std::cout << txt08; }
 	if (listya >= 4) { std::cout << txt1015; }
 	if (copper >= 3.0 && !mednaya_pech) { std::cout << txt1016; }
-	if (derevo >= 0.150 && mednaya_pech) { std::cout << txt1017; }
+	if (derevo >= 0.310 && mednaya_pech) { std::cout << txt1017; }
 	if (iron >= 0.100 && coal >= 0.050 && mednaya_pech && (coal >= 0.060 || derevo >= 0.010)) { std::cout << txt1018; }
 	if (steel >= 0.200 && bint >= 1) { std::cout << txt1021; }
 
@@ -306,33 +306,33 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 		copper -= 3.0;
 		mednaya_pech = 1;
 	}
-	else if (chto == 22 && derevo >= 0.150 && mednaya_pech) {
-		derevo -= 0.150;
+	else if (chto == 22 && derevo >= 0.310 && mednaya_pech) {
+		derevo -= 0.310;
 		coal += 0.100;
 	}
 	else if (chto == 23 && iron >= 0.100 && coal >= 0.050 && mednaya_pech && (coal >= 0.060 || derevo >= 0.010)) {
 
 		std::cout << txt1019;
 		int chto1 = vvod();
-		if (chto1 != 1 && chto1 != 2) { std::cout << txt20; return 0; }
+		if (chto1 != 1 && chto1 != 2) { std::cout << txt20; return; }
 
 		std::cout << txt1020;
-		int chto = vvod();
+		double chto = vvod();
 
 		if (chto1 == 1 && chto >= 0.010 && chto <= derevo) {
-			if (chto >= 0.025 && chto < 0.075) {
+			if (chto >= 0.100 && chto < 0.150) {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 50; }
 				else { steel_kachestvo = (steel_kachestvo + 50) / 2; }
 			}
-			else if (chto >= 0.075 && chto < 0.125) {
+			else if (chto >= 0.150 && chto < 0.200) {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 70; }
 				else { steel_kachestvo = (steel_kachestvo + 70) / 2; }
 			}
-			else if (chto >= 0.125 && chto < 0.175) {
+			else if (chto >= 0.200 && chto < 0.250) {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 90; }
 				else { steel_kachestvo = (steel_kachestvo + 90) / 2; }
 			}
-			else if (chto >= 0.175 && chto < 0.225) {
+			else if (chto >= 0.250 && chto < 0.300) {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 110; }
 				else { steel_kachestvo = (steel_kachestvo + 110) / 2; }
 			}
@@ -366,8 +366,10 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 			}
 			coal -= chto;
 		}
+		else { std::cout << txt20; return; }
 		steel += 0.100;
 		coal -= 0.050;
+		iron -= 0.100;
 	}
 	else if (chto == 24 && steel >= 0.200 && bint >= 1) {
 		steel -= 0.200;
@@ -378,9 +380,9 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 
 		if (steel <= 0) { steel_kachestvo = 0; }
 	}
-	else if (chto == 0) { return 0; }
+	else if (chto == 0) { return; }
 	else { std::cout << txt20; }
-	return 0;
+	return;
 }
 void menu2() {
 	create();
