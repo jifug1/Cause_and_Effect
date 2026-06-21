@@ -45,6 +45,21 @@ struct krovotichenie {
 std::vector<cave> entity{
 	{0,0,0},
 };
+struct lekarstvo{
+private:
+	double kachestvo;
+public:
+	void izmenenie(double steel_kachestvo) {
+		if (steel_kachestvo <= 40) { kachestvo = 1; }
+		else if (steel_kachestvo <= 60) { kachestvo = 2; }
+		else if (steel_kachestvo <= 80) { kachestvo = 3; }
+		else if (steel_kachestvo <= 100) { kachestvo = 4; }
+		else if (steel_kachestvo <= 120) { kachestvo = 5; }
+		else if (steel_kachestvo <= 140) { kachestvo = 6; }
+	}
+	double getter() const { return kachestvo; }
+};
+std::vector<lekarstvo> vector_lekarstvo;
 std::vector<krovotichenie> vector_krov;
 std::vector<kto> shapka;
 std::vector<kto> sharf;
@@ -108,7 +123,6 @@ std::thread a([&]() {
 		++sec;
 		save_mutex.unlock();
 	}
-
 }
 );
 void save() {
@@ -135,8 +149,6 @@ void create(int x = 4, int y = 4, int z = 4) {
 		es.pop_back();
 		metall.pop_back();
 	}
-
-
 	int r = x;
 	while (r) {
 		shapka.push_back({ znacheniya_shapok(chislo) });
@@ -155,11 +167,6 @@ void create(int x = 4, int y = 4, int z = 4) {
 		metall.push_back({ bite_chai(chislo),0.0 });
 		--z;
 	}
-
-	
-
-
-
 	skoko_chaev = y - 1;
 	kakaya_shapka = x - 1;
 	dlyashapok.param(std::uniform_int_distribution<int>::param_type(0, kakaya_shapka));
@@ -191,6 +198,7 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 	if (copper >= 3.0 && !mednaya_pech) { std::cout << txt1016; }
 	if (derevo >= 0.150 && mednaya_pech) { std::cout << txt1017; }
 	if (iron >= 0.100 && coal >= 0.050 && mednaya_pech && (coal >= 0.060 || derevo >= 0.010)) { std::cout << txt1018; }
+	if (steel >= 0.200 && bint >= 1) { std::cout << txt1021; }
 
 	int chto = vvod();
 	if (chto == 1 && iron >= 0.600 && pribor <= -1) { iron -= 0.600; pribor = 1; }
@@ -306,39 +314,72 @@ int craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunite
 
 		std::cout << txt1019;
 		int chto1 = vvod();
-		if (chto1 != 1 && chto1 != 2) { std::cout << txt20; return; }
-			
+		if (chto1 != 1 && chto1 != 2) { std::cout << txt20; return 0; }
+
 		std::cout << txt1020;
 		int chto = vvod();
-			
+
 		if (chto1 == 1 && chto >= 0.010 && chto <= derevo) {
-			if (chto >= 0.025 && chto <= 0.075) {
+			if (chto >= 0.025 && chto < 0.075) {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 50; }
 				else { steel_kachestvo = (steel_kachestvo + 50) / 2; }
+			}
+			else if (chto >= 0.075 && chto < 0.125) {
+				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 70; }
+				else { steel_kachestvo = (steel_kachestvo + 70) / 2; }
+			}
+			else if (chto >= 0.125 && chto < 0.175) {
+				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 90; }
+				else { steel_kachestvo = (steel_kachestvo + 90) / 2; }
+			}
+			else if (chto >= 0.175 && chto < 0.225) {
+				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 110; }
+				else { steel_kachestvo = (steel_kachestvo + 110) / 2; }
 			}
 			else {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 25; }
 				else { steel_kachestvo = (steel_kachestvo + 25) / 2; }
 			}
+
 			derevo -= chto;
 		}
-		else if (chto1 == 2 && chto >= 0.010 && chto <= coal){
-			if (chto >= 0.100 && chto <= 0.150) {
+		else if (chto1 == 2 && chto >= 0.010 && chto <= coal) {
+			if (chto >= 0.100 && chto < 0.150) {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 100; }
 				else { steel_kachestvo = (steel_kachestvo + 100) / 2; }
+			}
+			else if (chto >= 0.150 && chto < 0.200) {
+				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 120; }
+				else { steel_kachestvo = (steel_kachestvo + 120) / 2; }
+			}
+			else if (chto >= 0.200 && chto < 0.250) {
+				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 140; }
+				else { steel_kachestvo = (steel_kachestvo + 140) / 2; }
+			}
+			else if (chto >= 0.250 && chto < 0.300) {
+				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 160; }
+				else { steel_kachestvo = (steel_kachestvo + 160) / 2; }
 			}
 			else {
 				if (steel <= 0 && steel_kachestvo <= 0) { steel_kachestvo = 60; }
 				else { steel_kachestvo = (steel_kachestvo + 60) / 2; }
-				coal -= chto;
 			}
+			coal -= chto;
 		}
-		else { std::cout << txt20; return; }
 		steel += 0.100;
+		coal -= 0.050;
+	}
+	else if (chto == 24 && steel >= 0.200 && bint >= 1) {
+		steel -= 0.200;
+		--bint;
+		lekarstvo lek;
+		lek.izmenenie(steel_kachestvo);
+		vector_lekarstvo.push_back(lek);
+
+		if (steel <= 0) { steel_kachestvo = 0; }
 	}
 	else if (chto == 0) { return 0; }
 	else { std::cout << txt20; }
-
 	return 0;
 }
 void menu2() {
