@@ -77,7 +77,9 @@ std::string txt552 = " 4 ничего не делать. 9 меню крафта
 std::string txt553 = " 0 попасть в меню. 1 продолжить идти.";
 std::string txt554 = " 2 пойти в пищеру.";
 std::string txt0554 = " 5 пойти собирать листья.";
-std::string txt0555 = "\n у вас бинтов (6 перебентовать кровотичение бинтом):";
+std::string txt0555 = "\n у вас бинтов:";
+std::string txt00555 = " (6 перебентовать кровотичение бинтом)";
+
 std::string txt52 = "\n [===============\n";
 std::string txt502 = " ваше здоровье:  ";
 std::string txt53 = "  орган:  ";
@@ -104,17 +106,30 @@ std::string txt58 = "\n у вас кг дерева: ";
 std::string txt59 = "\n у вас кг угля: ";
 std::string txt60 = "\n у вас кг никеля: ";
 std::string txt61 = "\n у вас кг стали: ";
-std::string txt62 = "\n заряд прибора для шапок (11 использовать): ";
-std::string txt63 = "\n заряд прибора для шарфов (22 использовать): ";
-std::string txt64 = "\n заряд инвертора (33 использовать): ";
+std::string txtListya = "\n у вас листьев: ";
+
+std::string txt62 = "\n заряд прибора для шапок: ";
+std::string txt062 = " (11 использовать)";
+std::string txt63 = "\n заряд прибора для шарфов: ";
+std::string txt063 = " (22 использовать)";
+std::string txt64 = "\n заряд инвертора: ";
+std::string txt064 = " (33 использовать)";
 std::string txt65 = "\n заряд деревянного механического кота: ";
-std::string txt66 = "\n заряд прибора для металлов (44 использовать): ";
-std::string txt67 = "\n заряд прибора для электростанций (55 использовать):";
-std::string txt68 = "\n заряд прибора для просмотра значений металлов (66 использовать): ";
-std::string txt69 = "\n заряд прибора для просмотра значений электростанций (77 использовать): ";
-std::string txt70 = "\n заряд прибора для просмотра значений чая (88 использовать): ";
-std::string txt700 = "\n заряд прибора для уменьшения чая (99 использовать): ";
-std::string txt701 = "\n у вас лекарств (10 выпить лекарство):";
+std::string txt66 = "\n заряд прибора для металлов: ";
+std::string txt065 = " (44 использовать)";
+std::string txt67 = "\n заряд прибора для электростанций: ";
+std::string txt066 = " (55 использовать)";
+std::string txt68 = "\n заряд прибора для просмотра значений металлов: ";
+std::string txt067 = " (66 использовать)";
+std::string txt69 = "\n заряд прибора для просмотра значений электростанций: ";
+std::string txt068 = " (77 использовать)";
+std::string txt70 = "\n заряд прибора для просмотра значений чая: ";
+std::string txt069 = " (88 использовать)";
+std::string txt700 = "\n заряд прибора для уменьшения чая: ";
+std::string txt0700 = " (90 использовать)";
+
+std::string txt701 = "\n у вас лекарств:";
+std::string txt0701 = " (10 использовать)";
 std::string txt702 = "\n выберите какое лекарство использовать ";
 std::string txt703 = "от ";
 std::string txt704 = " до ";
@@ -407,6 +422,30 @@ void english() {
     txt1019 = " choose fuel type (0 exit. 1 wood. 2 coal)\n";
     txt1020 = " enter how many kg of fuel to use\n";
     txt1021 = " 24 craft disease medicine for 0.200 kg of steel and 1 bandage\n";
+
+    txt00555 = " (6 bandage the bleeding)";
+    txtListya = "\n you have leaves: ";
+    txt062 = " (use 11)";
+    txt063 = " (use 22)";
+    txt064 = " (use 33)";
+    txt065 = " (use 44)";
+    txt066 = " (use 55)";
+    txt067 = " (use 66)";
+    txt068 = " (use 77)";
+    txt069 = " (use 88)";
+    txt0700 = " (use 90)";
+    txt0701 = " (use 10)";
+
+    txt62 = "\n charge of hat device: ";
+    txt63 = "\n charge of scarf device: ";
+    txt64 = "\n charge of inverter: ";
+    txt65 = "\n charge of wooden mechanical cat: ";
+    txt66 = "\n charge of metal device: ";
+    txt67 = "\n charge of power plant device: ";
+    txt68 = "\n charge of metal-viewing device: ";
+    txt69 = "\n charge of power-plant-viewing device: ";
+    txt70 = "\n charge of tea-viewing device: ";
+    txt700 = "\n charge of tea-lowering device: ";
 
     txt100 = "[";
     txt101 = "]";

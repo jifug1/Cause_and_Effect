@@ -786,6 +786,7 @@ void sobrat_listya(int& listya,bool& mozhno_listya) {
 	
 	listya += skolko_sobrano;
 	std::cout << txt130 << skolko_sobrano << "\n";
+	mozhno_listya = 0;
 }
 void krov_bint(int& bint) {
 	bool k1 = 0;
@@ -1000,27 +1001,28 @@ int main()
 					std::cout << txt552;
 					znacheniya_igroka(organ, infection, imunitet, organ2, krov, bolezn);
 				}
-				if (bint > 0 && vector_krov.size() > 0) { std::cout << txt0555 << txt100 << bint << txt101; }
+				if (bint > 0 && vector_krov.size() > 0) { std::cout << txt0555 << txt100 << bint << txt101 << txt00555; }
 				if (vector_lekarstvo.size() > 0 && bolezn > -1) { std::cout << txt701 << txt100 << vector_lekarstvo.size() << txt101; }
-				if (iron > 0) { std::cout << txt56 << iron; }
-				if (copper > 0) { std::cout << txt57 << copper; }
-				if (derevo > 0) { std::cout << txt58 << derevo; }
-				if (coal > 0) { std::cout << txt59 << coal; }
-				if (nickel > 0) { std::cout << txt60 << nickel; }
-				if (steel.kolichestvo > 0) { std::cout << txt61 << steel.kolichestvo; }
-				if (pribor > -1) { std::cout << txt62 << pribor; }
-				if (priborf > -1) { std::cout << txt63 << priborf; }
-				if (invertor > -1) { std::cout << txt64 << invertor; }
-				if (cat > -1) { std::cout << txt65 << cat; }
-				if (pribor_metall > -1) { std::cout << txt66 << pribor_metall; }
-				if (pribor_es > -1) { std::cout << txt67 << pribor_es; }
-				if (znachenie_metall > -1) { std::cout << txt68 << znachenie_metall; }
-				if (znachenie_es > -1) { std::cout << txt69 << znachenie_es; }
-				if (znachenie_chai > -1) { std::cout << txt70 << znachenie_chai; }
-				if (pribor_chai > -1) { std::cout << txt700 << pribor_chai; }
-				if (spear > -1) { std::cout << txt121 << spear; }
-				if (fakel > -1) { std::cout << txt122 << fakel; }
-				if (look > -1) { std::cout << txt123 << look; }
+				if (iron > 0) { std::cout << txt56 << txt100 << iron << txt101; }
+				if (copper > 0) { std::cout << txt57 << txt100 << copper << txt101; }
+				if (derevo > 0) { std::cout << txt58 << txt100 << derevo << txt101; }
+				if (coal > 0) { std::cout << txt59 << txt100 << coal << txt101; }
+				if (nickel > 0) { std::cout << txt60 << txt100 << nickel << txt101; }
+				if (steel.kolichestvo > 0) { std::cout << txt61 << txt100 << steel.kolichestvo << txt101; }
+				if (pribor > -1) { std::cout << txt62 << txt100 << pribor << txt101 << txt062; }
+				if (priborf > -1) { std::cout << txt63 << txt100 << priborf << txt101 << txt063; }
+				if (invertor > -1) { std::cout << txt64 << txt100 << invertor << txt101 << txt064; }
+				if (cat > -1) { std::cout << txt65 << txt100 << cat << txt101; }
+				if (pribor_metall > -1) { std::cout << txt66 << txt100 << pribor_metall << txt101 << txt066; }
+				if (pribor_es > -1) { std::cout << txt67 << txt100 << pribor_es << txt101 << txt067; }
+				if (znachenie_metall > -1) { std::cout << txt68 << txt100 << znachenie_metall << txt101 << txt068; }
+				if (znachenie_es > -1) { std::cout << txt69 << txt100 << znachenie_es << txt101 << txt069; }
+				if (znachenie_chai > -1) { std::cout << txt70 << txt100 << znachenie_chai << txt101 << txt068; }
+				if (pribor_chai > -1) { std::cout << txt700 << txt100 << pribor_chai << txt101 << txt0700; }
+				if (listya > -1) { std::cout << txtListya << txt100 << listya << txt101; }
+				if (spear > -1) { std::cout << txt121 << txt100 << spear << txt101; }
+				if (fakel > -1) { std::cout << txt122 << txt100 << fakel << txt101; }
+				if (look > -1) { std::cout << txt123 << txt100 << look << txt101; }
 
 				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt74 << vremya << txt072 << record << txt71 << "\n\n\n";
 				bool cikl = 0;
