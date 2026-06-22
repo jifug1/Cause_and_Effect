@@ -108,16 +108,18 @@ std::string txt60 = "\n у вас кг никеля: ";
 std::string txt61 = "\n у вас кг стали: ";
 std::string txtListya = "\n у вас листьев: ";
 
-std::string txt62 = "\n заряд прибора для шапок: ";
+std::string txt62 = "\n заряд прибора для увелеченя значений шапок: ";
 std::string txt062 = " (11 использовать)";
-std::string txt63 = "\n заряд прибора для шарфов: ";
+std::string txt63 = "\n заряд прибора для увелечения значений шарфов: ";
 std::string txt063 = " (22 использовать)";
 std::string txt64 = "\n заряд инвертора: ";
 std::string txt064 = " (33 использовать)";
+
 std::string txt65 = "\n заряд деревянного механического кота: ";
-std::string txt66 = "\n заряд прибора для металлов: ";
+
+std::string txt66 = "\n заряд прибора для увелечения значений металлов: ";
 std::string txt065 = " (44 использовать)";
-std::string txt67 = "\n заряд прибора для электростанций: ";
+std::string txt67 = "\n заряд прибора для увелечения значений электростанций: ";
 std::string txt066 = " (55 использовать)";
 std::string txt68 = "\n заряд прибора для просмотра значений металлов: ";
 std::string txt067 = " (66 использовать)";
@@ -126,7 +128,7 @@ std::string txt068 = " (77 использовать)";
 std::string txt70 = "\n заряд прибора для просмотра значений чая: ";
 std::string txt069 = " (88 использовать)";
 std::string txt700 = "\n заряд прибора для уменьшения чая: ";
-std::string txt0700 = " (90 использовать)";
+std::string txt0700 = " (99 использовать)";
 
 std::string txt701 = "\n у вас лекарств:";
 std::string txt0701 = " (10 использовать)";
@@ -354,7 +356,7 @@ void english() {
     txt057 = "\n you have heavy bleeding";
     txt058 = "\n you have critically severe bleeding";
     txt0554 = " 5 go collect leaves.";
-    txt0555 = "\n you have bandages (6 bandage the bleeding):";
+    txt0555 = "\n you have bandages: ";
     txt_exit = " 0 exit\n";
     txtK1 = " 1 bandage light bleeding\n";
     txtK2 = " 2 bandage medium bleeding\n";
@@ -433,7 +435,7 @@ void english() {
     txt067 = " (use 66)";
     txt068 = " (use 77)";
     txt069 = " (use 88)";
-    txt0700 = " (use 90)";
+    txt0700 = " (use 99)";
     txt0701 = " (use 10)";
 
     txt62 = "\n charge of hat device: ";

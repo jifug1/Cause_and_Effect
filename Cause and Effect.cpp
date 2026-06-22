@@ -633,7 +633,7 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo,dou
 
 	mozhno_v_les = 0;
 }
-void znacheniya_igroka(bool organ, double infection, double imunitet, bool organ2, int krov,double bolezn) {
+void znacheniya_igroka(bool organ, double infection, double imunitet, bool organ2, double krov,double bolezn) {
 	std::cout << txt502 << txt100 << golo << txt101 << txt53 << txt100 << organ << txt101 << txt55 << txt100 << imunitet << txt101 << txt053 << txt100 << organ2 << txt101 << txt129 << txt100 << krov << txt101;
 	if (infection > -1) { std::cout << txt54 << txt100 << infection << txt101; }
 	if (bolezn > -1) { std::cout << txt054 << txt100 << bolezn << txt101; }
@@ -1013,13 +1013,13 @@ int main()
 				if (priborf > -1) { std::cout << txt63 << txt100 << priborf << txt101 << txt063; }
 				if (invertor > -1) { std::cout << txt64 << txt100 << invertor << txt101 << txt064; }
 				if (cat > -1) { std::cout << txt65 << txt100 << cat << txt101; }
-				if (pribor_metall > -1) { std::cout << txt66 << txt100 << pribor_metall << txt101 << txt066; }
-				if (pribor_es > -1) { std::cout << txt67 << txt100 << pribor_es << txt101 << txt067; }
-				if (znachenie_metall > -1) { std::cout << txt68 << txt100 << znachenie_metall << txt101 << txt068; }
-				if (znachenie_es > -1) { std::cout << txt69 << txt100 << znachenie_es << txt101 << txt069; }
-				if (znachenie_chai > -1) { std::cout << txt70 << txt100 << znachenie_chai << txt101 << txt068; }
+				if (pribor_metall > -1) { std::cout << txt66 << txt100 << pribor_metall << txt101 << txt065; }
+				if (pribor_es > -1) { std::cout << txt67 << txt100 << pribor_es << txt101 << txt066; }
+				if (znachenie_metall > -1) { std::cout << txt68 << txt100 << znachenie_metall << txt101 << txt067; }
+				if (znachenie_es > -1) { std::cout << txt69 << txt100 << znachenie_es << txt101 << txt068; }
+				if (znachenie_chai > -1) { std::cout << txt70 << txt100 << znachenie_chai << txt101 << txt069; }
 				if (pribor_chai > -1) { std::cout << txt700 << txt100 << pribor_chai << txt101 << txt0700; }
-				if (listya > -1) { std::cout << txtListya << txt100 << listya << txt101; }
+				if (listya > 0) { std::cout << txtListya << txt100 << listya << txt101; }
 				if (spear > -1) { std::cout << txt121 << txt100 << spear << txt101; }
 				if (fakel > -1) { std::cout << txt122 << txt100 << fakel << txt101; }
 				if (look > -1) { std::cout << txt123 << txt100 << look << txt101; }
