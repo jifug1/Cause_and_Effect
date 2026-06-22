@@ -136,19 +136,12 @@ void read_save() {
 		file >> save_proideno >> save_time >> record >> languge;
 }
 void create(int x = 4, int y = 4, int z = 4) {
-	while (shapka.size() > 0)
-	{
-		shapka.pop_back();
-		sharf.pop_back();
-	}
-	while (zele.size() > 0)
-	{
-		zele.pop_back();
-	}
-	while (es.size() > 0) {
-		es.pop_back();
-		metall.pop_back();
-	}
+	shapka.clear();
+	sharf.clear();
+	zele.clear();
+	es.clear();
+	metall.clear();
+
 	int r = x;
 	while (r) {
 		shapka.push_back({ znacheniya_shapok(chislo) });
@@ -853,16 +846,14 @@ int main()
 		read_save();
 		save_mutex.unlock();
 
-		while (0 < vector_krov.size()) {
-			vector_krov.pop_back();
-		}
+		vector_krov.clear();
+		vector_lekarstvo.clear();
 
 		igra = 1;
 		golo = 15;
 		double krov = 100;
 		int proideno = 0;
 		int porog_sbrosa = 100;
-		int peredoz_lek = -1;
 
 		int bite = -1;
 		int bite2 = 3;
@@ -908,11 +899,12 @@ int main()
 
 		double infection = -1;
 		double bolezn = -1;
-
 		double imunitet = 175;
 
 		int faza = 5;
 		bool mednaya_pech = 0;
+		int krov_sto = 0;
+		int peredoz_lek = 0;
 
 		std::cout << txt22;
 		while (igra) {
@@ -944,7 +936,7 @@ int main()
 			bool uslovie_bite2 = 0;
 			bool uslovie_bite_esme = 0;
 
-			bool peredoz_lekk = 1;
+			bool peredoz_lekk = 0;
 			bool inffection = 1;
 			bool bollezn = 1;
 
@@ -1156,7 +1148,7 @@ int main()
 					else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les, derevo,infection); mozhno_listya = 0; }
 					else if (chto == 5 && mozhno_listya) { sobrat_listya(listya, mozhno_listya); mozhno_v_pisheru = 0;  mozhno_v_les = 0; }
 					else if (chto == 6 && bint > 0 && vector_krov.size() > 0) { krov_bint(bint); cikl2 = 1; }
-					else if (chto == 10 && vector_lekarstvo.size() > 0) { lechit_bolezn(bolezn, infection, krov, imunitet); peredoz_lek = 5; peredoz_lekk = 0; cikl2 = 1; }
+					else if (chto == 10 && vector_lekarstvo.size() > 0) { lechit_bolezn(bolezn, infection, krov, imunitet); peredoz_lekk = 1; cikl2 = 1; }
 					else { std::cout << txt20; cikl2 = 1; }
 
 				} while (cikl);
@@ -1198,12 +1190,17 @@ int main()
 			}
 			if (faza > 0 && igra == 1) { ++proideno; }
 			if (cat > 0 && faza > 0) { --cat; }
-			if (peredoz_lek > -1 && peredoz_lekk) { --peredoz_lek; }
+			
+		    if (peredoz_lekk && peredoz_lek <= 0) { peredoz_lek += 5; }
+			else if (peredoz_lekk && peredoz_lek > 0) { peredoz_lek += 5; vector_krov.push_back({1}); }
+			else if (peredoz_lek > 0) { --peredoz_lek; }
 
 			if (prodolszit_put) { faza = 5; }
 			else if (faza > 0) { --faza; }
+			if (krov_sto > 0) { --krov_sto; }
 
-			if (krov <= 0 || krov > 100) { golo -= 2; }
+			if (krov <= 0) { golo -= 2; }
+			else if (krov > 100 && krov_sto <= 0) { vector_krov.push_back({ 1 }); krov_sto = 5; }
 			for (int index = 0; index < vector_krov.size(); ++index) {
 				int sluchano = chance(chislo);
 				if (vector_krov[index].tyazhest == 1) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; } krov -= 2.0; }

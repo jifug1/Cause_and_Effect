@@ -339,7 +339,7 @@ void english() {
     txt057 = "\n you have heavy bleeding";
     txt058 = "\n you have critically severe bleeding";
     txt0554 = " 5 go collect leaves.";
-    txt0555 = "\n 6 bandage the bleeding with a bandage.";
+    txt0555 = "\n you have bandages (6 bandage the bleeding):";
     txt_exit = " 0 exit\n";
     txtK1 = " 1 bandage light bleeding\n";
     txtK2 = " 2 bandage medium bleeding\n";
@@ -383,7 +383,7 @@ void english() {
     txt126 = " a trap was triggered on you\n\n";
     txt127 = " hat and scarf inverted\n ";
     txt128 = " you disarmed the trap with the spear\n\n";
-    txt129 = "";
+    txt129 = " blood: ";
 
     text_v_lesu = " . . . . . (0 exit) while walking in the forest you met monster 170, its weapon: ";
     txt_monstr = " null\n";
@@ -395,6 +395,18 @@ void english() {
     txtMA1 = " press 1 to attack the monster with the spear\n";
     txtMA2 = " press 2 to attack the monster with the torch\n";
     txtMA3 = " press 3 to attack the monster with the bow\n";
+
+    txt_gotovo = " done\n";
+    txt701 = "\n you have medicines (10 take medicine):";
+    txt702 = "\n choose which medicine to use ";
+    txt703 = "for ";
+    txt704 = " to ";
+    txt1016 = " 21 craft a copper furnace for 3.0 kg of copper\n";
+    txt1017 = " 22 craft 0.100 kg of coal in the copper furnace for 0.310 kg of wood\n";
+    txt1018 = " 23 craft steel in the copper furnace for 0.100 kg of iron and 0.050 kg of coal (fuel: wood or coal. minimum 0.010 kg)\n";
+    txt1019 = " choose fuel type (0 exit. 1 wood. 2 coal)\n";
+    txt1020 = " enter how many kg of fuel to use\n";
+    txt1021 = " 24 craft disease medicine for 0.200 kg of steel and 1 bandage\n";
 
     txt100 = "[";
     txt101 = "]";
