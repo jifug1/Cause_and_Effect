@@ -599,7 +599,7 @@ void pishera(bool& mozhno_v_pisheru,int& spear,double& iron,double& nickel,int p
 	}
 	mozhno_v_pisheru = 0;
 }
-void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo) {
+void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo,double& infection) {
 	int oruzhie_u_monstra = bite_chai(chislo);
 	switch (oruzhie_u_monstra) {
 	case 0: { txt_monstr = txtM1; break; }
@@ -629,7 +629,13 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo) {
 
 
 
-	if (!pobeda) { std::cout << txt116; --golo; }
+	if (!pobeda) { std::cout << txt116; 
+	if (oruzhie_u_monstra == 0) { vector_krov.push_back({ 1 }); }
+	else if (oruzhie_u_monstra == 1) { vector_krov.push_back({ 3 }); }
+	else if (oruzhie_u_monstra == 2) { vector_krov.push_back({ 2 }); }
+	else if (oruzhie_u_monstra == 3) { infection += 10.0; }
+	else if (oruzhie_u_monstra == 4) { vector_krov.push_back({ 4 }); }
+	}
 	else { std::cout << txt115; derevo += 0.400; }
 
 	mozhno_v_les = 0;
@@ -700,8 +706,6 @@ void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper,double& cop
 		}
 
 	}
-
-
 	if (otvet == 1) {
 		std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
 	}
@@ -858,6 +862,7 @@ int main()
 		double krov = 100;
 		int proideno = 0;
 		int porog_sbrosa = 100;
+		int peredoz_lek = -1;
 
 		int bite = -1;
 		int bite2 = 3;
@@ -905,8 +910,6 @@ int main()
 		double bolezn = -1;
 
 		double imunitet = 175;
-		bool inffection = 0;
-		bool bollezn = 0;
 
 		int faza = 5;
 		bool mednaya_pech = 0;
@@ -940,6 +943,10 @@ int main()
 			bool uslovie_bite = 0;
 			bool uslovie_bite2 = 0;
 			bool uslovie_bite_esme = 0;
+
+			bool peredoz_lekk = 1;
+			bool inffection = 1;
+			bool bollezn = 1;
 
 			if (!(esme >= anti_bite && zele[chai].kak == 2) && (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == bite2 - 1 && esme <= bite_esme))) {
 				uslovie_ukusa = 1;
@@ -1146,10 +1153,10 @@ int main()
 					else if (chto == 4 && faza == 0) { cikl = 0; cikl2 = 0; }
 					else if (chto == 7089) { txt51 += "&были использованы читы&"; faza = 1; }
 					else if (chto == 2 && faza == 0 && mozhno_v_pisheru == 1) { pishera(mozhno_v_pisheru, spear, iron, nickel, proideno); mozhno_listya = 0; }
-					else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les, derevo); mozhno_listya = 0; }
+					else if (chto == 3 && faza == 0 && mozhno_v_les == 1 && (spear > -1 || fakel > -1 || look > -1)) { cikl2 = 1; les(spear, fakel, look, mozhno_v_les, derevo,infection); mozhno_listya = 0; }
 					else if (chto == 5 && mozhno_listya) { sobrat_listya(listya, mozhno_listya); mozhno_v_pisheru = 0;  mozhno_v_les = 0; }
 					else if (chto == 6 && bint > 0 && vector_krov.size() > 0) { krov_bint(bint); cikl2 = 1; }
-					else if (chto == 10 && vector_lekarstvo.size() > 0 && bolezn > -1) { lechit_bolezn(bolezn,infection,krov,imunitet); cikl2 = 1; }
+					else if (chto == 10 && vector_lekarstvo.size() > 0) { lechit_bolezn(bolezn, infection, krov, imunitet); peredoz_lek = 5; peredoz_lekk = 0; cikl2 = 1; }
 					else { std::cout << txt20; cikl2 = 1; }
 
 				} while (cikl);
@@ -1158,7 +1165,7 @@ int main()
 				std::cout << txt111;
 				igra = 0;
 			}
-			if (infection > -1 && infection < 100 && inffection == 0) {
+			if (infection > -1 && infection < 100 && inffection) {
 				if (imunitet <= 50) {
 					infection += 4.7;
 					imunitet -= 7.8;
@@ -1189,9 +1196,9 @@ int main()
 				golo /= 2;
 				infection = -1;
 			}
-			inffection = 0;
 			if (faza > 0 && igra == 1) { ++proideno; }
 			if (cat > 0 && faza > 0) { --cat; }
+			if (peredoz_lek > -1 && peredoz_lekk) { --peredoz_lek; }
 
 			if (prodolszit_put) { faza = 5; }
 			else if (faza > 0) { --faza; }
@@ -1199,13 +1206,13 @@ int main()
 			if (krov <= 0 || krov > 100) { golo -= 2; }
 			for (int index = 0; index < vector_krov.size(); ++index) {
 				int sluchano = chance(chislo);
-				if (vector_krov[index].tyazhest == 1) { if (sluchano <= 1.0 && bolezn <= -1) { bolezn = 0; bollezn = 1; } krov -= 2; }
-				else if (vector_krov[index].tyazhest == 2) { if (sluchano <= 1.0 && bolezn <= -1) { bolezn = 0; bollezn = 1; }krov -= 3; }
-				else if (vector_krov[index].tyazhest == 3) { if (sluchano <= 1.0 && bolezn <= -1) { bolezn = 0; bollezn = 1; }krov -= 5; }
-				else if (vector_krov[index].tyazhest == 4) { if (sluchano <= 1.0 && bolezn <= -1) { bolezn = 0; bollezn = 1; }krov -= 6; }
+				if (vector_krov[index].tyazhest == 1) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; } krov -= 2.0; }
+				else if (vector_krov[index].tyazhest == 2) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 3.0; }
+				else if (vector_krov[index].tyazhest == 3) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 5.0; }
+				else if (vector_krov[index].tyazhest == 4) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 6.0; }
 
 			}
-			if (bolezn > -1 && bollezn == 0 && bolezn < 100) {
+			if (bolezn > -1 && bollezn && bolezn < 100) {
 				if (imunitet <= 50) {
 					bolezn += 7.1;
 					imunitet -= 0.5;
@@ -1236,7 +1243,6 @@ int main()
 				bolezn = -1;
 			}
 
-			bollezn = 0;
 			save_mutex.lock();
 			vsego_proideno = proideno + save_proideno;
 			vremya = sec + save_time;
