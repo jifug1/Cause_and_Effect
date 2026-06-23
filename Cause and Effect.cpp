@@ -373,6 +373,7 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 		steel += 0.100;
 		coal -= 0.050;
 		iron -= 0.100;
+		std::cout << txt_gotovo;
 	}
 	else if (chto == 24 && steel >= 0.200 && bint >= 1) {
 		steel -= 0.200;
@@ -394,7 +395,7 @@ int menu() {
 	int r = 0;
 	do{
 		r = 0;
-		std::cout << txt0 << txt_version << txt1;
+		std::cout << txt0 << txt_version << txt1 << txt01 << txt02 << "\n\n";
 		int chto = vvod();
 		if (chto == 9201) {
 			std::cout << txt9201;
@@ -408,7 +409,7 @@ int menu() {
 		}
 		else if (chto == 2) { return 0; }
 		else if (chto == 3) {std::cout << txt_; r = 1;}
-		else if (chto == 4) { languge = 0; r = 1; }
+		else if (chto == 4) { languge = 0; russian(); r = 1; }
 		else if (chto == 5) { languge = 1; english(); r = 1; }
 	} while (r);
 	menu2();
@@ -441,7 +442,7 @@ void proverka_lovushka(int x, int y, int boevoy,int& spear) {
 	while (index < entity.size()) {
 
 		bool uslovie_lovushka1 = entity[index].id == 3 && ((entity[index].x == x && (entity[index].y == y || entity[index].y == y - 1 || entity[index].y == y + 1) || (entity[index].y == y && (entity[index].x == x || entity[index].x == x - 1 || entity[index].x == x + 1))));
-		bool uslovie_lovushka2 = entity[index].id == 4 && entity[index].x == x && (entity[index].y == y - 2 || entity[index].y == y + 2);
+		bool uslovie_lovushka2 = entity[index].id == 4 && entity[index].x == x && (entity[index].y == y - 2 || entity[index].y == y + 2 || entity[index].y == y);
 		bool uslovie_lovushka3 = entity[index].id == 5 && entity[index].x >= x && entity[index].y == y;
 
 		bool krov_1 = entity[index].id == 3 && (entity[index].y == y && (entity[index].x == x - 1 || entity[index].x == x + 1));
@@ -524,7 +525,7 @@ void pishera(bool& mozhno_v_pisheru,int& spear,double& iron,double& nickel,int p
 				entity.push_back({x,y,4});
 				--lovushka2;
 			}
-			else if (sluchano <= 40 && proideno > 50 && lovushka3 > 0 && !(y == 0 && (x >= 4 || x <= 0))) {
+			else if (sluchano <= 40 && proideno > 50 && lovushka3 > 0 && !(y == 0 && (x <= 4 || x >= 0))) {
 				entity.push_back({ x,y,5 });
 				--lovushka3;
 			}
@@ -638,7 +639,7 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo,dou
 	if (oruzhie_u_monstra == 0) { vector_krov.push_back({ 1 }); }
 	else if (oruzhie_u_monstra == 1) { vector_krov.push_back({ 3 }); }
 	else if (oruzhie_u_monstra == 2) { vector_krov.push_back({ 2 }); }
-	else if (oruzhie_u_monstra == 3) { infection += 10.0; }
+	else if (oruzhie_u_monstra == 3) { infection += 30.0; }
 	else if (oruzhie_u_monstra == 4) { vector_krov.push_back({ 4 }); }
 	}
 	else { std::cout << txt115; derevo += 0.400; }
@@ -1163,7 +1164,7 @@ int main()
 					else if (chto == 5 && mozhno_listya) { sobrat_listya(listya, mozhno_listya); mozhno_v_pisheru = 0;  mozhno_v_les = 0; }
 					else if (chto == 6 && bint > 0 && vector_krov.size() > 0) { krov_bint(bint); cikl2 = 1; }
 					else if (chto == 10 && vector_lekarstvo.size() > 0) { lechit_bolezn(bolezn, infection, krov, imunitet); peredoz_lekk = 1; cikl2 = 1; }
-					else { std::cout << txt20; cikl2 = 1; }
+					else { std::cout << txt20; cikl2 = 1; cikl = 0; }
 
 				} while (cikl);
 			} while (cikl2 || (prodolszit_put == 0 && faza <= 0));
