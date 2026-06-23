@@ -394,7 +394,7 @@ int menu() {
 	int r = 0;
 	do{
 		r = 0;
-		std::cout << txt0 << txt1;
+		std::cout << txt0 << txt_version << txt1;
 		int chto = vvod();
 		if (chto == 9201) {
 			std::cout << txt9201;
@@ -975,7 +975,7 @@ int main()
 						inffection = 1;
 					}
 					else if (sf <= bite && zele[chai].kak >= bite2 && organ == 1) { organ = 0; }
-					else if (sf <= bite - 1 && zele[chai].kak == bite2 - 2 && organ2 == 1) { organ2 = 0; }
+					else if (sf <= bite - 1 && zele[chai].kak == bite2 - 1 && organ2 == 1) { organ2 = 0; }
 					else { golo -= 1; }
 				}
 			}
@@ -1011,7 +1011,8 @@ int main()
 					std::cout << txt552;
 					znacheniya_igroka(organ, infection, imunitet, organ2, krov, bolezn);
 				}
-				if (bint > 0 && vector_krov.size() > 0) { std::cout << txt0555 << txt100 << bint << txt101 << txt00555; }
+				if (bint > 0) { std::cout << txt0555 << txt100 << bint << txt101; }
+				if (bint > 0 && vector_krov.size() > 0) { std::cout << txt00555; }
 				if (vector_lekarstvo.size() > 0 && bolezn > -1) { std::cout << txt701 << txt100 << vector_lekarstvo.size() << txt101; }
 				if (iron > 0) { std::cout << txt56 << txt100 << iron << txt101; }
 				if (copper > 0) { std::cout << txt57 << txt100 << copper << txt101; }

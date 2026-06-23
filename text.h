@@ -3,6 +3,7 @@
 std::string txt_gotovo = " готово\n";
 std::string txt_ = ". . .\nобучение: у вас есть здоровье. вы будете встречать монстров.\nу них есть характеристики, какая шапка на монстре, какой на нём шарф, какой у него любимый чай, и так далее.\nпри начале игры генерируется 4 шапки 4 шарфа 4 чая, у всех у них случайные значения, у шапки и шарфа это значение от -1 до 1, у чая это значение от 0 до 4.\nзначения характеристик первого монстра вы всегда видите, так что запомните значения шапок шарфов и чаёв\nмонстр вас будет кусать в зависемости от этих значений. монстр вас кусает когда сумма шапки и шарфа -1 и меньше,\nесли причина укуса в этом то нужно кусать монстра в ответ, тогда значение шапки либо шарфа увеличится (когда меняется значение то это пишется на экран)\nтакже монстр вас кусает когда значение чая 3 и выше, в этом случае нужно пройти мимо монстра\nу каждого монстра выберается случайная шапка, шарф и любимый чай (из тех которые сгенерировались при начале игры)\nесли монстр вас не укусил, вариант пройти мимо точно ничего не сделает\nтак же в игре есть много другого контента, изучайте игру\n. . .\n";
 std::string txt0 = "код игры полностью написан jifug\n";
+std::string txt_version = "4.3.0.16\n";
 std::string txt1 = " МЕНЮ\n нажмите 1 (затем ENTER) чтобы начать играть. нажмите 2 (затем ENTER) чтобы продолжить игру.\n нажмите 3 (затем ENTER) чтобы прочитать обучение (без него вы не сможете нормально играть)\n нажмите 4 чтобы поставить Русский язык (затем перезайдите в игру)\n Press 5 to set English language(translated by DeepSeek)\n\n\n";
 std::string txt2 = " 0 выйти из меню крафта (если кроме этого текста здесь ничего не написано, значит вы не можете ничего создать. если кроме этого текста здесь чтото написано, значит вы можете это создать)\n";
 std::string txt3 = " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд 1)\n";
@@ -151,10 +152,10 @@ std::string txt80 = " монстр: здраствуйте (1 ответить: 
 std::string txt81 = " монстр: а потому что здесь все добрые и милые, но у всех разные представления о том как нужно ввести себя при встрече (1 ответить: ясно. 2 ответить: я кстати достовляю урановую руду на гидрометаллургический завод (правда))\n";
 std::string txt82 = " монстр: а потому что на острове малая токмачка только один магазин N4020, в нём только 4 вида шапок, 4 вида шарфов, зелёный чёрный чай, кофе, и несколько чаёв с неизвестным названием но некоторые из них вкусные (1 ответить: услышал тебя родной. 2 ответить: а на что их покупают?)\n";
 std::string txt83 = " монстр: чё те ясно\n";
-std::string txt84 = " монстр: ты не боишься монстра 170? (1 ответить: боюсь, а кто это? (правда) 2 ответить: меня защитит монстр 61 (истина))\n";
+std::string txt84 = " монстр: ты не боишься монстра 170? (1 ответить: боюсь, а кто это? (истина) 2 ответить: мне поможет монстр 61, я доставляю 2 тонны урановой руды в кармане на его гидрометаллургический завод. и вообще я единственный кто это делает (правда))\n";
 std::string txt082 = " монстр: на уран который извлекают из урановой руды на гидрометаллургическом заводе, а урановую руду добывают на урановой шахте, которую достовляют на гидрометаллургический завод по этой тропинке, идя по этой тропинке можно встретить магазин N4020, по сути это единственная тропинка и единственные 3 здания на всей малой токмачке, всё население малой токмачки живёт в палатках в лесу\n";
-std::string txt084 = " монстр: он очень злой и страшный, и вообще он 170 килограмм урановой руды добыл. в последнее время он ворует урановую руду\n";
-std::string txt0083 = " монстр: не думаю что владелец гидрометаллургического завода и урановой шахты тебя защитит\n";
+std::string txt084 = " монстр: он очень злой и страшный, и вообще он 170 килограмм урановой руды добыл\n";
+std::string txt0083 = " монстр: он тебя не защитит, ведь он добыл урановой руды в 2.786885245901639 раза меньше\n";
 
 std::string txt85 = " монстр: могу вам дать ";
 std::string txt86 = " килограмм железа либо ";
@@ -345,10 +346,10 @@ void english() {
     txt81 = "monster: because we are all kind and nice, but everyone has their own idea of how to behave when meeting someone (1 answer: I see. 2 answer: by the way, I'm delivering uranium ore to the hydrometallurgical plant (truth))\n";
     txt82 = "monster: because on the island of Malaya Tokmachka there is only one shop N4020, it has only 4 kinds of hats, 4 kinds of scarves, green tea, black tea, coffee and a few teas with unknown names, some of them tasty (1 answer: I hear you, mate. 2 answer: what do they buy them with?)\n";
     txt83 = "monster: what do you mean ‘I see’\n";
-    txt84 = "monster: aren't you afraid of monster 170? (1 answer: I am, who is that? (truth) 2 answer: monster 61 will protect me (truth))\n";
     txt082 = "monster: with the uranium extracted from uranium ore at the hydrometallurgical plant, the ore is mined at the uranium mine and delivered to the plant along this path. Walking this path you can find the shop N4020. Actually this is the only path and the only 3 buildings in the whole Malaya Tokmachka; all the inhabitants live in tents in the forest\n";
-    txt084 = "monster: he is very angry and scary, and he mined 170 kilograms of uranium ore. Lately he has been stealing uranium ore\n";
-    txt0083 = "monster: I don't think the owner of the hydrometallurgical plant and the uranium mine will protect you\n";
+    txt84 = "monster: aren't you afraid of monster 170? (1 answer: I am, who is that? (truth) 2 answer: monster 61 will help me, I'm carrying 2 tons of uranium ore in my pocket to his hydrometallurgical plant. And I'm the only one who does it (truth))\n";
+    txt084 = "monster: he is very angry and scary, and he mined 170 kilograms of uranium ore\n";
+    txt0083 = "monster: he won't protect you, because he mined 2.786885245901639 times less uranium ore\n";
     
     txt054 = "  disease:  ";
     txt055 = "\n you have light bleeding";
