@@ -184,8 +184,8 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 	if (derevo >= 0.31) { std::cout << txt6; }
 	if (nickel >= 0.300 && (pribor > -1 || priborf > -1 || invertor > -1 || cat > -1 || pribor_metall > -1 || znachenie_metall > -1 || pribor_es > -1 || znachenie_es > -1 || znachenie_chai > -1 || pribor_chai > -1)) { std::cout << txt7; }
 	if (nickel >= 0.600 && organ == 0) { std::cout << txt8; }
-	if (nickel >= 0.080 && iron >= 0.160) { std::cout << txt9; }
-	if (nickel >= 0.064 && iron >= 0.120 && infection > -1) { std::cout << txt10; }
+	if (nickel >= 0.064 && iron >= 0.120) { std::cout << txt9; }
+	if (nickel >= 0.080 && iron >= 0.160 && infection > -1) { std::cout << txt10; }
 	if (derevo >= 2.5 && cat <= -1) { std::cout << txt11; }
 	if (derevo >= 2.0 && pribor_metall <= -1) { std::cout << txt12; }
 	if (derevo >= 2.0 && pribor_es <= -1) { std::cout << txt13; }
@@ -247,15 +247,15 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 		nickel -= 0.600;
 		organ = 1;
 	}
-	else if (chto == 7 && nickel >= 0.080 && iron >= 0.160) {
+	else if (chto == 7 && nickel >= 0.064 && iron >= 0.120) {
 		imunitet += 15;
-		nickel -= 0.080;
-		iron -= 0.160;
-	}
-	else if (chto == 8 && nickel >= 0.064 && iron >= 0.120 && infection > -1) {
-		infection -= 15;
 		nickel -= 0.064;
 		iron -= 0.120;
+	}
+	else if (chto == 8 && nickel >= 0.080 && iron >= 0.160 && infection > -1) {
+		infection -= 15;
+		nickel -= 0.080;
+		iron -= 0.160;
 	}
 	else if (chto == 9 && derevo >= 2.5 && cat <= -1) {
 		derevo -= 2.5;
@@ -500,8 +500,10 @@ void pishera(bool& mozhno_v_pisheru,int& spear,double& iron,double& nickel,int p
 	int ruda_nickel = 5;
 	int ruda_iron = 5;
 	int lovushka = 10;
-	int lovushka2 = 5;
-	int lovushka3 = 3;
+	int lovushka2 = 0;
+	int lovushka3 = 0;
+	if (proideno > 30) { lovushka2 = 5; }
+	if (proideno > 50) { lovushka3 = 3; }
 
 	for (int x = 0; x <= 4; ++x) {
 		for (int y = 0; y <= 19; ++y) {
@@ -949,7 +951,7 @@ int main()
 			bool inffection = 1;
 			bool bollezn = 1;
 
-			if (!(esme >= anti_bite && zele[chai].kak == 2) && (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == bite2 - 1 && esme <= bite_esme))) {
+			if (!(esme >= anti_bite && zele[chai].kak == bite2 - 1) && (sf <= bite || zele[chai].kak >= bite2 || (zele[chai].kak == bite2 - 1 && esme <= bite_esme))) {
 				uslovie_ukusa = 1;
 				if (sf <= bite) { uslovie_bite = 1; }
 				if (zele[chai].kak >= bite2) { uslovie_bite2 = 1; }
@@ -967,13 +969,13 @@ int main()
 
 			if (faza > 0) {
 				if (uslovie_ukusa) {
-					if (zele[chai].kak == (bite2 - 1) && esme <= bite_esme && sf <= bite && infection < 0) {
+					if (zele[chai].kak == bite2 - 1 && esme <= bite_esme && sf <= bite && infection < 0) {
 						golo -= 1;
 						infection = 30;
 						inffection = 1;
 					}
 					else if (sf <= bite && zele[chai].kak >= bite2 && organ == 1) { organ = 0; }
-					else if (sf <= bite - 1 && zele[chai].kak == 0 && organ2 == 1) { organ2 = 0; }
+					else if (sf <= bite - 1 && zele[chai].kak == bite2 - 2 && organ2 == 1) { organ2 = 0; }
 					else { golo -= 1; }
 				}
 			}

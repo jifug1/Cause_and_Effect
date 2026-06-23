@@ -199,7 +199,7 @@ std::string txt125 = " железо + 0.020\n\n";
 std::string txt126 = " на вас сработала ловушка\n\n";
 std::string txt127 = " шапка и шарф инвертированы\n ";
 std::string txt128 = " вы обезвредили ловушку копьём\n\n";
-std::string txt129 = " кровь: ";
+std::string txt129 = "  кровь:  ";
 std::string txt130 = " вы собрали листьев: ";
 
 std::string text_v_lesu = " . . . . . (0 выход) идя в лес вы наткулись на монстра 170, его оружие: ";
@@ -362,7 +362,7 @@ void english() {
     txtK2 = " 2 bandage medium bleeding\n";
     txtK3 = " 3 bandage heavy bleeding\n";
     txtK4 = " 4 bandage critically severe bleeding\n";
-    txt129 = " blood: ";
+    txt129 = "  blood:  ";
     txt130 = " you collected leaves: ";
     txt1015 = " 20 craft a bandage for 4 leaves\n";
 
