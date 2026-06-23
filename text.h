@@ -12,8 +12,8 @@ std::string txt6 = " 4 востановить 1 здоровье за 0.31 кг 
 std::string txt7 = " 5 зарядить 2 раза любой предмет на количество изначального заряда. за 0.300 кг никеля (если при создании у предмета заряд был 1, заряд увеличится на 1, если 10, то на 10. так же вы можете зарядить 2 разных предмета, либо один и тот же)\n";
 std::string txt8 = " 6 востановить орган за 0.600 кг никеля\n";
 std::string txt08 = " 19 востановить орган2 за 0.200 кг никеля\n";
-std::string txt9 = " 7 увеличить иммунитет на 15 за 0.100 кг никеля и 0.200 кг железа\n";
-std::string txt10 = " 8 уменьшить инфекцию на 15 за 0.080 кг никеля и 0.150 кг железа\n";
+std::string txt9 = " 7 увеличить иммунитет на 15 за 0.040 кг никеля и 0.070 кг железа\n";
+std::string txt10 = " 8 уменьшить инфекцию на 15 за 0.070 кг никеля и 0.100 кг железа\n";
 std::string txt11 = " 9 создать деревянного механического кота за 2.500 кг дерева (заряд 10)\n";
 std::string txt12 = " 10 создать прибор для повышения значений металла за 2.000 кг дерева (заряд 1)\n";
 std::string txt13 = " 11 создать прибор для повышения значений электростанций за 2.000 кг дерева (заряд 1)\n";
@@ -77,7 +77,7 @@ std::string txt552 = " 4 ничего не делать. 9 меню крафта
 std::string txt553 = " 0 попасть в меню. 1 продолжить идти.";
 std::string txt554 = " 2 пойти в пищеру.";
 std::string txt0554 = " 5 пойти собирать листья.";
-std::string txt0555 = "\n у вас бинтов:";
+std::string txt0555 = "\n у вас бинтов: ";
 std::string txt00555 = " (6 перебентовать кровотичение бинтом)";
 
 std::string txt52 = "\n [===============\n";
@@ -244,8 +244,8 @@ void english() {
     txt7 = " 5 recharge any item twice by its initial charge amount, for 0.300 kg of nickel (if an item had 1 charge when crafted, it gains 1 charge; if 10, gains 10. You may recharge two different items or the same one)\n";
     txt8 = " 6 restore the organ for 0.600 kg of nickel\n";
     txt08 = " 19 restore organ2 for 0.200 kg of nickel\n";
-    txt9 = " 7 increase immunity by 15 for 0.100 kg of nickel and 0.200 kg of iron\n";
-    txt10 = " 8 reduce infection by 15 for 0.080 kg of nickel and 0.150 kg of iron\n";
+    txt9 = " 7 increase immunity by 15 for 0.040 kg of nickel and 0.070 kg of iron\n";
+    txt10 = " 8 reduce infection by 15 for 0.070 kg of nickel and 0.100 kg of iron\n";
     txt11 = " 9 craft a wooden mechanical cat for 2.500 kg of wood (10 charges)\n";
     txt12 = " 10 craft a device to increase metal values for 2.000 kg wood (1 charge)\n";
     txt13 = " 11 craft a device to increase power plant values for 2.000 kg wood (1 charge)\n";
@@ -414,7 +414,7 @@ void english() {
     txtMA3 = " press 3 to attack the monster with the bow\n";
 
     txt_gotovo = " done\n";
-    txt701 = "\n you have medicines (10 take medicine):";
+    txt701 = "\n you have medicines: ";
     txt702 = "\n choose which medicine to use ";
     txt703 = "for ";
     txt704 = " to ";

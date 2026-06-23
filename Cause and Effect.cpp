@@ -184,8 +184,8 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 	if (derevo >= 0.31) { std::cout << txt6; }
 	if (nickel >= 0.300 && (pribor > -1 || priborf > -1 || invertor > -1 || cat > -1 || pribor_metall > -1 || znachenie_metall > -1 || pribor_es > -1 || znachenie_es > -1 || znachenie_chai > -1 || pribor_chai > -1)) { std::cout << txt7; }
 	if (nickel >= 0.600 && organ == 0) { std::cout << txt8; }
-	if (nickel >= 0.064 && iron >= 0.120) { std::cout << txt9; }
-	if (nickel >= 0.080 && iron >= 0.160 && infection > -1) { std::cout << txt10; }
+	if (nickel >= 0.040 && iron >= 0.070) { std::cout << txt9; }
+	if (nickel >= 0.070 && iron >= 0.100 && infection > -1) { std::cout << txt10; }
 	if (derevo >= 2.5 && cat <= -1) { std::cout << txt11; }
 	if (derevo >= 2.0 && pribor_metall <= -1) { std::cout << txt12; }
 	if (derevo >= 2.0 && pribor_es <= -1) { std::cout << txt13; }
@@ -247,15 +247,15 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 		nickel -= 0.600;
 		organ = 1;
 	}
-	else if (chto == 7 && nickel >= 0.064 && iron >= 0.120) {
+	else if (chto == 7 && nickel >= 0.040 && iron >= 0.070) {
 		imunitet += 15;
-		nickel -= 0.064;
-		iron -= 0.120;
+		nickel -= 0.040;
+		iron -= 0.070;
 	}
-	else if (chto == 8 && nickel >= 0.080 && iron >= 0.160 && infection > -1) {
+	else if (chto == 8 && nickel >= 0.070 && iron >= 0.100 && infection > -1) {
 		infection -= 15;
-		nickel -= 0.080;
-		iron -= 0.160;
+		nickel -= 0.070;
+		iron -= 0.100;
 	}
 	else if (chto == 9 && derevo >= 2.5 && cat <= -1) {
 		derevo -= 2.5;
@@ -819,7 +819,6 @@ void krov_bint(int& bint) {
 
 	int chto = vvod();
 
-	
 	for (int index = 0; index < vector_krov.size(); ++index) {
 		if (chto == 1 && vector_krov[index].tyazhest == 1) { vector_krov.erase(vector_krov.begin() + index); --index; break; }
 		else if (chto == 2 && vector_krov[index].tyazhest == 2) { vector_krov[index].tyazhest -= 1; break; }
@@ -828,6 +827,7 @@ void krov_bint(int& bint) {
 		else { return; }
 	}
 	--bint;
+	std::cout << txt_gotovo;
 }
 void lechit_bolezn(double& bolezn,double& infection,double& krov,double& imunitet) {
 	int do_kuda = (vector_lekarstvo.size() - 1);
@@ -1152,6 +1152,7 @@ int main()
 						int x = menu();
 						if (x == 1) { igra = 0; cikl2 = 0; cikl = 0; }
 						else { cikl2 = 1; cikl = 0; }
+						prodolszit_put = 1;
 					}
 					else if (chto == 1 && faza == 0) { prodolszit_put = 1; cikl = 0; cikl2 = 0; }
 					else if (chto == 4 && faza == 0) { cikl = 0; cikl2 = 0; }
