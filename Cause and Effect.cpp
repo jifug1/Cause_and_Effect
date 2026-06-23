@@ -22,13 +22,13 @@ int save_proideno = 0;
 
 std::mutex save_mutex;
 std::mt19937 chislo(std::chrono::steady_clock::now().time_since_epoch().count());
-std::uniform_int_distribution znacheniya_shapok(-1, 1);
-std::uniform_int_distribution kakoy_chai(0, skoko_chaev);
-std::uniform_int_distribution dlyashapok(0, kakaya_shapka);
-std::uniform_int_distribution bite_chai(0, 4);
-std::uniform_int_distribution podarok(0, 3);
-std::uniform_int_distribution otvety(1, 2);
-std::uniform_int_distribution chance(1, 100);
+std::uniform_int_distribution<int> znacheniya_shapok(-1, 1);
+std::uniform_int_distribution<int> kakoy_chai(0, skoko_chaev);
+std::uniform_int_distribution<int> dlyashapok(0, kakaya_shapka);
+std::uniform_int_distribution<int> bite_chai(0, 4);
+std::uniform_int_distribution<int> podarok(0, 3);
+std::uniform_int_distribution<int> otvety(1, 2);
+std::uniform_int_distribution<int> chance(1, 100);
 
 struct kto {
 	int kak;
@@ -101,6 +101,16 @@ int vvod() {
 		r = 0;
 		std::cin >> x;
 		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(100,'\n'); r = 1; std::cout << txt20; }
+	} while (r);
+	return x;
+}
+double vvod_double() {
+	double x;
+	int r;
+	do {
+		r = 0;
+		std::cin >> x;
+		if (std::cin.fail()) { std::cin.clear(); std::cin.ignore(100, '\n'); r = 1; std::cout << txt20; }
 	} while (r);
 	return x;
 }
@@ -310,7 +320,7 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 		if (chto1 != 1 && chto1 != 2) { std::cout << txt20; return; }
 
 		std::cout << txt1020;
-		double chto = vvod();
+		double chto = vvod_double();
 
 		if (chto1 == 1 && chto >= 0.010 && chto <= derevo) {
 			if (chto >= 0.100 && chto < 0.150) {
@@ -489,8 +499,8 @@ void pishera(bool& mozhno_v_pisheru,int& spear,double& iron,double& nickel,int p
 	}
 	int ruda_nickel = 5;
 	int ruda_iron = 5;
-	int lovushka = 15;
-	int lovushka2 = 10;
+	int lovushka = 10;
+	int lovushka2 = 5;
 	int lovushka3 = 3;
 
 	for (int x = 0; x <= 4; ++x) {
@@ -911,15 +921,13 @@ int main()
 		while (igra) {
 			int s = dlyashapok(chislo);
 			int f = dlyashapok(chislo);
-			int ss = shapka[s].kak;
-			int ff = sharf[f].kak;
 
 			int szeleza = podarok(chislo);
 			int dereva = podarok(chislo);
 			int Nickel = podarok(chislo);
 			int Copper = podarok(chislo);
 
-			int sf = ss + ff;
+			int sf = shapka[s].kak + sharf[f].kak;
 			int chai = kakoy_chai(chislo);
 
 			int otvet = otvety(chislo);
