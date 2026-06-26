@@ -42,7 +42,7 @@ struct cave {
 };
 struct krovotichenie {
 	int tyazhest;
-	int timer_zhguta = 10;
+	int timer_zhguta = -1;
 };
 std::vector<cave> entity{
 	{0,0,0},
@@ -50,6 +50,7 @@ std::vector<cave> entity{
 struct lekarstvo{
 private:
 	double kachestvo;
+	int index_ = -1;
 public:
 	void izmenenie(double steel_kachestvo) {
 		if (steel_kachestvo <= 40) { kachestvo = 1; }
@@ -184,7 +185,7 @@ void create(int x = 4, int y = 4, int z = 4) {
 	kakoy_chai.param(std::uniform_int_distribution<int>::param_type(0, skoko_chaev));
 
 }
-void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai, int& spear, int& fakel, int& look, int& pribor_chai, bool& organ2, double& iron, double& nickel, double& derevo, double& copper, double& coal, double& steel, int& listya, int& bint, double& steel_kachestvo, bool& mednaya_pech,int& zhgut) {
+void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai, int& spear, int& fakel, int& look, int& pribor_chai, bool& organ2, double& iron, double& nickel, double& derevo, double& copper, double& coal, double& steel, int& listya, int& bint, double& steel_kachestvo, bool& mednaya_pech) {
 	int cena_zhgut_steel = 0.100;
 	
 	std::cout << txt2;
@@ -394,15 +395,15 @@ void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunit
 
 		if (steel <= 0) { steel_kachestvo = 0; }
 	}
-	else if (chto == 25) {
-
+	else if (chto == 25 && steel >= cena_zhgut_steel) {
+		steel -= cena_zhgut_steel;
+		lekarstvo zhg;
+		zhg.izmenenie(steel_kachestvo);
+		vector_zhgut.push_back(zhg);
 	}
 	else if (chto == 0) { return; }
 	else { std::cout << txt20; }
 	return;
-}
-void menu2() {
-	create();
 }
 int menu(int proideno,int& zabeg) {
 	int r = 0;
@@ -425,7 +426,7 @@ int menu(int proideno,int& zabeg) {
 		else if (chto == 4) { languge = 0; russian(); r = 1; save(proideno,zabeg); }
 		else if (chto == 5) { languge = 1; english(); r = 1; save(proideno,zabeg); }
 	} while (r);
-	menu2();
+	create();
 	return 1;
 }
 void sobrat(int x, int y,double& iron,double& nickel) {
@@ -859,6 +860,10 @@ void lechit_bolezn(double& bolezn,double& infection,double& krov,double& imunite
 	vector_lekarstvo.erase(vector_lekarstvo.begin()+chto);
 	std::cout << txt_gotovo;
 }
+void zhgut_operation() {
+
+
+}
 int main()
 {
 	system("chcp 1251 > nul");
@@ -920,8 +925,6 @@ int main()
 		int znachenie_es = -1;
 		int znachenie_chai = -1;
 		int pribor_chai = -1;
-
-		int zhgut = 0;
 
 		int spear = -1;
 		int fakel = -1;
@@ -1031,7 +1034,8 @@ int main()
 				}
 				if (bint > 0) { std::cout << txt0555 << txt100 << bint << txt101; }
 				if (bint > 0 && vector_krov.size() > 0) { std::cout << txt00555; }
-				if (vector_lekarstvo.size() > 0 && bolezn > -1) { std::cout << txt701 << txt100 << vector_lekarstvo.size() << txt101; }
+				if (vector_lekarstvo.size() > 0) { std::cout << txt701 << txt100 << vector_lekarstvo.size() << txt101 << txt0701; }
+				
 				if (iron > 0) { std::cout << txt56 << txt100 << iron << txt101; }
 				if (copper > 0) { std::cout << txt57 << txt100 << copper << txt101; }
 				if (derevo > 0) { std::cout << txt58 << txt100 << derevo << txt101; }
@@ -1052,6 +1056,8 @@ int main()
 				if (spear > -1) { std::cout << txt121 << txt100 << spear << txt101; }
 				if (fakel > -1) { std::cout << txt122 << txt100 << fakel << txt101; }
 				if (look > -1) { std::cout << txt123 << txt100 << look << txt101; }
+				if (vector_zhgut.size() > 0) { std::cout << txt018 << txt100 << vector_zhgut.size(); }
+				if (vector_zhgut.size() > 0 && vector_krov.size() > 0) { std::cout << txt019; }
 
 				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt74 << vremya << txt072 << record << txt71 << txt073 << zabeg << "\n\n\n";
 				bool cikl = 0;
@@ -1091,7 +1097,7 @@ int main()
 						}
 					}
 					else if (chto == 9) {
-						craft(pribor, priborf, invertor, organ, imunitet, infection, cat, pribor_metall, pribor_es, znachenie_metall, znachenie_es, znachenie_chai, spear, fakel, look, pribor_chai, organ2, iron, nickel, derevo, copper, coal, steel.kolichestvo, listya, bint, steel.kachestvo, mednaya_pech,zhgut);
+						craft(pribor, priborf, invertor, organ, imunitet, infection, cat, pribor_metall, pribor_es, znachenie_metall, znachenie_es, znachenie_chai, spear, fakel, look, pribor_chai, organ2, iron, nickel, derevo, copper, coal, steel.kolichestvo, listya, bint, steel.kachestvo, mednaya_pech);
 						cikl2 = 1;
 					}
 					else if (chto == 4 && faza > 0) {
@@ -1181,6 +1187,7 @@ int main()
 					else if (chto == 5 && mozhno_listya) { sobrat_listya(listya, mozhno_listya); mozhno_v_pisheru = 0;  mozhno_v_les = 0; }
 					else if (chto == 6 && bint > 0 && vector_krov.size() > 0) { krov_bint(bint); cikl2 = 1; }
 					else if (chto == 10 && vector_lekarstvo.size() > 0) { lechit_bolezn(bolezn, infection, krov, imunitet); peredoz_lekk = 1; cikl2 = 1; }
+					else if (chto == 7 && vector_zhgut.size() > 0 && vector_krov.size() > 0) { zhgut_operation(); cikl2 = 1; }
 					else { std::cout << txt20; cikl2 = 1; cikl = 0; }
 
 				} while (cikl);
