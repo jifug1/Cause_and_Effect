@@ -805,6 +805,12 @@ void sobrat_listya(int& listya,bool& mozhno_listya) {
 	std::cout << txt130 << skolko_sobrano << "\n";
 	mozhno_listya = 0;
 }
+void delete_vector_krov(int index) {
+	vector_krov.erase(vector_krov.begin() + index);
+	for (int i = 0; i < vector_zhgut.size(); ++i) {
+		if (vector_zhgut[i].getter_index() > -1) { vector_zhgut[i].izmenenie_index(vector_zhgut[i].getter_index() - 1); }
+	}
+}
 void krov_bint(int& bint) {
 	bool k1 = 0;
 	bool k2 = 0;
@@ -825,7 +831,7 @@ void krov_bint(int& bint) {
 	int chto = vvod();
 
 	for (int index = 0; index < vector_krov.size(); ++index) {
-		if (chto == 1 && vector_krov[index].tyazhest == 1) { vector_krov.erase(vector_krov.begin() + index); --index; break; }
+		if (chto == 1 && vector_krov[index].tyazhest == 1) { delete_vector_krov(index); --index; break; }
 		else if (chto == 2 && vector_krov[index].tyazhest == 2) { vector_krov[index].tyazhest -= 1; break; }
 		else if (chto == 3 && vector_krov[index].tyazhest == 3) { vector_krov[index].tyazhest -= 1; break; }
 		else if (chto == 4 && vector_krov[index].tyazhest == 4) { vector_krov[index].tyazhest -= 1; break; }
@@ -874,6 +880,7 @@ void zhgut_operation() {
 			std::cout << txt022;
 			int chto2 = vvod();
 			if (!(chto2 > -1 && chto2 < vector_krov.size())) { return; }
+			if (vector_krov[chto2].index_ > -1) { std::cout << txt020; return; }
 			vector_zhgut[chto].izmenenie_index(chto2);
 			vector_krov[chto2].index_ = chto;
 
