@@ -806,10 +806,12 @@ void sobrat_listya(int& listya,bool& mozhno_listya) {
 	mozhno_listya = 0;
 }
 void delete_vector_krov(int index) {
-	vector_krov.erase(vector_krov.begin() + index);
+	
 	for (int i = 0; i < vector_zhgut.size(); ++i) {
-		if (vector_zhgut[i].getter_index() > -1) { vector_zhgut[i].izmenenie_index(vector_zhgut[i].getter_index() - 1); }
+		if (vector_zhgut[i].getter_index() == index) { vector_zhgut[i].izmenenie_index(-1); }
+		else if (vector_zhgut[i].getter_index() > -1 && vector_zhgut[i].getter_index() > index) { vector_zhgut[i].izmenenie_index(vector_zhgut[i].getter_index() - 1); }
 	}
+	vector_krov.erase(vector_krov.begin() + index);
 }
 void krov_bint(int& bint) {
 	bool k1 = 0;
