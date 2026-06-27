@@ -57,6 +57,9 @@ public:
 		else if (steel_kachestvo <= 120) { kachestvo = 5; }
 		else if (steel_kachestvo <= 140) { kachestvo = 6; }
 	}
+	void izmenenie_index(int index) {
+		index_ = index;
+	}
 	double getter() const { return kachestvo; }
 	int getter_index() const { return index_; }
 };
@@ -852,17 +855,33 @@ void zhgut_operation() {
 	int index = 0;
 	while (index < vector_zhgut.size()) {
 		if (vector_zhgut[index].getter_index() > -1) { std::cout << "\n" << index << txt020 << vector_zhgut[index].getter_index(); }
-		else { std::cout << "\n" << index; }
+		else { std::cout << "\n " << index; }
 		++index;
 	}
 	std::cout << txt021;
 	int chto = vvod();
-	if(chto > -1 && chto < vector_zhgut.size()){
-		if(vector_zhgut[chto].getter_index() <= -1) {
-		
-		
+	if(chto > -1 && chto < vector_zhgut.size()) {
+		if (vector_zhgut[chto].getter_index() <= -1) {
+			int index = 0;
+			while (index < vector_krov.size()) {
+				std::cout << "\n " << index;
+				if (vector_krov[index].tyazhest == 1) { std::cout << txt055; }
+				else if (vector_krov[index].tyazhest == 2) { std::cout << txt056; }
+				else if (vector_krov[index].tyazhest == 3) { std::cout << txt057; }
+				else if (vector_krov[index].tyazhest == 4) { std::cout << txt058; }
+				++index;
+			}
+			std::cout << txt022;
+			int chto2 = vvod();
+			if (!(chto2 > -1 && chto2 < vector_krov.size())) { return; }
+			vector_zhgut[chto].izmenenie_index(chto2);
+			vector_krov[chto2].index_ = chto;
 		}
-
+		else{
+		
+			vector_zhgut[chto].izmenenie_index(-1);
+			std::cout << txt023;
+		}
 
 	}
 	else { std::cout << txt20; return; }
