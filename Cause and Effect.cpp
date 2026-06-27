@@ -3,25 +3,21 @@
 #include <chrono>
 #include <vector>
 #include <fstream>
-#include <thread>
 #include <string>
 #include <conio.h>
 #include "text.h"
-#include <mutex>
+#include <thread>
+
+
 int kakaya_shapka = 3;
 int skoko_chaev = 3;
-int potok = 1;
 
-int sec = 0;
 int record = 0;
 int languge = 0;
-int vremya = 0;
 int vsego_proideno = 0;
-int save_time = 0;
 int save_proideno = 0;
 int zabeg = 0;
 
-std::mutex save_mutex;
 std::mt19937 chislo(std::chrono::steady_clock::now().time_since_epoch().count());
 std::uniform_int_distribution<int> znacheniya_shapok(-1, 1);
 std::uniform_int_distribution<int> kakoy_chai(0, skoko_chaev);
@@ -43,11 +39,12 @@ struct cave {
 struct krovotichenie {
 	int tyazhest;
 	int timer_zhguta = -1;
+	int index_ = -1;
 };
 std::vector<cave> entity{
 	{0,0,0},
 };
-struct lekarstvo{
+struct lekarstvo {
 private:
 	double kachestvo;
 	int index_ = -1;
@@ -61,6 +58,7 @@ public:
 		else if (steel_kachestvo <= 140) { kachestvo = 6; }
 	}
 	double getter() const { return kachestvo; }
+	int getter_index() const { return index_; }
 };
 std::vector<lekarstvo> vector_zhgut;
 std::vector<lekarstvo> vector_lekarstvo;
@@ -129,30 +127,19 @@ int srazu_vvod() {
 	int x = _getch();
 	return x;
 }
-std::thread a([&]() {
-	while (potok) {
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-		save_mutex.lock();
-		++sec;
-		save_mutex.unlock();
-	}
-}
-);
 void save(int proideno,int& zabeg) {
 	std::ofstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
 
 		vsego_proideno = proideno + save_proideno;
-		vremya = sec + save_time;
 		if (proideno > record) { record = proideno; }
 
-		file << vsego_proideno << " " << vremya << " " << record << " " << languge << " " << zabeg;
+		file << vsego_proideno << " " << record << " " << languge << " " << zabeg;
 }
 void read_save() {
 	std::ifstream file("Cause_and_Effect_save_file.txt");
 		if (!file) { return; }
-		file >> save_proideno >> save_time >> record >> languge >> zabeg;
+		file >> save_proideno >> record >> languge >> zabeg;
 }
 void create(int x = 4, int y = 4, int z = 4) {
 	shapka.clear();
@@ -862,7 +849,23 @@ void lechit_bolezn(double& bolezn,double& infection,double& krov,double& imunite
 }
 void zhgut_operation() {
 
+	int index = 0;
+	while (index < vector_zhgut.size()) {
+		if (vector_zhgut[index].getter_index() > -1) { std::cout << "\n" << index << txt020 << vector_zhgut[index].getter_index(); }
+		else { std::cout << "\n" << index; }
+		++index;
+	}
+	std::cout << txt021;
+	int chto = vvod();
+	if(chto > -1 && chto < vector_zhgut.size()){
+		if(vector_zhgut[chto].getter_index() <= -1) {
+		
+		
+		}
 
+
+	}
+	else { std::cout << txt20; return; }
 }
 int main()
 {
@@ -875,9 +878,8 @@ int main()
 		menu(proideno,zabeg);
 	}
 	while (true) {
-		save_mutex.lock();
 		read_save();
-		save_mutex.unlock();
+		
 
 		vector_krov.clear();
 		vector_lekarstvo.clear();
@@ -1059,7 +1061,7 @@ int main()
 				if (vector_zhgut.size() > 0) { std::cout << txt018 << txt100 << vector_zhgut.size(); }
 				if (vector_zhgut.size() > 0 && vector_krov.size() > 0) { std::cout << txt019; }
 
-				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt74 << vremya << txt072 << record << txt71 << txt073 << zabeg << "\n\n\n";
+				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt072 << record << txt71 << txt073 << zabeg << "\n\n\n";
 				bool cikl = 0;
 				do {
 					cikl = 0;
@@ -1241,11 +1243,20 @@ int main()
 			if (krov <= 0) { golo -= 2; }
 			else if (krov > 100 && krov_sto <= 0) { vector_krov.push_back({ 1 }); krov_sto = 5; }
 			for (int index = 0; index < vector_krov.size(); ++index) {
-				int sluchano = chance(chislo);
-				if (vector_krov[index].tyazhest == 1) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; } krov -= 2.0; }
-				else if (vector_krov[index].tyazhest == 2) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 3.0; }
-				else if (vector_krov[index].tyazhest == 3) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 5.0; }
-				else if (vector_krov[index].tyazhest == 4) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 6.0; }
+				
+				if(vector_krov[index].index_ > -1 && vector_krov[index].timer_zhguta > 0) {
+					--vector_krov[index].timer_zhguta;
+				}
+				else if (vector_krov[index].index_ > -1 && vector_krov[index].timer_zhguta == 0) {
+					infection += 3.0;
+				}
+				else {
+					int sluchano = chance(chislo);
+					if (vector_krov[index].tyazhest == 1) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; } krov -= 2.0; }
+					else if (vector_krov[index].tyazhest == 2) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 3.0; }
+					else if (vector_krov[index].tyazhest == 3) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 5.0; }
+					else if (vector_krov[index].tyazhest == 4) { if (sluchano <= 1.0 && bolezn <= -1.0) { bolezn = 20.0; bollezn = 0; }krov -= 6.0; }
+				}
 
 			}
 			if (bolezn > -1 && bollezn && bolezn < 100) {
@@ -1278,11 +1289,7 @@ int main()
 				golo = 0;
 				bolezn = -1;
 			}
-
-			save_mutex.lock();
 			save(proideno,zabeg);
-			save_mutex.unlock();
-
 			if (proideno >= porog_sbrosa) {
 				porog_sbrosa += 100;
 				create();
@@ -1290,7 +1297,5 @@ int main()
 
 		}
 	}
-	potok = 0;
-	a.join();
 	std::cout << " конец\n ";
 	return 0;}
