@@ -3,10 +3,11 @@
 std::string txt_gotovo = " готово\n";
 std::string txt_ = ". . .\nобучение: у вас есть здоровье. вы будете встречать монстров.\nу них есть характеристики, какая шапка на монстре, какой на нём шарф, какой у него любимый чай, и так далее.\nпри начале игры генерируется 4 шапки 4 шарфа 4 чая, у всех у них случайные значения, у шапки и шарфа это значение от -1 до 1, у чая это значение от 0 до 4.\nзначения характеристик первого монстра вы всегда видите, так что запомните значения шапок шарфов и чаёв\nмонстр вас будет кусать в зависемости от этих значений. монстр вас кусает когда сумма шапки и шарфа -1 и меньше,\nесли причина укуса в этом то нужно кусать монстра в ответ, тогда значение шапки либо шарфа увеличится (когда меняется значение то это пишется на экран)\nтакже монстр вас кусает когда значение чая 3 и выше, в этом случае нужно пройти мимо монстра\nу каждого монстра выберается случайная шапка, шарф и любимый чай (из тех которые сгенерировались при начале игры)\nесли монстр вас не укусил, вариант пройти мимо точно ничего не сделает\nтак же в игре есть много другого контента, изучайте игру\n. . .\n";
 std::string txt0 = "код игры полностью написан jifug\n";
-std::string txt_version = "4.3.7.17\n";
+std::string txt_version = "4.3.8.17\n";
 std::string txt1 = " МЕНЮ\n нажмите 1 (затем ENTER) чтобы начать играть. нажмите 2 (затем ENTER) чтобы продолжить игру.\n нажмите 3 (затем ENTER) чтобы прочитать обучение (без него вы не сможете нормально играть)\n";
 std::string txt01 = " нажмите 4 чтобы поставить Русский язык\n";
 std::string txt02 = " Press 5 to set English language(translated by DeepSeek)\n";
+std::string txtUvas = " у вас ";
 
 std::string txt2 = " 0 выйти из меню крафта (если кроме этого текста здесь ничего не написано, значит вы не можете ничего создать. если кроме этого текста здесь чтото написано, значит вы можете это создать)\n";
 std::string txt3 = " 1 создать прибор для просмотра значения шапки за 0.600 кг железа (заряд 1)\n";
@@ -91,7 +92,7 @@ std::string txt552 = " 4 ничего не делать. 9 меню крафта
 std::string txt553 = " 0 попасть в меню. 1 продолжить идти.";
 std::string txt554 = " 2 пойти в пищеру.";
 std::string txt0554 = " 5 пойти собирать листья.";
-std::string txt0555 = "\n у вас бинтов: ";
+std::string txt0555 = " бинтов: ";
 std::string txt00555 = " (6 перебентовать кровотичение бинтом)";
 std::string txt10555 = " ";
 
@@ -110,18 +111,19 @@ std::string txtK3 = " 3 перебентовать сильное кровоти
 std::string txtK4 = " 4 перебентовать критически мощное кровотичение\n";
 
 
-std::string txt055 = "\n у вас лёгкое кровотечение";
-std::string txt056 = "\n у вас среднее кровотичение";
-std::string txt057 = "\n у вас сильное кровотичение";
-std::string txt058 = "\n у вас критически мощное кровотичение";
+std::string txt055 = " лёгкое кровотечение";
+std::string txt056 = " среднее кровотичение";
+std::string txt057 = " сильное кровотичение";
+std::string txt058 = " критически мощное кровотичение";
 
-std::string txt56 = "\n у вас кг железа: ";
-std::string txt57 = "\n у вас кг меди: ";
-std::string txt58 = "\n у вас кг дерева: ";
-std::string txt59 = "\n у вас кг угля: ";
-std::string txt60 = "\n у вас кг никеля: ";
-std::string txt61 = "\n у вас кг стали: ";
-std::string txtListya = "\n у вас листьев: ";
+std::string txt56 = " кг железа: ";
+std::string txt57 = " кг меди: ";
+std::string txt58 = " кг дерева: ";
+std::string txt59 = " кг угля: ";
+std::string txt60 = " кг никеля: ";
+std::string txt61 = " кг стали: ";
+std::string txt061 = " качество вашей стали: ";
+std::string txtListya = " листьев: ";
 
 std::string txt62 = "\n заряд прибора для увелеченя значений шапок: ";
 std::string txt062 = " (11 использовать)";
@@ -262,6 +264,11 @@ void russian() {
      txt017 = " кг стали\n";
      txt018 = "\n у вас жгутов: ";
      txt019 = " (7 наложить/снять жгут)";
+     txtUvas = " у вас ";
+     txt020 = " наложен на кровотичение: ";
+     txt021 = "\n (-1 выход) напишите индекс жгута чтобы взаимодействовать с ним";
+     txt022 = "\n выберите кровотичение чтобы наложить на него жгут";
+     txt023 = "\n вы сняли жгут";
 
      txtZ1 = "1 прибор для просмотра значений шапок.";
      txtZ2 = " 2 прибор для просмотра значений шарфов.";
@@ -295,9 +302,9 @@ void russian() {
    txt33 = "чёрный";
     txt34 = "кофе";
     txt35 = "вкусный";
-     txt36 = "\n . . . шапка:  ";
-    txt37 = "  шарф:  ";
-    txt38 = "  любимый чай:  ";
+     txt36 = "\n . . . шапка монстра:  ";
+    txt37 = "  шарф монстра:  ";
+    txt38 = "  любимый чай монстра:  ";
 txt39 = "ТЭС";
     txt40 = "ГЭС";
    txt41 = "ВЭС";
@@ -306,8 +313,8 @@ txt39 = "ТЭС";
      txt44 = "вольфрам";
      txt45 = "хром";
      txt46 = "цинк";
-     txt47 = " любимый тип электростанций:  ";
-     txt48 = "  любимый металл:  ";
+     txt47 = " любимый тип электростанций монстра:  ";
+     txt48 = "  любимый металл монстра:  ";
      txt49 = "  . . .\n\n";
      txt50 = "\n 0 попасть в меню. 1 укусить. 2 пройти мимо. 3 поздароваться. 4 рассказать анекдот. 9 меню крафта.";
      txt51 = "\n . . . . . вы остановились идти по тропинке в лесу . . . . .";
@@ -316,7 +323,7 @@ txt39 = "ТЭС";
      txt553 = " 0 попасть в меню. 1 продолжить идти.";
      txt554 = " 2 пойти в пищеру.";
      txt0554 = " 5 пойти собирать листья.";
-     txt0555 = "\n у вас бинтов: ";
+     txt0555 = " бинтов: ";
      txt00555 = " (6 перебентовать кровотичение бинтом)";
 
     txt52 = "\n [===============\n";
@@ -334,18 +341,19 @@ txt39 = "ТЭС";
     txtK4 = " 4 перебентовать критически мощное кровотичение\n";
 
 
-   txt055 = "\n у вас лёгкое кровотечение";
-   txt056 = "\n у вас среднее кровотичение";
-    txt057 = "\n у вас сильное кровотичение";
-    txt058 = "\n у вас критически мощное кровотичение";
+   txt055 = " лёгкое кровотечение";
+   txt056 = " среднее кровотичение";
+    txt057 = " сильное кровотичение";
+    txt058 = " критически мощное кровотичение";
 
-    txt56 = "\n у вас кг железа: ";
-    txt57 = "\n у вас кг меди: ";
-    txt58 = "\n у вас кг дерева: ";
-     txt59 = "\n у вас кг угля: ";
-   txt60 = "\n у вас кг никеля: ";
-   txt61 = "\n у вас кг стали: ";
-    txtListya = "\n у вас листьев: ";
+    txt56 = " кг железа: ";
+    txt57 = " кг меди: ";
+    txt58 = " кг дерева: ";
+     txt59 = " кг угля: ";
+   txt60 = " кг никеля: ";
+   txt61 = " кг стали: ";
+   txt061 = " качество вашей стали: ";
+    txtListya = " листьев: ";
 
    txt62 = "\n заряд прибора для увелеченя значений шапок: ";
     txt062 = " (11 использовать)";
@@ -452,10 +460,6 @@ txt99 = " значение любимого чая монстра: ";
     txtMA1 = " нажмите 1 чтобы атаковать монстра копьём\n";
      txtMA2 = " нажмите 2 чтобы атаковать монстра факелом\n";
     txtMA3 = " нажмите 3 чтобы атаковать монстра луком\n";
-
-    
-
-
 }
 void english() {
     txt_ = ". . .\n"
@@ -553,12 +557,13 @@ void english() {
     txt053 = "  organ2:  ";
     txt54 = "  infection:  ";
     txt55 = "  immunity:  ";
-    txt56 = "\n you have kg of iron: ";
-    txt57 = "\n you have kg of copper: ";
-    txt58 = "\n you have kg of wood: ";
-    txt59 = "\n you have kg of coal: ";
-    txt60 = "\n you have kg of nickel: ";
-    txt61 = "\n you have kg of steel: ";
+    txt56 = " kg of iron: ";
+    txt57 = " kg of copper: ";
+    txt58 = " kg of wood: ";
+    txt59 = " kg of coal: ";
+    txt60 = " kg of nickel: ";
+    txt61 = " kg of steel: ";
+    txt061 = " quality of your steel: ";
     txt62 = "\n charge of hat device (use 11): ";
     txt63 = "\n charge of scarf device (use 22): ";
     txt64 = "\n charge of inverter (use 33): ";
@@ -590,12 +595,12 @@ void english() {
     txt0083 = "monster: he won't protect you, because he mined 2.786885245901639 times less uranium ore\n";
     
     txt054 = "  disease:  ";
-    txt055 = "\n you have light bleeding";
-    txt056 = "\n you have medium bleeding";
-    txt057 = "\n you have heavy bleeding";
-    txt058 = "\n you have critically severe bleeding";
+    txt055 = " light bleeding";
+    txt056 = " medium bleeding";
+    txt057 = " heavy bleeding";
+    txt058 = " critically severe bleeding";
     txt0554 = " 5 go collect leaves.";
-    txt0555 = "\n you have bandages: ";
+    txt0555 = " bandages: ";
     txt_exit = " 0 exit\n";
     txtK1 = " 1 bandage light bleeding\n";
     txtK2 = " 2 bandage medium bleeding\n";
@@ -664,7 +669,7 @@ void english() {
     txt1021 = " 24 craft disease medicine for 0.200 kg of steel and 1 bandage\n";
 
     txt00555 = " (6 bandage the bleeding)";
-    txtListya = "\n you have leaves: ";
+    txtListya = " leaves: ";
     txt062 = " (use 11)";
     txt063 = " (use 22)";
     txt064 = " (use 33)";
@@ -687,6 +692,17 @@ void english() {
     txt70 = "\n charge of tea-viewing device: ";
     txt700 = "\n charge of tea-lowering device: ";
 
-    
+    txtUvas = " you have ";
+
+    txt016 = " 25 craft a tourniquet for ";
+    txt017 = " kg of steel\n";
+    txt018 = "\n you have tourniquets: ";
+    txt019 = " (7 apply/remove tourniquet)";
+    txt020 = " applied to bleeding: ";
+    txt021 = "\n (-1 exit) enter the index of the tourniquet to interact with it";
+    txt022 = "\n choose a bleeding to apply the tourniquet to";
+    txt023 = "\n you removed the tourniquet";
+
+    txt073 = "  total runs:  ";
 }
 #endif
