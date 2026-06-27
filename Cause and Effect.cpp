@@ -876,9 +876,19 @@ void zhgut_operation() {
 			if (!(chto2 > -1 && chto2 < vector_krov.size())) { return; }
 			vector_zhgut[chto].izmenenie_index(chto2);
 			vector_krov[chto2].index_ = chto;
+
+			int ustanovka_timer_zhguta = 1;
+			if (vector_zhgut[chto].getter() == 1) { ustanovka_timer_zhguta = 3; }
+			else if (vector_zhgut[chto].getter() == 2) { ustanovka_timer_zhguta = 5; }
+			else if (vector_zhgut[chto].getter() == 3) { ustanovka_timer_zhguta = 8; }
+			else if (vector_zhgut[chto].getter() == 4) { ustanovka_timer_zhguta = 10; }
+			else if (vector_zhgut[chto].getter() == 5) { ustanovka_timer_zhguta = 13; }
+			else if (vector_zhgut[chto].getter() == 6) { ustanovka_timer_zhguta = 16; }
+			if (vector_krov[chto2].timer_zhguta <= -1 || vector_krov[chto2].timer_zhguta > ustanovka_timer_zhguta) { vector_krov[chto2].timer_zhguta = ustanovka_timer_zhguta; }
+
 		}
 		else{
-		
+			vector_krov[vector_zhgut[chto].getter_index()].index_ = -1;
 			vector_zhgut[chto].izmenenie_index(-1);
 			std::cout << txt023;
 		}
@@ -1077,7 +1087,7 @@ int main()
 				if (spear > -1) { std::cout << txt121 << txt100 << spear << txt101; }
 				if (fakel > -1) { std::cout << txt122 << txt100 << fakel << txt101; }
 				if (look > -1) { std::cout << txt123 << txt100 << look << txt101; }
-				if (vector_zhgut.size() > 0) { std::cout << txt018 << txt100 << vector_zhgut.size(); }
+				if (vector_zhgut.size() > 0) { std::cout << txt018 << txt100 << vector_zhgut.size() << txt101; }
 				if (vector_zhgut.size() > 0 && vector_krov.size() > 0) { std::cout << txt019; }
 
 				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt072 << record << txt71 << txt073 << zabeg << "\n\n\n";
