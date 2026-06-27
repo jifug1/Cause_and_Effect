@@ -176,7 +176,7 @@ void create(int x = 4, int y = 4, int z = 4) {
 
 }
 void craft(int& pribor, int& priborf, int& invertor, bool& organ, double& imunitet, double& infection, int& cat, int& pribor_metall, int& pribor_es, int& znachenie_metall, int& znachenie_es, int& znachenie_chai, int& spear, int& fakel, int& look, int& pribor_chai, bool& organ2, double& iron, double& nickel, double& derevo, double& copper, double& coal, double& steel, int& listya, int& bint, double& steel_kachestvo, bool& mednaya_pech) {
-	int cena_zhgut_steel = 0.100;
+	double cena_zhgut_steel = 0.100;
 	
 	std::cout << txt2;
 	if (iron >= 0.600 && pribor <= -1) { std::cout << txt3; }
@@ -1099,7 +1099,7 @@ int main()
 				if (vector_zhgut.size() > 0) { std::cout << txt018 << txt100 << vector_zhgut.size() << txt101; }
 				if (vector_zhgut.size() > 0 && vector_krov.size() > 0) { std::cout << txt019; }
 
-				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt072 << record << txt71 << txt073 << zabeg << "\n\n\n";
+				std::cout << txt72 << proideno << txt73 << vsego_proideno << txt072 << record << txt073 << zabeg << txt71 << "\n\n\n";
 				bool cikl = 0;
 				do {
 					cikl = 0;
