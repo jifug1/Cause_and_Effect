@@ -29,8 +29,8 @@ std::uniform_int_distribution<int> chance(1, 100);
 
 struct kto {
 	int kak;
-	double kg;};
-
+	double kg;
+};
 struct cave {
 	int x = 0;
 	int y = 0;
@@ -93,9 +93,6 @@ std::vector<kto> nick{
 	{0,0.160},
 	{0,0.175},
 };
-std::vector<kto> es;
-std::vector<kto> metall;
-
 int golo = 14;
 bool igra = 1;
 
@@ -144,12 +141,10 @@ void read_save() {
 		if (!file) { return; }
 		file >> save_proideno >> record >> languge >> zabeg;
 }
-void create(int x = 4, int y = 4, int z = 4) {
+void create(int x = 4, int y = 4) {
 	shapka.clear();
 	sharf.clear();
 	zele.clear();
-	es.clear();
-	metall.clear();
 
 	int r = x;
 	while (r) {
@@ -163,11 +158,6 @@ void create(int x = 4, int y = 4, int z = 4) {
 		zele.push_back({ bite_chai(chislo) });
 		--rr;
 
-	}
-	while (z) {
-		es.push_back({ bite_chai(chislo),0.0 });
-		metall.push_back({ bite_chai(chislo),0.0 });
-		--z;
 	}
 	skoko_chaev = y - 1;
 	kakaya_shapka = x - 1;
@@ -615,60 +605,17 @@ void operation(int x = 0, int index = 0, int i = 0) {
 	else if (x == 3 && zele[index].kak > 0) {
 		std::cout << txt92; --zele[index].kak;
 	}
-	else if(x == 4){
-		if (es[index].kak > 0) { std::cout << txt78; --es[index].kak; }
-		else { std::cout << txt79; --metall[i].kak; }
-	}
-	else if (x == 5) {
-		if (es[index].kak < 4) { std::cout << txt93; ++es[index].kak; }
-		else if(metall[i].kak < 4) { std::cout << txt94; ++metall[i].kak; }
-	}
-
 }
 void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper,double& copper,double& iron,double& nickel,double& derevo) {
-	int chto;
-	std::cout << txt80;
-	chto = vvod();
-	if (chto == 1) {
-		std::cout << txt81;
-		chto = vvod();
-		if (chto == 1) {
-			std::cout << txt83;
-		}
-		else if (chto == 2) {
-			std::cout << txt84;
-			chto = vvod();
-			if (chto == 1) {
-				std::cout << txt084;
-			}
-			else if (chto == 2) {
-				std::cout << txt0083;
-			}
-		}
-	}
-	else if (chto == 2) {
-		std::cout << txt82;
-		chto = vvod();
-		if (chto == 2) {
-			std::cout << txt082;
-		}
+	int chto = 0;
+	bool cikl = 1;
+	
 
-	}
-	if (otvet == 1) {
-		std::cout << txt85 << sz[szeleza].kg << txt86 << der[dereva].kg << txt87;
-	}
-	else if (otvet == 2) {
-		std::cout << txt85 << nick[Nickel].kg << txt88 << med[Copper].kg << txt89;
-	}
-	chto = vvod();
 
-	if (otvet == 1) {
-		if (chto == 1) { iron += sz[szeleza].kg; }
-		else { derevo += der[dereva].kg; }
-	}
-	else if (otvet == 2) {
-		if (chto == 1) { nickel += nick[Nickel].kg; }
-		else { copper += med[Copper].kg; }
+
+	while (cikl) {
+
+
 
 	}
 
@@ -896,9 +843,6 @@ int main()
 			int chai = kakoy_chai(chislo);
 
 			int otvet = otvety(chislo);
-			int ES = podarok(chislo);
-			int ME = podarok(chislo);
-			int esme = es[ES].kak + metall[ME].kak;
 
 			bool prodolszit_put = 0;
 			bool mozhno_v_les = 1;
@@ -908,7 +852,6 @@ int main()
 			bool uslovie_ukusa = 0;
 			bool uslovie_bite = 0;
 			bool uslovie_bite2 = 0;
-			bool uslovie_bite_esme = 0;
 
 			bool peredoz_lekk = 0;
 			bool inffection = 1;
@@ -946,7 +889,7 @@ int main()
 					pishutsya_nazvaniya_shapok(shp, shf, c, s, f, chai);
 
 					std::cout << txt36 << txt100 << shp << txt101 << txt37 << txt100 << shf << txt101 << txt38 << txt100 << c << txt101 << "\n";
-					if (pokozat == 1) { std::cout << txt110 << shp << ":  " << txt100 << shapka[s].kak << txt101 << "  " << shf << ":  " << txt100 << sharf[f].kak << txt101 << "  " << c << ":  " << txt100 << zele[chai].kak << txt101 << "  " << e << ":  " << txt100 << es[ES].kak << txt101 << "  " << m << ":  " << txt100 << metall[ME].kak << txt101 << txt49; pokozat = 0; }
+					if (pokozat == 1) { std::cout << txt110 << shp << ":  " << txt100 << shapka[s].kak << txt101 << "  " << shf << ":  " << txt100 << sharf[f].kak << txt101 << "  " << c << ":  " << txt100 << zele[chai].kak << txt101 << txt49; pokozat = 0; }
 
 					std::cout << txt52;
 					znacheniya_igroka(organ, infection, imunitet, krov, bolezn);
@@ -990,7 +933,6 @@ int main()
 							operation(1, s, f);
 						}
 						else if (uslovie_bite2) { operation(2, chai); }
-						else if (uslovie_bite_esme) { operation(4, ES, ME); }
 						else {
 							if (sf == bite + 1) {
 								razgovor(otvet, szeleza, dereva, Nickel, Copper, copper, iron, nickel, derevo);
@@ -1005,9 +947,6 @@ int main()
 						else if (uslovie_bite) {
 							operation(0, s, f);
 						}
-						else if (uslovie_bite_esme) {
-							operation(4, ES, ME);
-						}
 					}
 					else if (chto == 3 && faza > 0 && !uslovie_ukusa) {
 						if (sf >= bite + 2) {
@@ -1020,15 +959,6 @@ int main()
 					else if (chto == 9) {
 						craft(organ, imunitet, infection, cat, spear, fakel, look, pribor_chai, iron, nickel, derevo, copper, coal, steel.kolichestvo, listya, bint, steel.kachestvo, mednaya_pech);
 						cikl2 = 1;
-					}
-					else if (chto == 4 && faza > 0) {
-						if (uslovie_bite_esme || !(uslovie_bite || uslovie_bite2)) {
-							operation(5, ES, ME);
-						}
-						else if (uslovie_bite) {
-							operation(0, s, f);
-						}
-						else if (uslovie_bite2) { operation(2, chai); }
 					}
 					else if (chto == 99 && pribor_chai > 0 && faza > 0 && zele[chai].kak > 0) {
 						--pribor_chai;
