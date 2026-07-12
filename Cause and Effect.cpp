@@ -74,10 +74,27 @@ struct struct_cena {
 	double steel = 0.0;
 	int listya = 0;
 	std::string text = null;
+	std::string text2 = null;
+	std::string text3 = null;
+	std::string text4 = null;
+	std::string text5 = null;
+	std::string text6 = null;
+	std::string text7 = null;
+	std::string text8 = null;
+	std::string text9 = null;
+	std::string text10 = null;
+	std::string text11 = null;
+	std::string text12 = null;
 };
 class item {
 	int no_kg = 0;
 	double kg = 0.0;
+	double kachestvo = 0.0;
+	int zaryad = -1;
+	bool est = 0;
+	bool flag = 0;
+	int bite = -100;
+	bool nizhe_vyshe = 0;
 	struct_cena cena;
 public:
 	void set_no_kg(bool x, int chislo) {
@@ -89,15 +106,22 @@ public:
 		else { kg -= chislo; }
 	}
 	template <typename T>
-	T get(int x) {
+	T get(T x) {
 		if (x == 1) { return no_kg; }
 		else if (x == 2) { return kg; }
-		else if (x == 3) { return cena; }
+		else if (x == 4) { return kachestvo; }
 	}
+	template <typename t>
+	t& get_zaryad(t x) {
+		if (x == 1) { return zaryad; }
+		else if (x == 2) { return est; }
+		else if(x == 3){return flag}
+		else if
+
+	}
+	struct_cena& get_cena() { return cena; }
 };
-std::vector<kto> shapka;
-std::vector<kto> sharf;
-std::vector<kto> zele;
+std::vector<item> vector_item;
 std::vector<kto> sz{
 	{0,0.150},
 	{0,0.200},
@@ -170,10 +194,10 @@ void read_save() {
 		if (!file) { return; }
 		file >> save_proideno >> record >> languge >> zabeg;
 }
-void create(int x = 4, int y = 4) {
-	shapka.clear();
-	sharf.clear();
-	zele.clear();
+void create() {
+	for (int x = 0; x < vector_item.size(); ++x) {
+		if(vector_item[x].)
+	}
 
 	int r = x;
 	while (r) {
@@ -194,7 +218,10 @@ void create(int x = 4, int y = 4) {
 	kakoy_chai.param(std::uniform_int_distribution<int>::param_type(0, skoko_chaev));
 
 }
-void craft(bool& organ, double& imunitet, double& infection, int& cat, int& spear, int& fakel, int& look, int& pribor_chai, double& iron, double& nickel, double& derevo, double& copper, double& coal, double& steel, int& listya, int& bint, double& steel_kachestvo, bool& mednaya_pech) {
+void UI(int x) {
+
+}
+void craft(bool& organ, double& imunitet, double& infection, int& cat, int& spear, int& fakel, int& look, int& pribor_chai, item& iron, item& nickel, item& derevo, item& copper, item& coal, item& steel, item& listya, int& bint, bool& mednaya_pech) {
 	double cena_zhgut_steel = 0.100;
 	
 	std::cout << txt2;
@@ -375,20 +402,20 @@ int menu(int proideno,int& zabeg) {
 	create();
 	return 1;
 }
-void sobrat(int x, int y,double& iron,double& nickel) {
+void sobrat(int x, int y, item& iron, item& nickel) {
 	int index = 0;
 	while (index < entity.size()) {
 		if (entity[index].id == 1 && entity[index].x == x && entity[index].y == y) {
 			entity.erase(entity.begin() + index);
 			--index;
-			nickel += 0.020;
+			nickel.set_kg(1,0.02);
 			std::cout << txt124;
 			break;
 		}
 		else if (entity[index].id == 2 && entity[index].x == x && entity[index].y == y) {
 			entity.erase(entity.begin() + index);
 			--index;
-			iron += 0.020;
+			iron.set_kg(1,0.02);
 			std::cout << txt125;
 			break;
 		}
@@ -430,7 +457,7 @@ void proverka_lovushka(int x, int y, int boevoy,int& spear) {
 		++index;
 	}
 }
-void pishera(bool& mozhno_v_pisheru,int& spear,double& iron,double& nickel,int proideno) {
+void pishera(bool& mozhno_v_pisheru,int& spear, item& iron, item& nickel,int proideno) {
 	bool vyhod = 1;
 	int razmer = 0;
 	entity[0].x = 0;
@@ -565,7 +592,7 @@ void pishera(bool& mozhno_v_pisheru,int& spear,double& iron,double& nickel,int p
 	}
 	mozhno_v_pisheru = 0;
 }
-void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo,double& infection) {
+void les(int& spear, int& fakel, int& look,bool& mozhno_v_les, item& derevo,double& infection) {
 	int oruzhie_u_monstra = bite_chai(chislo);
 	switch (oruzhie_u_monstra) {
 	case 0: { txt_monstr = txtM1; break; }
@@ -602,7 +629,7 @@ void les(int& spear, int& fakel, int& look,bool& mozhno_v_les,double& derevo,dou
 	else if (oruzhie_u_monstra == 3) { infection += 30.0; }
 	else if (oruzhie_u_monstra == 4) { vector_krov.push_back({ 4 }); }
 	}
-	else { std::cout << txt115; derevo += 0.400; }
+	else { std::cout << txt115; derevo.set_kg(1,0.4); }
 
 	mozhno_v_les = 0;
 }
@@ -634,7 +661,7 @@ void operation(int x = 0, int index = 0, int i = 0) {
 		std::cout << txt92; --zele[index].kak;
 	}
 }
-void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper,double& copper,double& iron,double& nickel,double& derevo) {
+void razgovor(int otvet,int szeleza,int dereva,int Nickel,int Copper, item& copper, item& iron, item& nickel, item& derevo) {
 	int chto = 0;
 	bool cikl = 1;
 	
@@ -687,10 +714,10 @@ void pishutsya_nazvaniya_shapok(std::string& shp,std::string& shf, std::string& 
 		c = txt35;
 	}
 }
-void sobrat_listya(int& listya,bool& mozhno_listya) {
+void sobrat_listya(item& listya,bool& mozhno_listya) {
 	int skolko_sobrano = 3;
 	
-	listya += skolko_sobrano;
+	listya.set_no_kg(1,skolko_sobrano);
 	std::cout << txt130 << skolko_sobrano << "\n";
 	mozhno_listya = 0;
 }
@@ -799,6 +826,7 @@ int main()
 	system("chcp 1251 > nul");
 	read_save();
 	if (languge == 1) { english(); }
+	else if (languge == 2) { russian(); }
 	int proideno = 0;
 
 	while (shapka.size() < 1 || sharf.size() < 1 || zele.size() < 1) {
@@ -820,28 +848,40 @@ int main()
 		int bite = -1;
 		int bite2 = 3;
 
-		struct Steel {
-			double kolichestvo = 0;
-			double kachestvo = 0;
-		};
-
-		double copper = 0;
-		double coal = 0;
-		Steel steel;
-		double iron = 0;
-		double derevo = 0;
-		double nickel = 0;
-		int listya = 0;
-		int bint = 0;
-
+		item copper;
+		copper.get_cena().text = txt57;
+		item coal;
+		coal.get_cena().text = txt59;
+		item steel;
+		steel.get_cena().text = txt61;
+		steel.get_cena().text2 = txt061;
+		item iron;
+		iron.get_cena().text = txt56;
+		item derevo;
+		derevo.get_cena().text = txt58;
+		item nickel;
+		nickel.get_cena().text = txt60;
+		item listya;
+		listya.get_cena().text = txtListya;
+		item bint;
+		bint.get_cena().listya = 3;
+		bint.get_cena().text = txt1015;
+		bint.get_cena().text2 = txt0555;
+		bint.get_cena().text3 = txt00555;
+		bint.get_cena().text3 = txtK1;
+		bint.get_cena().text4 = txtK2;
+		bint.get_cena().text5 = txtK3;
+		bint.get_cena().text6 = txtK4;
 		bool pokozat = 1;
-		bool organ = 1;
-		int dlya_organa = 0;
-		int dlya_organa2 = 0;
-		int cota = 0;
+		item organ;
+		organ.get_zaryad(2) = 1;
+		organ.get_cena().text = txt53;
+		item cat;
+		cat.get_cena().derevo = 2.5;
+		cat.get_cena().text = txt11;
+		item pribor_chai;
+		pribor_chai.get_cena().iron = 2.0;
 
-		int cat = -1;
-		int pribor_chai = -1;
 
 		int spear = -1;
 		int fakel = -1;
@@ -936,15 +976,15 @@ int main()
 				if (bint > 0 && vector_krov.size() > 0) { std::cout << txt00555; }
 				if (vector_lekarstvo.size() > 0) { std::cout << txt701 << txt100 << vector_lekarstvo.size() << txt101 << txt0701; }
 				
-				if (iron > 0) { std::cout << "\n" << txtUvas << txt56 << txt100 << iron << txt101; }
-				if (copper > 0) { std::cout << "\n" << txtUvas << txt57 << txt100 << copper << txt101; }
-				if (derevo > 0) { std::cout << "\n" << txtUvas << txt58 << txt100 << derevo << txt101; }
-				if (coal > 0) { std::cout << "\n" << txtUvas << txt59 << txt100 << coal << txt101; }
-				if (nickel > 0) { std::cout << "\n" << txtUvas << txt60 << txt100 << nickel << txt101; }
-				if (steel.kolichestvo > 0) { std::cout << "\n" << txtUvas << txt61 << txt100 << steel.kolichestvo << txt101 << txt061 << txt100 << steel.kachestvo << txt101; }
+				if (iron.get(2) > 0) { std::cout << "\n" << txtUvas << txt56 << txt100 << iron.get(2) << txt101; }
+				if (copper.get(2) > 0) { std::cout << "\n" << txtUvas << txt57 << txt100 << copper.get(2) << txt101; }
+				if (derevo.get(2) > 0) { std::cout << "\n" << txtUvas << txt58 << txt100 << derevo.get(2) << txt101; }
+				if (coal.get(2) > 0) { std::cout << "\n" << txtUvas << txt59 << txt100 << coal.get(2) << txt101; }
+				if (nickel.get(2) > 0) { std::cout << "\n" << txtUvas << txt60 << txt100 << nickel.get(2) << txt101; }
+				if (steel.get(2) > 0) { std::cout << "\n" << txtUvas << txt61 << txt100 << steel.get(2) << txt101 << txt061 << txt100 << steel.get(4) << txt101; }
 				if (cat > -1) { std::cout << txt65 << txt100 << cat << txt101; }
 				if (pribor_chai > -1) { std::cout << txt700 << txt100 << pribor_chai << txt101 << txt0700; }
-				if (listya > 0) { std::cout << "\n" << txtUvas << txtListya << txt100 << listya << txt101; }
+				if (listya.get(1) > 0) { std::cout << "\n" << txtUvas << txtListya << txt100 << listya.get(1) << txt101; }
 				if (spear > -1) { std::cout << txt121 << txt100 << spear << txt101; }
 				if (fakel > -1) { std::cout << txt122 << txt100 << fakel << txt101; }
 				if (look > -1) { std::cout << txt123 << txt100 << look << txt101; }
@@ -985,7 +1025,7 @@ int main()
 						}
 					}
 					else if (chto == 9) {
-						craft(organ, imunitet, infection, cat, spear, fakel, look, pribor_chai, iron, nickel, derevo, copper, coal, steel.kolichestvo, listya, bint, steel.kachestvo, mednaya_pech);
+						craft(organ, imunitet, infection, cat, spear, fakel, look, pribor_chai, iron, nickel, derevo, copper, coal, steel, listya, bint, mednaya_pech);
 						cikl2 = 1;
 					}
 					else if (chto == 99 && pribor_chai > 0 && faza > 0 && zele[chai].kak > 0) {
