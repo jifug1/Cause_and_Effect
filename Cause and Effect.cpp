@@ -66,6 +66,35 @@ public:
 std::vector<lekarstvo> vector_zhgut;
 std::vector<lekarstvo> vector_lekarstvo;
 std::vector<krovotichenie> vector_krov;
+struct struct_cena {
+	double derevo = 0.0;
+	double iron = 0.0;
+	double nickel = 0.0;
+	double copper = 0.0;
+	double steel = 0.0;
+	int listya = 0;
+	std::string text = null;
+};
+class item {
+	int no_kg = 0;
+	double kg = 0.0;
+	struct_cena cena;
+public:
+	void set_no_kg(bool x, int chislo) {
+		if (x) { no_kg += chislo; }
+		else { no_kg -= chislo; }
+	}
+	void set_kg(bool x, double chislo) {
+		if (x) { kg += chislo; }
+		else { kg -= chislo; }
+	}
+	template <typename T>
+	T get(int x) {
+		if (x == 1) { return no_kg; }
+		else if (x == 2) { return kg; }
+		else if (x == 3) { return cena; }
+	}
+};
 std::vector<kto> shapka;
 std::vector<kto> sharf;
 std::vector<kto> zele;
@@ -320,7 +349,6 @@ void craft(bool& organ, double& imunitet, double& infection, int& cat, int& spea
 		lekarstvo lek;
 		lek.izmenenie(steel_kachestvo);
 		vector_lekarstvo.push_back(lek);
-
 		if (steel <= 0) { steel_kachestvo = 0; }
 	}
 	else if (chto == 25 && steel >= cena_zhgut_steel) {
