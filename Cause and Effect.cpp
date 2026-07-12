@@ -95,6 +95,9 @@ class item {
 	bool flag = 0;
 	int bite = -100;
 	bool nizhe_vyshe = 0;
+	bool torgovlya = 0;
+	int index = -1;
+	int index_chem = -1;
 	struct_cena cena;
 public:
 	void set_no_kg(bool x, int chislo) {
@@ -115,9 +118,12 @@ public:
 	t& get_zaryad(t x) {
 		if (x == 1) { return zaryad; }
 		else if (x == 2) { return est; }
-		else if(x == 3){return flag}
-		else if
-
+		else if (x == 3) { return flag; }
+		else if (x == 4) { return bite; }
+		else if (x == 5) { return nizhe_vyshe; }
+		else if (x == 6) { return torgovlya; }
+		else if (x == 7) { return index; }
+		else if (x == 8) { return index_chem; }
 	}
 	struct_cena& get_cena() { return cena; }
 };
@@ -196,51 +202,60 @@ void read_save() {
 }
 void create() {
 	for (int x = 0; x < vector_item.size(); ++x) {
-		if(vector_item[x].)
+		if (vector_item[x].get_zaryad(4) < -100) { vector_item.erase(vector_item.begin() + x); --x; }
 	}
+	int chto = znacheniya_shapok(chislo);
+	int chto1 = znacheniya_shapok(chislo);
+	int chto2 = bite_chai(chislo);
+	for (int x = 0; x < kakaya_shapka; ++x) {
+		item s;
+		if (chto > 0) { s.set_no_kg(1, chto); }
+		else if (chto < 0) { s.set_no_kg(0, chto); }
+		s.get_zaryad(7) = 0;
+		s.get_zaryad(8) = 1;
+		s.get_zaryad(6) = 1;
+		s.get_zaryad(5) = 0;
+		s.get_zaryad(4) = -1;
+		s.get_cena().text = txt36;
+		if (x == 0) { s.get_cena().text = txt24; }
+		else if (x == 1) { s.get_cena().text2 = txt25; }
+		else if (x == 2) { s.get_cena().text3 = txt26; }
+		else if (x == 3) { s.get_cena().text4 = txt27; }
+		vector_item.push_back(s);
 
-	int r = x;
-	while (r) {
-		shapka.push_back({ znacheniya_shapok(chislo) });
-		sharf.push_back({ znacheniya_shapok(chislo) });
-		--r;
+		item f;
+		if (chto1 > 0) { f.set_no_kg(1, chto1); }
+		else if (chto1 < 0) { f.set_no_kg(0, chto1); }
+		f.get_zaryad(7) = 1;
+		f.get_zaryad(8) = 1;
+		f.get_zaryad(6) = 1;
+		f.get_zaryad(5) = 0;
+		f.get_zaryad(4) = -1;
+		f.get_cena().text = txt37;
+		if (x == 0) { f.get_cena().text = txt28; }
+		else if (x == 1) { f.get_cena().text2 = txt29; }
+		else if (x == 2) { f.get_cena().text3 = txt30; }
+		else if (x == 3) { f.get_cena().text4 = txt31; }
+		vector_item.push_back(f);
 
+		item c;
+		c.set_no_kg(1,chto2);
+		c.get_zaryad(7) = 2;
+		c.get_zaryad(5) = 1;
+		c.get_zaryad(4) = 3;
+		c.get_cena().text = txt38;
+		if (x == 0) { c.get_cena().text = txt32; }
+		else if (x == 1) { c.get_cena().text2 = txt33; }
+		else if (x == 2) { c.get_cena().text3 = txt34; }
+		else if (x == 3) { c.get_cena().text4 = txt35; }
+		vector_item.push_back(c);
 	}
-	int rr = y;
-	while (rr) {
-		zele.push_back({ bite_chai(chislo) });
-		--rr;
-
-	}
-	skoko_chaev = y - 1;
-	kakaya_shapka = x - 1;
-	dlyashapok.param(std::uniform_int_distribution<int>::param_type(0, kakaya_shapka));
-	kakoy_chai.param(std::uniform_int_distribution<int>::param_type(0, skoko_chaev));
-
 }
 void UI(int x) {
 
 }
 void craft(bool& organ, double& imunitet, double& infection, int& cat, int& spear, int& fakel, int& look, int& pribor_chai, item& iron, item& nickel, item& derevo, item& copper, item& coal, item& steel, item& listya, int& bint, bool& mednaya_pech) {
 	double cena_zhgut_steel = 0.100;
-	
-	std::cout << txt2;
-	if (derevo >= 0.31) { std::cout << txt6; }
-	if (nickel >= 0.300 && (pribor_chai > -1 || cat > -1)) { std::cout << txt7; }
-	if (nickel >= 0.600 && organ == 0) { std::cout << txt8; }
-	if (nickel >= 0.090 && iron >= 0.150) { std::cout << txt9; }
-	if (nickel >= 0.150 && iron >= 0.200 && infection > -1) { std::cout << txt10; }
-	if (derevo >= 2.5 && cat <= -1) { std::cout << txt11; }
-	if (derevo >= 0.100 && spear <= -1) { std::cout << txt112; }
-	if (derevo >= 0.400 && fakel <= -1) { std::cout << txt113; }
-	if (derevo >= 0.400 && look <= -1) { std::cout << txt114; }
-	if (iron >= 2.0 && pribor_chai <= -1) { std::cout << txt1014; }
-	if (listya >= 4) { std::cout << txt1015; }
-	if (copper >= 3.0 && !mednaya_pech) { std::cout << txt1016; }
-	if (derevo >= 0.310 && mednaya_pech) { std::cout << txt1017; }
-	if (iron >= 0.100 && coal >= 0.050 && mednaya_pech && (coal >= 0.060 || derevo >= 0.010)) { std::cout << txt1018; }
-	if (steel >= 0.200) { std::cout << txt1021; }
-	if (steel >= cena_zhgut_steel) { std::cout << txt016 << cena_zhgut_steel << txt017; }
 
 	int chto = vvod();
 	if (chto == 4 && derevo >= 0.31) { golo += 1; derevo -= 0.31; }
@@ -829,9 +844,11 @@ int main()
 	else if (languge == 2) { russian(); }
 	int proideno = 0;
 
-	while (shapka.size() < 1 || sharf.size() < 1 || zele.size() < 1) {
-		menu(proideno,zabeg);
+	bool flag_menu = 0;
+	for (int x = 0; x < vector_item.size(); ++x) {
+		if (vector_item[x].get_zaryad(4) < -100) { flag_menu = 1; }
 	}
+	if (flag_menu) { menu(proideno, zabeg); }
 	while (true) {
 		read_save();
 		
@@ -850,19 +867,29 @@ int main()
 
 		item copper;
 		copper.get_cena().text = txt57;
+		copper.get_cena().text2 = "copper";
+		vector_item.push_back(copper);
 		item coal;
 		coal.get_cena().text = txt59;
+		coal.get_cena().text2 = "coal";
+		vector_item.push_back(coal);
 		item steel;
 		steel.get_cena().text = txt61;
-		steel.get_cena().text2 = txt061;
+		steel.get_cena().text2 = "steel";
+		steel.get_cena().text3 = txt061;
+		vector_item.push_back(steel);
 		item iron;
 		iron.get_cena().text = txt56;
+		iron.get_cena().text2 = "iron";
 		item derevo;
 		derevo.get_cena().text = txt58;
+		derevo.get_cena().text2 = "derevo";
 		item nickel;
 		nickel.get_cena().text = txt60;
+		nickel.get_cena().text2 = "nickel";
 		item listya;
 		listya.get_cena().text = txtListya;
+		listya.get_cena().text2 = "listya";
 		item bint;
 		bint.get_cena().listya = 3;
 		bint.get_cena().text = txt1015;
@@ -907,8 +934,7 @@ int main()
 			int Nickel = podarok(chislo);
 			int Copper = podarok(chislo);
 
-			int sf = shapka[s].kak + sharf[f].kak;
-			int chai = kakoy_chai(chislo);
+			
 
 			int otvet = otvety(chislo);
 
@@ -917,36 +943,24 @@ int main()
 			bool mozhno_v_pisheru = 1;
 			bool mozhno_listya = 1;
 
-			bool uslovie_ukusa = 0;
-			bool uslovie_bite = 0;
-			bool uslovie_bite2 = 0;
+			
 
 			bool peredoz_lekk = 0;
 			bool inffection = 1;
 			bool bollezn = 1;
 
-			if (sf <= bite || zele[chai].kak >= bite2) {
-				uslovie_ukusa = 1;
-				if (sf <= bite) { uslovie_bite = 1; }
-				if (zele[chai].kak >= bite2) { uslovie_bite2 = 1; }
-			}
+			
 
-			if (dlya_organa == 0) { if (organ == 0) { bite += 1; dlya_organa = 1; } }
-			if (dlya_organa == 1) { if (organ == 1) { bite -= 1; dlya_organa = 0; } }
-			if (cota == 0) { if (cat > 0) { bite -= 1; cota = 1; } }
-			if (cota == 1) { if (cat == 0) { bite += 1; cota = 0; } }
+			
 
 			if (faza > 0) {
-				if (uslovie_ukusa) {
-					if (sf <= bite && zele[chai].kak >= bite2 && organ == 1) { organ = 0; }
-					else { golo -= 1; }
-				}
+				
 			}
 			int cikl2 = 0;
 			do {
 				cikl2 = 0;
 				if (faza > 0) {
-					if (uslovie_ukusa) { std::cout << txt23; }
+					
 
 
 					std::string shp = null;
