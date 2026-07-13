@@ -66,66 +66,34 @@ public:
 std::vector<lekarstvo> vector_zhgut;
 std::vector<lekarstvo> vector_lekarstvo;
 std::vector<krovotichenie> vector_krov;
+struct skolko_chego {
+	double skolko = 0.0;
+	std::string chego = null;
+};
+struct struct_kachestvo {
+
+
+};
 struct struct_cena {
-	double derevo = 0.0;
-	double iron = 0.0;
-	double nickel = 0.0;
-	double copper = 0.0;
-	double steel = 0.0;
-	int listya = 0;
-	std::string text = null;
-	std::string text2 = null;
-	std::string text3 = null;
-	std::string text4 = null;
-	std::string text5 = null;
-	std::string text6 = null;
-	std::string text7 = null;
-	std::string text8 = null;
-	std::string text9 = null;
-	std::string text10 = null;
-	std::string text11 = null;
-	std::string text12 = null;
+	std::vector<skolko_chego> vector_skolko_chego;
+	std::vector<struct_kachestvo> vector_kachestvo;
+	std::string text_nazvanie = null;
+	std::string text_kuda_vhodit = null;
 };
 class item {
-	int no_kg = 0;
-	double kg = 0.0;
-	double kachestvo = 0.0;
-	int zaryad = -1;
-	bool est = 0;
-	bool flag = 0;
-	int bite = -100;
-	bool nizhe_vyshe = 0;
-	bool torgovlya = 0;
-	int index = -1;
-	int index_chem = -1;
+	double skolko = -1.0;
+	double kachestvo = -1.0;
 	struct_cena cena;
 public:
-	void set_no_kg(bool x, int chislo) {
-		if (x) { no_kg += chislo; }
-		else { no_kg -= chislo; }
-	}
-	void set_kg(bool x, double chislo) {
-		if (x) { kg += chislo; }
-		else { kg -= chislo; }
-	}
-	template <typename T>
-	T get(T x) {
-		if (x == 1) { return no_kg; }
-		else if (x == 2) { return kg; }
-		else if (x == 4) { return kachestvo; }
-	}
-	template <typename t>
-	t& get_zaryad(t x) {
-		if (x == 1) { return zaryad; }
-		else if (x == 2) { return est; }
-		else if (x == 3) { return flag; }
-		else if (x == 4) { return bite; }
-		else if (x == 5) { return nizhe_vyshe; }
-		else if (x == 6) { return torgovlya; }
-		else if (x == 7) { return index; }
-		else if (x == 8) { return index_chem; }
-	}
 	struct_cena& get_cena() { return cena; }
+	double get_skolko() { return skolko; }
+	void set_plus_skolko(double x) { skolko += x; }
+	void set_minus_skolko(double x) { skolko -= x; }
+	double get_kachestvo() { return kachestvo; }
+	void set_kachestvo(double x) { 
+		if (kachestvo < 0) { kachestvo = x; }
+		else { kachestvo = (kachestvo + x) / 2; }
+	}
 };
 std::vector<item> vector_item;
 std::vector<kto> sz{
@@ -881,15 +849,19 @@ int main()
 		item iron;
 		iron.get_cena().text = txt56;
 		iron.get_cena().text2 = "iron";
+		vector_item.push_back(iron);
 		item derevo;
 		derevo.get_cena().text = txt58;
 		derevo.get_cena().text2 = "derevo";
+		vector_item.push_back(derevo);
 		item nickel;
 		nickel.get_cena().text = txt60;
 		nickel.get_cena().text2 = "nickel";
+		vector_item.push_back(nickel);
 		item listya;
 		listya.get_cena().text = txtListya;
 		listya.get_cena().text2 = "listya";
+		vector_item.push_back(listya);
 		item bint;
 		bint.get_cena().listya = 3;
 		bint.get_cena().text = txt1015;
@@ -899,13 +871,19 @@ int main()
 		bint.get_cena().text4 = txtK2;
 		bint.get_cena().text5 = txtK3;
 		bint.get_cena().text6 = txtK4;
+		vector_item.push_back(bint);
 		bool pokozat = 1;
 		item organ;
 		organ.get_zaryad(2) = 1;
 		organ.get_cena().text = txt53;
+		organ.get_zaryad(9) = 0;
+		vector_item.push_back(organ);
 		item cat;
 		cat.get_cena().derevo = 2.5;
 		cat.get_cena().text = txt11;
+		cat.get_zaryad(1) = 0;
+		cat.get_zaryad(9) = 0;
+		vector_item.push_back(cat);
 		item pribor_chai;
 		pribor_chai.get_cena().iron = 2.0;
 
