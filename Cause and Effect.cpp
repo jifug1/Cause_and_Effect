@@ -8,10 +8,6 @@
 #include "text.h"
 #include <thread>
 
-
-int kakaya_shapka = 3;
-int skoko_chaev = 3;
-
 int record = 0;
 int languge = 0;
 int vsego_proideno = 0;
@@ -19,32 +15,27 @@ int save_proideno = 0;
 int zabeg = 0;
 
 std::mt19937 chislo(std::chrono::steady_clock::now().time_since_epoch().count());
-std::uniform_int_distribution<int> znacheniya_shapok(-1, 1);
-std::uniform_int_distribution<int> kakoy_chai(0, skoko_chaev);
-std::uniform_int_distribution<int> dlyashapok(0, kakaya_shapka);
-std::uniform_int_distribution<int> bite_chai(0, 4);
-std::uniform_int_distribution<int> podarok(0, 3);
-std::uniform_int_distribution<int> otvety(1, 2);
+std::uniform_int_distribution<int> diapazon(0, 0);
 std::uniform_int_distribution<int> chance(1, 100);
 
-struct kto {
+/*struct kto {
 	int kak;
 	double kg;
-};
+};*/
 struct cave {
 	int x = 0;
 	int y = 0;
 	int id = -1;
 };
-struct krovotichenie {
+/*struct krovotichenie {
 	int tyazhest;
 	int timer_zhguta = -1;
 	int index_ = -1;
-};
+};*/
 std::vector<cave> entity{
 	{0,0,0},
 };
-struct lekarstvo {
+/*struct lekarstvo {
 private:
 	double kachestvo;
 	int index_ = -1;
@@ -65,14 +56,19 @@ public:
 };
 std::vector<lekarstvo> vector_zhgut;
 std::vector<lekarstvo> vector_lekarstvo;
-std::vector<krovotichenie> vector_krov;
+std::vector<krovotichenie> vector_krov;*/
 struct skolko_chego {
 	double skolko = 0.0;
 	std::string chego = null;
 };
 struct struct_kachestvo {
-
-
+	double nuzhnoe_kachestvo = -1;
+	std::vector<skolko_chego> vector_skolko_chego;
+};
+struct struct_pribor {
+	bool eto_mozhno_ispolzovat = false;
+	std::string k_chemu_ispolzuetsya = null;
+	std::vector<skolko_chego> vector_skolko_chego;
 };
 struct struct_cena {
 	std::vector<skolko_chego> vector_skolko_chego;
@@ -80,23 +76,41 @@ struct struct_cena {
 	std::string text_nazvanie = null;
 	std::string text_kuda_vhodit = null;
 };
+struct struct_shapka {
+	int max = 0;
+	int min = 0;
+	int bite = 0;
+	bool razgovor = 0;
+};
 class item {
 	double skolko = -1.0;
 	double kachestvo = -1.0;
+	int zaryad_timer = -1;
+	int index_k_chemu_privyazan = -1;
 	struct_cena cena;
+	struct_pribor pribor;
+	struct_shapka shapka;
 public:
 	struct_cena& get_cena() { return cena; }
 	double get_skolko() { return skolko; }
 	void set_plus_skolko(double x) { skolko += x; }
 	void set_minus_skolko(double x) { skolko -= x; }
+
+	void set_zaryad_timer(int x) { zaryad_timer = x; }
+	int get_zaryad_timer() { return zaryad_timer; }
+
 	double get_kachestvo() { return kachestvo; }
 	void set_kachestvo(double x) { 
 		if (kachestvo < 0) { kachestvo = x; }
 		else { kachestvo = (kachestvo + x) / 2; }
 	}
+	int get_index_k_chemu_privyazan() { return index_k_chemu_privyazan; }
+	void set_index_k_chemu_privyazan(int x) { index_k_chemu_privyazan = x; }
+	struct_pribor& get_pribor() { return pribor; }
+	struct_shapka& get_shapka() { return shapka; }
 };
 std::vector<item> vector_item;
-std::vector<kto> sz{
+/*std::vector<kto> sz{
 	{0,0.150},
 	{0,0.200},
 	{0,0.290},
@@ -119,10 +133,8 @@ std::vector<kto> nick{
 	{0,0.120},
 	{0,0.160},
 	{0,0.175},
-};
-int golo = 14;
+};*/
 bool igra = 1;
-
 int vvod() {
 	int x;
 	int r;
@@ -813,25 +825,21 @@ int main()
 	int proideno = 0;
 
 	bool flag_menu = 0;
-	for (int x = 0; x < vector_item.size(); ++x) {
-		if (vector_item[x].get_zaryad(4) < -100) { flag_menu = 1; }
-	}
-	if (flag_menu) { menu(proideno, zabeg); }
 	while (true) {
-		read_save();
-		
-
-		vector_krov.clear();
-		vector_lekarstvo.clear();
-
 		igra = 1;
-		golo = 15;
-		double krov = 100;
 		proideno = 0;
+		read_save();
+		vector_item.clear();
+		item zdorove;
+		zdorove.get_cena().text_nazvanie = "health";
+		zdorove.set_zaryad_timer(15);
+		vector_item.push_back(zdorove);
+		item krov;
+		krov.get_cena().text_nazvanie = "blood";
+		krov.set_zaryad_timer(100);
+		vector_item.push_back(krov);
+		
 		int porog_sbrosa = 100;
-
-		int bite = -1;
-		int bite2 = 3;
 
 		item copper;
 		copper.get_cena().text = txt57;
